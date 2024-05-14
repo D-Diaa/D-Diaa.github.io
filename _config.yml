@@ -28,8 +28,8 @@ url: "http://D-Diaa.github.io" # the base hostname & protocol for your site
 github_username:  D-Diaa
 
 # Build settings
-# remote_theme: "mmistakes/minimal-mistakes@4.26.1"
-theme: "minimal-mistakes-jekyll"
+remote_theme: "mmistakes/minimal-mistakes@4.26.1"
+# theme: "minimal-mistakes-jekyll"
 plugins:
   - jekyll-feed
   - jekyll-include-cache
