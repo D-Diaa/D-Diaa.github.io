@@ -1,9 +1,7 @@
 ---
-layout: page
-title: About
+layout: single
+title: About Me
 permalink: /about/
 ---
-
-# About Me
 
 I am a PhD student in computer science at the University of Waterloo. My research focuses on...

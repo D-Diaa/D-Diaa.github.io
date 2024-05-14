@@ -1,10 +1,8 @@
 ---
-layout: page
+layout: single
 title: Publications
 permalink: /publications/
 ---
-
-# Publications
 
 ## Publication 1
 Description and link to publication 1.

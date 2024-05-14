@@ -1,10 +1,9 @@
 ---
-layout: page
+layout: home
+author_profile: true
 title: Home
 permalink: /
 ---
-
-# Welcome to My Website
 
 I am a PhD student in computer science at the University of Waterloo. Welcome to my personal website.
 

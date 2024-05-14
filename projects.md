@@ -1,10 +1,8 @@
 ---
-layout: page
+layout: single
 title: Projects
 permalink: /projects/
 ---
-
-# Projects
 
 ## Project 1
 Description of project 1.
