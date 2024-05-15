@@ -68,16 +68,16 @@ header:
 
 footer:
   links:
-    - label: "GitHub"
+    - label: ""
       icon: "fab fa-fw fa-github"
       url: "https://github.com/D-Diaa"
-    - label: "LinkedIn"
+    - label: ""
       icon: "fab fa-fw fa-linkedin"
       url: "https://www.linkedin.com/in/abdulrahman-diaa-555300126/"
-    - label: "Google Scholar"
+    - label: ""
       icon: "fas fa-fw fa-graduation-cap"
       url: "https://scholar.google.com/citations?user=xFX1k1AAAAAJ"
-    - label: "Email"
+    - label: ""
       icon: "fas fa-fw fa-envelope"
       url: "mailto:a2diaa@uwaterloo.ca"
 
