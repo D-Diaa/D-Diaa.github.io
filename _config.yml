@@ -24,14 +24,63 @@ description: >- # this means to ignore newlines until "baseurl:"
   My personal website.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "http://D-Diaa.github.io" # the base hostname & protocol for your site
-# twitter_username: jekyllrb
-github_username:  D-Diaa
+
+author:
+  name: "Abdulrahman Diaa"
+  avatar: "/assets/images/bio-photo.jpeg"
+  bio: "Weird coffee guy" # Note: Markdown is allowed
+  location: "Waterloo, ON"
+  links:
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/D-Diaa"
+    - label: "LinkedIn"
+      icon: "fab fa-fw fa-linkedin"
+      url: "https://www.linkedin.com/in/abdulrahman-diaa-555300126/"
+    - label: "Google Scholar"
+      icon: "fas fa-fw fa-graduation-cap"
+      url: "https://scholar.google.com/citations?user=xFX1k1AAAAAJ"
+    - label: "Email"
+      icon: "fas fa-fw fa-envelope"
+      url: "mailto:a2diaa@uwaterloo.ca"
+    - label: "Resume"
+      icon: "fas fa-fw fa-file"
+      url: "/assets/resume.pdf"
+
 
 # Build settings
 remote_theme: "mmistakes/minimal-mistakes@4.26.1"
 # theme: "minimal-mistakes-jekyll"
 
 minimal_mistakes_skin: "dark" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: single
+      author_profile: true
+
+enable_copy_code_button: true
+search: true
+
+header:
+  teaser: /assets/images/my-awesome-post-teaser.jpg
+
+footer:
+  links:
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/D-Diaa"
+    - label: "LinkedIn"
+      icon: "fab fa-fw fa-linkedin"
+      url: "https://www.linkedin.com/in/abdulrahman-diaa-555300126/"
+    - label: "Google Scholar"
+      icon: "fas fa-fw fa-graduation-cap"
+      url: "https://scholar.google.com/citations?user=xFX1k1AAAAAJ"
+    - label: "Email"
+      icon: "fas fa-fw fa-envelope"
+      url: "mailto:a2diaa@uwaterloo.ca"
+
 
 plugins:
   - jekyll-feed
