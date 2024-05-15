@@ -4,8 +4,6 @@ toc: true
 
 ---
 
-## About Me
-
 I am a PhD student in computer science at the University of Waterloo. My research interests include privacy-preserving machine computation, fully homomorphic encryption, and differential privacy. I am currently working on developing privacy-preserving machine learning algorithms that are secure, accurate, and efficient.
 
 ## Preprints
