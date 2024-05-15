@@ -4,7 +4,13 @@ toc: true
 
 ---
 
-I am a PhD student in computer science at the University of Waterloo. My research interests include privacy-preserving machine computation, fully homomorphic encryption, and differential privacy. I am currently working on developing privacy-preserving machine learning algorithms that are secure, accurate, and efficient.
+My name is Abdulrahman Diaa. I am a Ph.D. student under the supervision of [Florian Kerschbaum](https://cs.uwaterloo.ca/~fkerschb/). I'm also a member of the [Cryptography, Security, and Privacy (CrySP)](https://crysp.uwaterloo.ca) lab at the [University of Waterloo](https://uwaterloo.ca).
+
+I hold a Masters degree in Computer Science from the University of Waterloo and a Bachelor of Science in Computer Engineering and Mathematics from [The American University in Cairo](https://www.aucegypt.edu).
+
+## Research
+
+My research interests include privacy-preserving computation, fully homomorphic encryption, and differential privacy. I have also worked on projects related to trust-worthy machine learning. My current focus is on designing private and efficient protocols for emerging machine learning applications.
 
 ## Preprints
 **A. Diaa**, T. Humphries, and F. Kerschbaum.  
