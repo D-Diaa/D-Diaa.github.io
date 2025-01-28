@@ -13,6 +13,9 @@ I hold a Masters degree in Computer Science from the University of Waterloo and 
 My research interests include privacy-preserving computation, fully homomorphic encryption, and differential privacy. I have also worked on projects related to trust-worthy machine learning. My current focus is on designing private and efficient protocols for emerging machine learning applications.
 
 ## Preprints
+**A. Diaa**, T. Aremu, and N. Lukas.  
+[Optimizing Adaptive Attacks against Content Watermarks for Language Models](https://arxiv.org/abs/2410.02440).
+
 **A. Diaa**, T. Humphries, and F. Kerschbaum.  
 [FastLloyd: Federated, Accurate, Secure, and Tunable $k$-Means Clustering with Differential Privacy](https://arxiv.org/abs/2405.02437).
 
