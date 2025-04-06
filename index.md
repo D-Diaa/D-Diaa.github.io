@@ -10,7 +10,7 @@ I hold a Masters degree in Computer Science from the University of Waterloo and 
 
 ## Research
 
-My research interests include privacy-preserving computation, fully homomorphic encryption, and differential privacy. I have also worked on projects related to trust-worthy machine learning. My current focus is on designing private and efficient protocols for emerging machine learning applications.
+My research focuses on developing robust watermarking techniques for AI-generated content to combat misinformation and enhance digital trust. I explore adversarial vulnerabilities in current watermarking systems and designing robust approaches that withstand sophisticated removal attempts. Through this work, I aim to establish watermarking as critical infrastructure for generative AI, ensuring accountability and trustworthiness across various applications.
 
 ## Preprints
 **A. Diaa**, T. Aremu, and N. Lukas.  
