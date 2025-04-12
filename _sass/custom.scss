@@ -951,7 +951,7 @@ ul li, ol li {
 /* Time Badge Styling */
 .time-badge {
   position: absolute;
-  right: calc(100% + 10px);
+  left: 10px;
   top: 50%;
   transform: translateY(-50%);
   background-color: var(--link-color);
@@ -1231,7 +1231,7 @@ ul li, ol li {
   
   .step-item {
     padding: 0.75rem 0.75rem 0.75rem 2.5rem;
-    margin-left: 2.5rem; /* Make space for time badge */
+    margin-left: 0; /* Remove margin that was making space for time badge */
   }
   
   .step-number {
@@ -1241,10 +1241,7 @@ ul li, ol li {
   }
   
   .time-badge {
-    right: auto;
-    left: -2.5rem;
-    top: 50%;
-    transform: translateY(-50%);
+    left: 10px;
     font-size: 0.65rem;
     padding: 2px 6px;
   }

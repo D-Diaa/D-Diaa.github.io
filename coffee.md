@@ -60,28 +60,24 @@ permalink: /coffee/
       <h3 class="steps-title">Steps</h3>
       <ol class="steps-list">
         <li class="step-item preparation">
-          <span class="step-number">0</span>
           <span class="time-badge prep-time">Prep</span>
           <div class="step-content">
             <strong>Preheat the dripper:</strong> With the switch closed, fill the dripper with hot water and let it sit for a minute. Drain the water before adding the filter.
           </div>
         </li>
         <li class="step-item preparation">
-          <span class="step-number">1</span>
           <span class="time-badge prep-time">Prep</span>
           <div class="step-content">
             <strong>Pre-wet the filter:</strong> Rinse the filter with hot water to remove any paper taste and preheat the dripper.
           </div>
         </li>
         <li class="step-item preparation">
-          <span class="step-number">2</span>
           <span class="time-badge prep-time">Prep</span>
           <div class="step-content">
             <strong>Add coffee:</strong> Add the ground coffee to the filter and shake gently to level the bed.
           </div>
         </li>
         <li class="step-item bloom">
-          <span class="step-number">3</span>
           <span class="time-badge">0:00</span>
           <div class="step-content">
             <strong>Bloom:</strong> Pour 60g of water slowly over the coffee grounds in a spiral motion. Aim for a 30-second pour; then wait for 30 seconds to let the coffee bloom.
@@ -94,7 +90,6 @@ permalink: /coffee/
           </div>
         </li>
         <li class="step-item percolation">
-          <span class="step-number">4</span>
           <span class="time-badge">1:00</span>
           <div class="step-content">
             <strong>Percolation:</strong> at 1:00, pour 100g of water in a spiral motion, aiming for a 40-second pour. This can be a bit faster if you want to increase the agitation. Selectively pour on darker, drier spots to ensure even saturation.
@@ -107,14 +102,12 @@ permalink: /coffee/
           </div>
         </li>
         <li class="step-item immersion">
-          <span class="step-number">5</span>
           <span class="time-badge">2:00</span>
           <div class="step-content">
             <strong>Close the switch:</strong> At 2:00, close the switch to start the immersion phase.
           </div>
         </li>
         <li class="step-item immersion">
-          <span class="step-number">6</span>
           <span class="time-badge">2:00</span>
           <div class="step-content">
             <strong>Immersion:</strong> Add the remaining water (140g) and let it steep until 3:00. Open the switch to drain the coffee. The coffee should finish draining before 4:00.
@@ -127,7 +120,6 @@ permalink: /coffee/
           </div>
         </li>
         <li class="step-item serving">
-          <span class="step-number">7</span>
           <span class="time-badge">4:00</span>
           <div class="step-content">
             <strong>Serve:</strong> Enjoy your coffee!
