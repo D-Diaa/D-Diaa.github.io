@@ -1,0 +1,15 @@
+/* 
+ * ANIMATIONS
+ * Visual effects and transitions
+ */
+@keyframes link-glow {
+  0% {
+    box-shadow: 0 0 5px rgba(var(--link-color-rgb, 42, 154, 243), 0.6);
+  }
+  50% {
+    box-shadow: 0 0 15px rgba(var(--link-color-rgb, 42, 154, 243), 0.8);
+  }
+  100% {
+    box-shadow: 0 0 5px rgba(var(--link-color-rgb, 42, 154, 243), 0.6);
+  }
+}

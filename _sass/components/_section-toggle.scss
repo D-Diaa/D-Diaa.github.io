@@ -1,0 +1,53 @@
+/* 
+ * COLLAPSIBLE SECTIONS
+ * Controls the expandable/collapsible behavior of content sections
+ */
+.section-header {
+  cursor: pointer;
+  position: relative;
+  padding-right: 30px;
+  transition: color 0.3s ease;
+  display: inline-block;
+  
+  &:hover {
+    color: var(--link-color);
+  }
+  
+  &:after {
+    content: '▶';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1em;
+    color: var(--link-color);
+    transition: all 0.3s ease;
+  }
+  
+  &.active:after {
+    content: '▼';
+  }
+}
+
+.section-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.6s ease-in-out;
+  margin-top: 0;
+  
+  &.expanded {
+    max-height: 5000px; /* Large enough to contain all content */
+    margin-top: 1em;
+    margin-bottom: 2em;
+  }
+}
+
+/* Heading style preservation for collapsible sections */
+h2 .section-header {
+  border-bottom: none;
+  padding-bottom: 0;
+  
+  &:after {
+    bottom: auto;
+  }
+}

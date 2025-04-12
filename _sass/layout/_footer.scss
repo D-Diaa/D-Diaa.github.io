@@ -1,0 +1,25 @@
+/* 
+ * FOOTER STYLING
+ * Styling for the page footer
+ */
+.page__footer {
+  background-color: var(--masthead-background) !important;
+  color: var(--text-color) !important;
+  border-top: 1px solid var(--masthead-border) !important;
+}
+
+.page__footer-follow a, .page__footer-copyright {
+  color: var(--text-color) !important;
+}
+
+.page__footer-follow .social-icons .fa,
+.page__footer-follow .social-icons .fas,
+.page__footer-follow .social-icons .fab {
+  color: var(--text-color) !important;
+}
+
+.page__footer-follow .social-icons a:hover .fa,
+.page__footer-follow .social-icons a:hover .fas,
+.page__footer-follow .social-icons a:hover .fab {
+  color: var(--link-color) !important;
+}

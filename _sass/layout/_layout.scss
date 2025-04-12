@@ -1,0 +1,220 @@
+/* 
+ * LAYOUT STRUCTURE
+ * Page layout and content organization
+ */
+.page {
+  padding-right: 0;
+  width: 100%;
+}
+
+/* Hero section styling */
+.hero-section {
+  margin-bottom: 2em;
+}
+
+.hero-content {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 2em;
+}
+
+.hero-text {
+  flex: 1;
+  min-width: 300px;
+}
+
+.hero-profile {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+}
+
+.hero-avatar {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid rgba(var(--link-color-rgb, 42, 154, 243), 0.5);
+  transition: all 0.3s ease;
+  
+  &:hover {
+    border-color: rgba(var(--link-color-rgb, 42, 154, 243), 0.8);
+    transform: scale(1.02);
+  }
+  
+  img.bio-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+}
+
+.hero-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75em;
+  margin-top: 0.5em;
+  
+  .social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: var(--card-background);
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+    
+    &:hover {
+      background-color: rgba(var(--link-color-rgb, 42, 154, 243), 0.15);
+      border-color: rgba(var(--link-color-rgb, 42, 154, 243), 0.5);
+      transform: translateY(-2px);
+      text-decoration: none;
+    }
+    
+    i {
+      font-size: 0.85em;
+    }
+  }
+}
+
+/* Grid layout for desktop screens */
+@media (min-width: 64em) {
+  .page {
+    padding-right: 0;
+  }
+}
+
+/* Medium screen adjustments */
+@media (max-width: 64em) and (min-width: 48em) {
+  .hero-content {
+    flex-wrap: nowrap;
+  }
+  
+  .hero-profile {
+    flex: 0 0 200px;
+  }
+  
+  .hero-avatar {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+/* Small screen content adjustments */
+@media (max-width: 48em) {
+  .hero-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .hero-text {
+    order: 2;
+  }
+  
+  .hero-profile {
+    order: 1;
+    margin-bottom: 1em;
+  }
+  
+  .hero-avatar {
+    width: 140px;
+    height: 140px;
+  }
+  
+  .hero-links {
+    justify-content: center;
+    
+    .social-link {
+      padding: 0.4em 0.6em;
+      
+      .link-label {
+        display: none;
+      }
+    }
+  }
+  
+  .page {
+    width: 100%;
+  }
+}
+
+/* Hide table of contents */
+.toc {
+  display: none;
+}
+
+/* Content width control */
+.page__content {
+  width: 100%;
+  padding-right: 0;
+}
+
+/* 
+ * PROFILE COMPONENTS
+ * Author bio and avatar styling
+ */
+.author__bio {
+  font-size: 1em;
+  line-height: 1.6;
+  margin-top: 0.5em;
+}
+
+/* Profile image styling */
+.author__avatar {
+  img {
+    border-radius: 50%;
+    border: 3px solid rgba(var(--link-color-rgb, 42, 154, 243), 0.5) !important;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      border-color: rgba(var(--link-color-rgb, 42, 154, 243), 0.8) !important;
+      transform: scale(1.05);
+    }
+  }
+}
+
+/* 
+ * RESUME SECTION STYLING
+ * Formatting for resume section and download button
+ */
+.resume-container {
+  position: relative;
+}
+
+.resume-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1em;
+}
+
+.download-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  padding: 0.6em 1.2em;
+  background-color: rgba(var(--link-color-rgb, 42, 154, 243), 0.15);
+  border: 1px solid rgba(var(--link-color-rgb, 42, 154, 243), 0.3);
+  border-radius: 4px;
+  font-size: 0.9em;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background-color: rgba(var(--link-color-rgb, 42, 154, 243), 0.3);
+    transform: translateY(-2px);
+    text-decoration: none;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  i {
+    font-size: 1em;
+  }
+}

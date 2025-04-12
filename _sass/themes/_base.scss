@@ -1,0 +1,61 @@
+/* Apply theme variables to elements */
+body {
+  background-color: var(--background-color) !important;
+  color: var(--text-color) !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--heading-color) !important;
+}
+
+a {
+  color: var(--link-color) !important;
+  
+  &:hover {
+    color: var(--link-hover-color) !important;
+  }
+}
+
+.publication-item {
+  background-color: var(--card-background) !important;
+  border-color: var(--border-color) !important;
+}
+
+/* List element spacing */
+ul li, ol li {
+  margin-bottom: 0.5em;
+}
+
+/* Navigation hover effects */
+.greedy-nav {
+  a {
+    position: relative;
+    
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: var(--link-color);
+      transition: all 0.3s ease;
+    }
+    
+    &:hover:after {
+      width: 100%;
+      left: 0;
+    }
+  }
+}
+
+/* Code formatting */
+.language-plaintext {
+  background-color: var(--code-background) !important;
+}
+
+.page__content {
+  h2:after {
+    background-color: var(--link-color) !important;
+  }
+}

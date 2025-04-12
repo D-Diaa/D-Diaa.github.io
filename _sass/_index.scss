@@ -1,0 +1,24 @@
+/* 
+  Custom SCSS styling for Abdulrahman Diaa's website
+  This file contains component-specific styling that extends the main theme
+  Last updated: April 2025
+  
+  Refactored into modular components for better maintainability
+*/
+
+/* Import theme variables and base styles */
+@import "themes/variables";
+@import "themes/base";
+
+/* Import layout components */
+@import "layout/header";
+@import "layout/footer";
+@import "layout/layout";
+
+/* Import UI components */
+@import "components/section-toggle";
+@import "components/publications";
+@import "components/animations";
+
+/* Import page-specific styles */
+@import "pages/coffee";

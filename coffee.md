@@ -122,7 +122,7 @@ permalink: /coffee/
         <li class="step-item serving">
           <span class="time-badge">4:00</span>
           <div class="step-content">
-            <strong>Serve:</strong> Enjoy your coffee!
+            <strong>Serve:</strong> Swirl, smell, slurp, and enjoy your coffee!
           </div>
         </li>
       </ol>

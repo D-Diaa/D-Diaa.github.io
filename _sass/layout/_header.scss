@@ -1,0 +1,267 @@
+/* 
+ * HEADER COMPONENTS
+ * Styling for the fixed header and navigation elements
+ */
+.masthead {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: var(--masthead-background) !important;
+  border-bottom: 1px solid var(--masthead-border) !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease;
+}
+
+/* Header and footer styling */
+.masthead {
+  background-color: var(--masthead-background) !important;
+  color: var(--text-color) !important;
+  border-bottom-color: var(--masthead-border) !important;
+}
+
+/* Site title and navigation styling */
+.greedy-nav .site-title {
+  color: var(--text-color) !important;
+}
+
+.greedy-nav a.site-title {
+  color: var(--text-color) !important;
+}
+
+/* Ensure all masthead elements use theme colors */
+.masthead__menu, 
+.masthead__inner-wrap,
+.masthead .greedy-nav,
+.masthead .greedy-nav a,
+.masthead .greedy-nav .visible-links a {
+  color: var(--text-color) !important;
+  background-color: var(--masthead-background) !important;
+}
+
+.site-title, 
+.greedy-nav .site-title,
+.greedy-nav a.site-title {
+  white-space: nowrap; /* Prevents text wrapping */
+  display: inline-block; /* Keeps the entire title together */
+}
+
+/* Main navigation links */
+.nav-links {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  margin-left: auto;
+  
+  li {
+    margin: 0 0 0 1em;
+    
+    a {
+      font-size: 0.75em;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 0.5em 0;
+      position: relative;
+      color: var(--text-color);
+      
+      &:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: var(--link-color);
+        transform: scaleX(0);
+        transition: transform 0.3s ease;
+      }
+      
+      &:hover {
+        color: var(--link-color);
+        text-decoration: none;
+        
+        &:after {
+          transform: scaleX(1);
+        }
+      }
+    }
+    
+    .social-icons-container {
+      display: flex;
+      align-items: center;
+      background-color: rgba(var(--link-color-rgb, 42, 154, 243), 0.1);
+      border-radius: 20px;
+      padding: 0.2em;
+      margin-right: 0.5em;
+      border: 1px solid rgba(var(--link-color-rgb, 42, 154, 243), 0.2);
+      
+      .header-social-link {
+        font-size: 0.85em;
+        padding: 0.5em 0.8em;
+        margin: 0 0.1em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: transparent !important;
+        
+        &:after {
+          display: none;
+        }
+        
+        &:hover {
+          color: var(--link-color) !important;
+          transform: translateY(-2px);
+          background-color: transparent !important;
+        }
+        
+        i {
+          font-size: 1em;
+        }
+      }
+    }
+  }
+}
+
+.nav-links li a {
+  color: var(--text-color) !important;
+  
+  &:hover {
+    color: var(--link-color) !important;
+  }
+  
+  &:after {
+    background: var(--link-color) !important;
+  }
+}
+
+.greedy-nav a:after {
+  background: var(--link-color) !important;
+}
+
+/* Greedy navigation adjustments */
+.greedy-nav {
+  display: flex;
+  align-items: center;
+  
+  .site-title {
+    margin-right: 1em;
+  }
+  
+  .hidden-links {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 15px;
+    padding: 5px;
+    border: 1px solid var(--masthead-border);
+    border-radius: 4px;
+    background: var(--masthead-background) !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    
+    &.hidden {
+      display: none;
+    }
+    
+    a {
+      margin: 0;
+      padding: 10px 20px;
+      font-size: 0.75em;
+      
+      &:hover {
+        color: var(--link-color);
+      }
+    }
+  }
+}
+
+/* Theme toggle button styling */
+.theme-toggle {
+  background: var(--toggle-background);
+  border: 1px solid var(--toggle-border);
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  padding: 0;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 10px rgba(var(--link-color-rgb, 42, 154, 243), 0.5);
+  }
+  
+  .theme-toggle-icon {
+    position: absolute;
+    font-size: 16px;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  
+  .light-icon {
+    opacity: 0;
+    transform: scale(0.5);
+    color: #f39c12;
+  }
+  
+  .dark-icon {
+    opacity: 1;
+    transform: scale(1);
+    color: #f0f0f0;
+  }
+}
+
+/* Toggle icon states based on theme */
+[data-theme="light"] {
+  .theme-toggle {
+    .light-icon {
+      opacity: 1;
+      transform: scale(1);
+    }
+    
+    .dark-icon {
+      opacity: 0;
+      transform: scale(0.5);
+    }
+  }
+}
+
+/* Mobile header adjustments */
+@media (max-width: 768px) {
+  .nav-links {
+    display: flex;
+    width: 100%; /* Take full width of container */
+    justify-content: flex-end; /* Right align content */
+  }
+  
+  .nav-links li:not(:has(.social-icons-container)):not(:has(.theme-toggle)):not(:has([aria-label="Coffee"])) {
+    display: none; /* Hide regular nav links but keep theme toggle and coffee icon visible */
+  }
+  
+  .nav-links li .social-icons-container {
+    margin-left: auto; /* Push to the far right */
+    margin-right: 0.5em; /* Add small margin for spacing with theme toggle */
+  }
+  
+  /* Ensure the container itself is right-aligned relative to masthead */
+  .masthead__inner-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .greedy-nav__toggle {
+    order: 3; /* Place after social icons */
+    margin-left: 1em; /* Space between social icons and toggle */
+  }
+  
+  /* Ensure theme toggle is properly positioned on small screens */
+  .nav-links li:has(.theme-toggle) {
+    margin-left: 0.5em;
+  }
+}

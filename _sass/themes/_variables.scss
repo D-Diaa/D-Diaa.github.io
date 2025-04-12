@@ -1,0 +1,40 @@
+/* 
+ * THEME VARIABLES
+ * CSS variables for light and dark themes
+ */
+:root {
+  /* Default to dark theme variables */
+  --background-color: #121212;
+  --text-color: #e6e6e6;
+  --heading-color: #ffffff;
+  --link-color: #2a9af3;
+  --link-color-rgb: 42, 154, 243;
+  --link-hover-color: #4db8ff;
+  --border-color: rgba(255, 255, 255, 0.1);
+  --card-background: rgba(255, 255, 255, 0.05);
+  --code-background: rgba(0, 0, 0, 0.2);
+  --masthead-background: #121212;
+  --masthead-border: rgba(42, 154, 243, 0.3);
+  --toggle-background: #121212;
+  --toggle-border: rgba(42, 154, 243, 0.5);
+  
+  /* Theme transition */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Light theme variables */
+[data-theme="light"] {
+  --background-color: #f8f9fa;
+  --text-color: #333333;
+  --heading-color: #212529;
+  --link-color: #0366d6;
+  --link-color-rgb: 3, 102, 214;
+  --link-hover-color: #0056b3;
+  --border-color: rgba(0, 0, 0, 0.1);
+  --card-background: rgba(0, 0, 0, 0.02);
+  --code-background: rgba(0, 0, 0, 0.05);
+  --masthead-background: #ffffff;
+  --masthead-border: rgba(0, 0, 0, 0.1);
+  --toggle-background: #f8f9fa;
+  --toggle-border: rgba(0, 102, 214, 0.5);
+}
