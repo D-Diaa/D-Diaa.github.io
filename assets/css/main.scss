@@ -67,6 +67,22 @@ $publication-background: rgba(255, 255, 255, 0.05);
       background-color: $primary-color;
     }
   }
+  
+  /* Ensure collapsible section headers maintain styling */
+  h2 .section-header {
+    display: inline-block;
+    width: calc(100% - 30px);
+  }
+}
+
+/* Collapsible section transitions */
+.section-content {
+  opacity: 1;
+  transition: max-height 0.6s ease-in-out, opacity 0.3s ease-in-out, margin 0.3s ease;
+  
+  &:not(.expanded) {
+    opacity: 0;
+  }
 }
 
 /* Improve intro section */

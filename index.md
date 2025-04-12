@@ -9,17 +9,20 @@ permalink: /
   <p>I hold a Masters degree in Computer Science from the University of Waterloo and a Bachelor of Science in Computer Engineering and Mathematics from <a href="https://www.aucegypt.edu" target="_blank">The American University in Cairo</a>.</p>
 </div>
 
-## Research
+## <span class="section-header">Research</span>
 
-<div class="research-summary">
-  <p>My research focuses on developing robust watermarking techniques for AI-generated content to combat misinformation and enhance digital trust. I explore adversarial vulnerabilities in current watermarking systems and design robust approaches that withstand targetted scrubbing attempts.</p>
-  
-  <p>I aim to establish watermarking as critical infrastructure for generative AI, ensuring accountability and trustworthiness across various applications.</p>
+<div class="section-content">
+  <div class="research-summary">
+    <p>My research focuses on developing robust watermarking techniques for AI-generated content to combat misinformation and enhance digital trust. I explore adversarial vulnerabilities in current watermarking systems and design robust approaches that withstand targetted scrubbing attempts.</p>
+    
+    <p>I aim to establish watermarking as critical infrastructure for generative AI, ensuring accountability and trustworthiness across various applications.</p>
+  </div>
 </div>
 
-## Publications
+## <span class="section-header">Publications</span>
 
-<div class="publication-item">
+<div class="section-content">
+  <div class="publication-item">
   <div class="author-list">
     N. Lukas, <span class="author-highlight">A. Diaa</span>, L. Fenaux, and F. Kerschbaum
   </div>
@@ -51,11 +54,13 @@ permalink: /
   <div class="publication-links">
     <a href="https://petsymposium.org/popets/2023/popets-2023-0122.pdf" class="paper-link">Paper</a>
   </div>
+  </div>
 </div>
 
-## Preprints
+## <span class="section-header">Preprints</span>
 
-<div class="publication-item">
+<div class="section-content">
+  <div class="publication-item">
   <div class="author-list">
     <span class="author-highlight">A. Diaa</span>, T. Aremu, and N. Lukas
   </div>
@@ -85,15 +90,18 @@ permalink: /
   <div class="publication-links">
     <a href="https://arxiv.org/abs/2303.09043" class="paper-link">Paper</a>
   </div>
+  </div>
 </div>
 
-## Resume
+## <span class="section-header">Resume</span>
 
-<div class="pdf-container">
+<div class="section-content">
+  <div class="pdf-container">
     <iframe src="{{ site.baseurl }}/assets/resume.pdf" width="100%" height="800px" style="border: none;">
         This browser does not support PDFs. Please download the PDF to view it:
         <a href="{{ site.baseurl }}/assets/resume.pdf" class="paper-link">Download PDF</a>.
     </iframe>
+  </div>
 </div>
 
 <!-- ## Posts
@@ -101,3 +109,28 @@ permalink: /
 {% for post in site.posts %}
 - [{{ post.title }}]({{ post.url }})
 {% endfor %} -->
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Initialize all sections as collapsed except the first one
+    const headers = document.querySelectorAll('.section-header');
+    const contents = document.querySelectorAll('.section-content');
+    
+    // Expand the first section by default
+    if (headers.length > 0) {
+      headers[0].classList.add('active');
+      contents[0].classList.add('expanded');
+    }
+    
+    // Add click event listeners to all section headers
+    headers.forEach(function(header, index) {
+      header.addEventListener('click', function() {
+        // Toggle active class on the header
+        this.classList.toggle('active');
+        
+        // Toggle expanded class on the corresponding content
+        contents[index].classList.toggle('expanded');
+      });
+    });
+  });
+</script>
