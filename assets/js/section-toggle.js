@@ -1,13 +1,19 @@
 document.addEventListener('DOMContentLoaded', function() {
-  // Initialize all sections as collapsed except the first one
+  // Initialize all sections as expanded by default, except the resume section
   const headers = document.querySelectorAll('.section-header');
   const contents = document.querySelectorAll('.section-content');
   
-  // Expand the first section by default
-  if (headers.length > 0) {
-    headers[0].classList.add('active');
-    contents[0].classList.add('expanded');
-  }
+  // Expand all sections by default
+  headers.forEach(function(header, index) {
+    // Check if this is the Resume section
+    if (header.textContent.trim() === 'Resume') {
+      // Don't expand the Resume section
+    } else {
+      // Expand all other sections
+      header.classList.add('active');
+      contents[index].classList.add('expanded');
+    }
+  });
   
   // Add click event listeners to all section headers
   headers.forEach(function(header, index) {
