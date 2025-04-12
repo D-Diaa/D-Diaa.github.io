@@ -19,7 +19,7 @@ permalink: /
   </div>
 </section>
 
-<h2><span class="section-header">Research</span></h2>
+<h2 id="research"><span class="section-header">Research</span></h2>
 
 <section class="section-content">
   <div class="research-summary">
@@ -29,7 +29,7 @@ permalink: /
   </div>
 </section>
 
-<h2><span class="section-header">Publications</span></h2>
+<h2 id="publications"><span class="section-header">Publications</span></h2>
 
 <section class="section-content">
   {% for publication in site.data.publications %}
@@ -39,7 +39,7 @@ permalink: /
   {% endfor %}
 </section>
 
-<h2><span class="section-header">Preprints</span></h2>
+<h2 id="preprints"><span class="section-header">Preprints</span></h2>
 
 <section class="section-content">
   {% for publication in site.data.preprints %}
@@ -49,7 +49,7 @@ permalink: /
   {% endfor %}
 </section>
 
-<h2><span class="section-header">Resume</span></h2>
+<h2 id="resume"><span class="section-header">Resume</span></h2>
 
 <section class="section-content">
   <div class="resume-container">
