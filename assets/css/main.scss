@@ -20,7 +20,7 @@ $header-font-family: $sans-serif;
 
 /* 
  * COLOR SCHEME
- * Core color variables for the dark theme
+ * Core color variables for SCSS functions
  */
 $background-color: #121212;
 $text-color: #e6e6e6;
@@ -32,6 +32,11 @@ $link-color-visited: mix(#000, $link-color, 15%);
 /* Publication component variables */
 $publication-border: 1px solid rgba(255, 255, 255, 0.1);
 $publication-background: rgba(255, 255, 255, 0.05);
+
+/* 
+ * We'll use these SCSS variables for SCSS functions,
+ * but the actual colors will be applied using CSS variables in custom.scss
+ */
 
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
 @import "minimal-mistakes"; // main partials

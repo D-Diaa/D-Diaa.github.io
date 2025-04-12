@@ -5,6 +5,217 @@
 */
 
 /* 
+ * THEME VARIABLES
+ * CSS variables for light and dark themes
+ */
+:root {
+  /* Default to dark theme variables */
+  --background-color: #121212;
+  --text-color: #e6e6e6;
+  --heading-color: #ffffff;
+  --link-color: #2a9af3;
+  --link-color-rgb: 42, 154, 243;
+  --link-hover-color: #4db8ff;
+  --border-color: rgba(255, 255, 255, 0.1);
+  --card-background: rgba(255, 255, 255, 0.05);
+  --code-background: rgba(0, 0, 0, 0.2);
+  --masthead-background: #121212;
+  --masthead-border: rgba(42, 154, 243, 0.3);
+  --toggle-background: #121212;
+  --toggle-border: rgba(42, 154, 243, 0.5);
+  
+  /* Theme transition */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Light theme variables */
+[data-theme="light"] {
+  --background-color: #f8f9fa;
+  --text-color: #333333;
+  --heading-color: #212529;
+  --link-color: #0366d6;
+  --link-color-rgb: 3, 102, 214;
+  --link-hover-color: #0056b3;
+  --border-color: rgba(0, 0, 0, 0.1);
+  --card-background: rgba(0, 0, 0, 0.02);
+  --code-background: rgba(0, 0, 0, 0.05);
+  --masthead-background: #ffffff;
+  --masthead-border: rgba(0, 0, 0, 0.1);
+  --toggle-background: #f8f9fa;
+  --toggle-border: rgba(0, 102, 214, 0.5);
+}
+
+/* Apply theme variables to elements */
+body {
+  background-color: var(--background-color) !important;
+  color: var(--text-color) !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--heading-color) !important;
+}
+
+a {
+  color: var(--link-color) !important;
+  
+  &:hover {
+    color: var(--link-hover-color) !important;
+  }
+}
+
+.publication-item {
+  background-color: var(--card-background) !important;
+  border-color: var(--border-color) !important;
+}
+
+/* Header and footer styling */
+.masthead, .page__footer {
+  background-color: var(--masthead-background) !important;
+  color: var(--text-color) !important;
+}
+
+.masthead {
+  border-bottom-color: var(--masthead-border) !important;
+}
+
+/* Site title and navigation styling */
+.greedy-nav .site-title {
+  color: var(--text-color) !important;
+}
+
+.greedy-nav a.site-title {
+  color: var(--text-color) !important;
+}
+
+/* Ensure all masthead elements use theme colors */
+.masthead__menu, 
+.masthead__inner-wrap,
+.masthead .greedy-nav,
+.masthead .greedy-nav a,
+.masthead .greedy-nav .visible-links a {
+  color: var(--text-color) !important;
+  background-color: var(--masthead-background) !important;
+}
+
+.page__footer {
+  border-top: 1px solid var(--masthead-border) !important;
+}
+
+.page__footer-follow a, .page__footer-copyright {
+  color: var(--text-color) !important;
+}
+
+.page__footer-follow .social-icons .fa,
+.page__footer-follow .social-icons .fas,
+.page__footer-follow .social-icons .fab {
+  color: var(--text-color) !important;
+}
+
+.page__footer-follow .social-icons a:hover .fa,
+.page__footer-follow .social-icons a:hover .fas,
+.page__footer-follow .social-icons a:hover .fab {
+  color: var(--link-color) !important;
+}
+
+.page__content {
+  h2:after {
+    background-color: var(--link-color) !important;
+  }
+}
+
+.nav-links li a {
+  color: var(--text-color) !important;
+  
+  &:hover {
+    color: var(--link-color) !important;
+  }
+  
+  &:after {
+    background: var(--link-color) !important;
+  }
+}
+
+.greedy-nav a:after {
+  background: var(--link-color) !important;
+}
+
+.research-summary {
+  border-left-color: var(--link-color) !important;
+}
+
+.paper-link {
+  background-color: rgba(var(--link-color-rgb, 42, 154, 243), 0.15) !important;
+  border-color: rgba(var(--link-color-rgb, 42, 154, 243), 0.3) !important;
+}
+
+.code-link {
+  background-color: rgba(101, 211, 110, 0.15) !important;
+  border-color: rgba(101, 211, 110, 0.3) !important;
+}
+
+.author__avatar img {
+  border-color: rgba(var(--link-color-rgb, 42, 154, 243), 0.5) !important;
+  
+  &:hover {
+    border-color: rgba(var(--link-color-rgb, 42, 154, 243), 0.8) !important;
+  }
+}
+
+/* Theme toggle button styling */
+.theme-toggle {
+  background: var(--toggle-background);
+  border: 1px solid var(--toggle-border);
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  padding: 0;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 10px rgba(var(--link-color-rgb, 42, 154, 243), 0.5);
+  }
+  
+  .theme-toggle-icon {
+    position: absolute;
+    font-size: 16px;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  
+  .light-icon {
+    opacity: 0;
+    transform: scale(0.5);
+    color: #f39c12;
+  }
+  
+  .dark-icon {
+    opacity: 1;
+    transform: scale(1);
+    color: #f0f0f0;
+  }
+}
+
+/* Toggle icon states based on theme */
+[data-theme="light"] {
+  .theme-toggle {
+    .light-icon {
+      opacity: 1;
+      transform: scale(1);
+    }
+    
+    .dark-icon {
+      opacity: 0;
+      transform: scale(0.5);
+    }
+  }
+}
+
+/* 
  * COLLAPSIBLE SECTIONS
  * Controls the expandable/collapsible behavior of content sections
  */
@@ -16,7 +227,7 @@
   display: inline-block;
   
   &:hover {
-    color: #2a9af3;
+    color: var(--link-color);
   }
   
   &:after {
@@ -27,7 +238,7 @@
     transform: translateY(-50%);
     font-size: 1.2em;
     font-weight: bold;
-    color: rgba(42, 154, 243, 0.8);
+    color: var(--link-color);
     transition: all 0.3s ease;
   }
   
@@ -67,8 +278,8 @@ h2 .section-header {
   position: sticky;
   top: 0;
   z-index: 1000;
-  background-color: #121212;
-  border-bottom: 1px solid rgba(42, 154, 243, 0.3);
+  background-color: var(--masthead-background) !important;
+  border-bottom: 1px solid var(--masthead-border) !important;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
   transition: all 0.3s ease;
 }
@@ -93,7 +304,7 @@ h2 .section-header {
       letter-spacing: 0.5px;
       padding: 0.5em 0;
       position: relative;
-      color: #e6e6e6;
+      color: var(--text-color);
       
       &:after {
         content: '';
@@ -102,13 +313,13 @@ h2 .section-header {
         left: 0;
         width: 100%;
         height: 2px;
-        background: rgba(42, 154, 243, 0.8);
+        background: var(--link-color);
         transform: scaleX(0);
         transition: transform 0.3s ease;
       }
       
       &:hover {
-        color: #2a9af3;
+        color: var(--link-color);
         text-decoration: none;
         
         &:after {
@@ -134,9 +345,9 @@ h2 .section-header {
     right: 0;
     margin-top: 15px;
     padding: 5px;
-    border: 1px solid rgba(42, 154, 243, 0.3);
+    border: 1px solid var(--masthead-border);
     border-radius: 4px;
-    background: #121212;
+    background: var(--masthead-background) !important;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
     
     &.hidden {
@@ -149,7 +360,7 @@ h2 .section-header {
       font-size: 0.75em;
       
       &:hover {
-        color: #2a9af3;
+        color: var(--link-color);
       }
     }
   }
@@ -234,13 +445,13 @@ h2 .section-header {
  */
 @keyframes link-glow {
   0% {
-    box-shadow: 0 0 5px rgba(42, 154, 243, 0.6);
+    box-shadow: 0 0 5px rgba(var(--link-color-rgb, 42, 154, 243), 0.6);
   }
   50% {
-    box-shadow: 0 0 15px rgba(42, 154, 243, 0.8);
+    box-shadow: 0 0 15px rgba(var(--link-color-rgb, 42, 154, 243), 0.8);
   }
   100% {
-    box-shadow: 0 0 5px rgba(42, 154, 243, 0.6);
+    box-shadow: 0 0 5px rgba(var(--link-color-rgb, 42, 154, 243), 0.6);
   }
 }
 
@@ -267,22 +478,22 @@ h2 .section-header {
 }
 
 .paper-link {
-  background-color: rgba(42, 154, 243, 0.15);
-  border: 1px solid rgba(42, 154, 243, 0.3);
+  background-color: rgba(var(--link-color-rgb, 42, 154, 243), 0.15) !important;
+  border: 1px solid rgba(var(--link-color-rgb, 42, 154, 243), 0.3) !important;
   
   &:hover {
-    background-color: rgba(42, 154, 243, 0.3);
+    background-color: rgba(var(--link-color-rgb, 42, 154, 243), 0.3) !important;
     animation: link-glow 1.5s infinite;
     text-decoration: none;
   }
 }
 
 .code-link {
-  background-color: rgba(101, 211, 110, 0.15);
-  border: 1px solid rgba(101, 211, 110, 0.3);
+  background-color: rgba(101, 211, 110, 0.15) !important;
+  border: 1px solid rgba(101, 211, 110, 0.3) !important;
   
   &:hover {
-    background-color: rgba(101, 211, 110, 0.3);
+    background-color: rgba(101, 211, 110, 0.3) !important;
     animation: link-glow 1.5s infinite;
     text-decoration: none;
   }
@@ -302,7 +513,7 @@ h2 .section-header {
 /* Year tag styling */
 .pub-year {
   display: inline-block;
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: var(--card-background);
   padding: 2px 8px;
   border-radius: 12px;
   font-size: 0.75em;
@@ -325,11 +536,11 @@ h2 .section-header {
 .author__avatar {
   img {
     border-radius: 50%;
-    border: 3px solid rgba(42, 154, 243, 0.5);
+    border: 3px solid rgba(var(--link-color-rgb, 42, 154, 243), 0.5) !important;
     transition: all 0.3s ease;
     
     &:hover {
-      border-color: rgba(42, 154, 243, 0.8);
+      border-color: rgba(var(--link-color-rgb, 42, 154, 243), 0.8) !important;
       transform: scale(1.05);
     }
   }
@@ -352,7 +563,7 @@ ul li, ol li {
       left: 50%;
       width: 0;
       height: 2px;
-      background: $primary-color;
+      background: var(--link-color);
       transition: all 0.3s ease;
     }
     
