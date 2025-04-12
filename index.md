@@ -104,11 +104,6 @@ permalink: /
   </div>
 </div>
 
-<!-- ## Posts
-
-{% for post in site.posts %}
-- [{{ post.title }}]({{ post.url }})
-{% endfor %} -->
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {

@@ -1,9 +1,13 @@
 /* 
   Custom SCSS styling for Abdulrahman Diaa's website
-  This file handles additional custom styling beyond what's in main.scss
+  This file contains component-specific styling that extends the main theme
+  Last updated: April 2025
 */
 
-/* Collapsible section styling */
+/* 
+ * COLLAPSIBLE SECTIONS
+ * Controls the expandable/collapsible behavior of content sections
+ */
 .section-header {
   cursor: pointer;
   position: relative;
@@ -45,7 +49,7 @@
   }
 }
 
-/* Ensure h2 with section-header maintains styling */
+/* Heading style preservation for collapsible sections */
 h2 .section-header {
   border-bottom: none;
   padding-bottom: 0;
@@ -55,7 +59,10 @@ h2 .section-header {
   }
 }
 
-/* Sticky header styling */
+/* 
+ * HEADER COMPONENTS
+ * Styling for the fixed header and navigation elements
+ */
 .masthead {
   position: sticky;
   top: 0;
@@ -66,7 +73,7 @@ h2 .section-header {
   transition: all 0.3s ease;
 }
 
-/* Navigation styling for header */
+/* Main navigation links */
 .nav-links {
   display: flex;
   justify-content: flex-end;
@@ -112,7 +119,7 @@ h2 .section-header {
   }
 }
 
-/* Adjust greedy nav for our custom navigation */
+/* Greedy navigation adjustments */
 .greedy-nav {
   display: flex;
   align-items: center;
@@ -148,7 +155,10 @@ h2 .section-header {
   }
 }
 
-/* Responsive adjustments for mobile */
+/* 
+ * RESPONSIVE LAYOUT
+ * Mobile and small screen adaptations
+ */
 @media (max-width: 768px) {
   .nav-links {
     display: none;
@@ -159,19 +169,22 @@ h2 .section-header {
   }
 }
 
-/* Adjust layout to preserve author profile and expand content */
+/* 
+ * LAYOUT STRUCTURE
+ * Page layout and content organization
+ */
 .page {
   padding-right: 0;
 }
 
-/* Ensure author profile is visible and content doesn't overlap */
+/* Author profile sidebar positioning */
 .sidebar.sticky {
   position: sticky;
   top: 5em;
   max-width: 250px;
 }
 
-/* Adjust grid layout for author profile and content */
+/* Grid layout for desktop screens */
 @media (min-width: 64em) {
   .author__avatar {
     max-width: 110px;
@@ -193,7 +206,7 @@ h2 .section-header {
   }
 }
 
-/* Ensure content doesn't overflow on smaller screens */
+/* Small screen content adjustments */
 @media (max-width: 64em) {
   .sidebar {
     margin-bottom: 1em;
@@ -204,18 +217,21 @@ h2 .section-header {
   }
 }
 
-/* Hide TOC */
+/* Hide table of contents */
 .toc {
   display: none;
 }
 
-/* Ensure content has proper width */
+/* Content width control */
 .page__content {
   width: 100%;
   padding-right: 0;
 }
 
-// Animation for link hover effects
+/* 
+ * ANIMATIONS
+ * Visual effects and transitions
+ */
 @keyframes link-glow {
   0% {
     box-shadow: 0 0 5px rgba(42, 154, 243, 0.6);
@@ -228,7 +244,10 @@ h2 .section-header {
   }
 }
 
-// Paper links with special styling
+/* 
+ * PUBLICATION STYLING
+ * Formatting for academic papers and code links
+ */
 .paper-link, .code-link {
   display: inline-block;
   padding: 4px 10px;
@@ -241,7 +260,7 @@ h2 .section-header {
   transition: all 0.3s ease;
 }
 
-// Publication links container
+/* Publication links container */
 .publication-links {
   display: block;
   margin-top: 10px;
@@ -269,7 +288,7 @@ h2 .section-header {
   }
 }
 
-// Improve author lists in publications
+/* Author list formatting */
 .author-list {
   margin-bottom: 0.5em;
   font-size: 0.85em;
@@ -280,7 +299,7 @@ h2 .section-header {
   }
 }
 
-// Publication year tag
+/* Year tag styling */
 .pub-year {
   display: inline-block;
   background-color: rgba(255, 255, 255, 0.1);
@@ -291,7 +310,10 @@ h2 .section-header {
   vertical-align: middle;
 }
 
-// Enhance bio section
+/* 
+ * PROFILE COMPONENTS
+ * Author bio and avatar styling
+ */
 .author__bio {
   font-size: 1em;
   line-height: 1.6;
@@ -299,7 +321,7 @@ h2 .section-header {
   margin-top: 0.5em;
 }
 
-// Enhance avatar
+/* Profile image styling */
 .author__avatar {
   img {
     border-radius: 50%;
@@ -313,12 +335,12 @@ h2 .section-header {
   }
 }
 
-// Improve list spacing
+/* List element spacing */
 ul li, ol li {
   margin-bottom: 0.5em;
 }
 
-// Add subtle animation to navigation
+/* Navigation hover effects */
 .greedy-nav {
   a {
     position: relative;

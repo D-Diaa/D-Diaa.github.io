@@ -61,7 +61,7 @@ defaults:
       author_profile: true
 
 enable_copy_code_button: true
-search: true
+search: false
 
 header:
   teaser: /assets/images/my-awesome-post-teaser.jpg
@@ -83,7 +83,6 @@ footer:
 
 
 plugins:
-  - jekyll-feed
   - jekyll-include-cache
 
 # Exclude from processing.
