@@ -231,19 +231,18 @@ a {
   }
   
   &:after {
-    content: '+';
+    content: '▶';
     position: absolute;
     right: 0;
     top: 50%;
     transform: translateY(-50%);
-    font-size: 1.2em;
-    font-weight: bold;
+    font-size: 1em;
     color: var(--link-color);
     transition: all 0.3s ease;
   }
   
   &.active:after {
-    content: '−';
+    content: '▼';
   }
 }
 
