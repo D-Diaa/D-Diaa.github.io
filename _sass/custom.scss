@@ -403,16 +403,40 @@ h2 .section-header {
  * RESPONSIVE LAYOUT
  * Mobile and small screen adaptations
  */
-@media (max-width: 768px) {
+ @media (max-width: 768px) {
   .nav-links {
-    display: none;
+    display: flex;
+    width: 100%; /* Take full width of container */
+    justify-content: flex-end; /* Right align content */
+  }
+  
+  .nav-links li:not(:has(.social-icons-container)) {
+    display: none; /* Hide regular nav links */
+  }
+  
+  .nav-links li .social-icons-container {
+    margin-left: auto; /* Push to the far right */
+    margin-right: 0; /* Remove right margin to align with edge */
+  }
+  
+  /* Ensure the container itself is right-aligned relative to masthead */
+  .masthead__inner-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
   
   .greedy-nav__toggle {
-    margin-left: auto;
+    order: 3; /* Place after social icons */
+    margin-left: 1em; /* Space between social icons and toggle */
   }
 }
-
+.site-title, 
+.greedy-nav .site-title,
+.greedy-nav a.site-title {
+  white-space: nowrap; /* Prevents text wrapping */
+  display: inline-block; /* Keeps the entire title together */
+}
 /* 
  * LAYOUT STRUCTURE
  * Page layout and content organization
