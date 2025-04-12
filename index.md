@@ -40,7 +40,7 @@ Usenix Security Symposium, 2024.
 S. Sav, **A. Diaa**, A. Pyrgelis, J. Boussat, and J. Hubaux.  
 Privacy-Preserving Federated Recurrent Neural Networks.
 Proceedings on Privacy Enhancing Technologies (PoPETs), 2023.
-[Paper](https://petsymposium.org/popets/2023/popets-2023-0122.pdf)
+[Paper](https://petsymposium.org/popets/2023/popets-2023-0122.pdf).
 
 ## Resume
 
