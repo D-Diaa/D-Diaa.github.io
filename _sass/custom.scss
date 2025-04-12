@@ -410,13 +410,13 @@ h2 .section-header {
     justify-content: flex-end; /* Right align content */
   }
   
-  .nav-links li:not(:has(.social-icons-container)) {
-    display: none; /* Hide regular nav links */
+  .nav-links li:not(:has(.social-icons-container)):not(:has(.theme-toggle)) {
+    display: none; /* Hide regular nav links but keep theme toggle visible */
   }
   
   .nav-links li .social-icons-container {
     margin-left: auto; /* Push to the far right */
-    margin-right: 0; /* Remove right margin to align with edge */
+    margin-right: 0.5em; /* Add small margin for spacing with theme toggle */
   }
   
   /* Ensure the container itself is right-aligned relative to masthead */
@@ -429,6 +429,11 @@ h2 .section-header {
   .greedy-nav__toggle {
     order: 3; /* Place after social icons */
     margin-left: 1em; /* Space between social icons and toggle */
+  }
+  
+  /* Ensure theme toggle is properly positioned on small screens */
+  .nav-links li:has(.theme-toggle) {
+    margin-left: 0.5em;
   }
 }
 .site-title, 
