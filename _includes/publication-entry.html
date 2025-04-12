@@ -22,6 +22,12 @@
     {% if include.publication.abstract %}
       <span class="abstract-toggle">Abstract</span>
     {% endif %}
+    <span class="bibtex-button" 
+      data-authors="{{ include.publication.authors | map: 'name' | join: '|' }}"
+      data-title="{{ include.publication.title }}"
+      data-venue="{{ include.publication.venue }}"
+      data-year="{{ include.publication.year }}"
+      data-url="{{ include.publication.links | where: 'type', 'paper' | map: 'url' | first }}">BibTeX</span>
   </div>
   {% if include.publication.abstract %}
   <div class="publication-abstract">
