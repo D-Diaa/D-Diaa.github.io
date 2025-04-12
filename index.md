@@ -26,7 +26,9 @@ toc: true
   </div>
   <strong>Leveraging Optimization for Adaptive Attacks on Image Watermarks.</strong>
   <div>International Conference on Learning Representations (ICLR) <span class="pub-year">2024</span></div>
-  <a href="https://openreview.net/forum?id=O9PArxKLe1" class="paper-link">Paper</a>
+  <div class="publication-links">
+    <a href="https://openreview.net/forum?id=O9PArxKLe1" class="paper-link">Paper</a>
+  </div>
 </div>
 
 <div class="publication-item">
@@ -35,8 +37,10 @@ toc: true
   </div>
   <strong>Fast and Private Inference of Deep Neural Networks by Co-designing Activation Functions.</strong>
   <div>Usenix Security Symposium <span class="pub-year">2024</span></div>
-  <a href="https://www.usenix.org/system/files/sec24summer-prepub-373-diaa.pdf" class="paper-link">Paper</a>
-  <a href="https://github.com/LucasFenaux/PILLAR-ESPN" class="code-link">Code</a>
+  <div class="publication-links">
+    <a href="https://www.usenix.org/system/files/sec24summer-prepub-373-diaa.pdf" class="paper-link">Paper</a>
+    <a href="https://github.com/LucasFenaux/PILLAR-ESPN" class="code-link">Code</a>
+  </div>
 </div>
 
 <div class="publication-item">
@@ -45,7 +49,9 @@ toc: true
   </div>
   <strong>Privacy-Preserving Federated Recurrent Neural Networks.</strong>
   <div>Proceedings on Privacy Enhancing Technologies (PoPETs) <span class="pub-year">2023</span></div>
-  <a href="https://petsymposium.org/popets/2023/popets-2023-0122.pdf" class="paper-link">Paper</a>
+  <div class="publication-links">
+    <a href="https://petsymposium.org/popets/2023/popets-2023-0122.pdf" class="paper-link">Paper</a>
+  </div>
 </div>
 
 ## Preprints
@@ -54,8 +60,10 @@ toc: true
     <span class="author-highlight">A. Diaa</span>, T. Aremu, and N. Lukas
   </div>
   <strong>Optimizing Adaptive Attacks against Content Watermarks for Language Models.</strong>
-  <a href="https://arxiv.org/abs/2410.02440" class="paper-link">Paper</a>
-  <a href="https://huggingface.co/collections/DDiaa/watermark-removing-paraphrasers-673e3f01fcceafaa2da7e0cf" class="code-link">Models</a>
+  <div class="publication-links">
+    <a href="https://arxiv.org/abs/2410.02440" class="paper-link">Paper</a>
+    <a href="https://huggingface.co/collections/DDiaa/watermark-removing-paraphrasers-673e3f01fcceafaa2da7e0cf" class="code-link">Models</a>
+  </div>
 </div>
 
 <div class="publication-item">
@@ -63,8 +71,10 @@ toc: true
     <span class="author-highlight">A. Diaa</span>, T. Humphries, and F. Kerschbaum
   </div>
   <strong>FastLloyd: Federated, Accurate, Secure, and Tunable $k$-Means Clustering with Differential Privacy.</strong>
-  <a href="https://arxiv.org/abs/2405.02437" class="paper-link">Paper</a>
-  <a href="https://github.com/D-Diaa/FastLloyd" class="code-link">Code</a>
+  <div class="publication-links">
+    <a href="https://arxiv.org/abs/2405.02437" class="paper-link">Paper</a>
+    <a href="https://github.com/D-Diaa/FastLloyd" class="code-link">Code</a>
+  </div>
 </div>
 
 <div class="publication-item">
@@ -72,7 +82,9 @@ toc: true
     RA. Mahdavi, <span class="author-highlight">A. Diaa</span>, and F. Kerschbaum
   </div>
   <strong>HE is all you need: Compressing FHE Ciphertexts using Additive HE.</strong>
-  <a href="https://arxiv.org/abs/2303.09043" class="paper-link">Paper</a>
+  <div class="publication-links">
+    <a href="https://arxiv.org/abs/2303.09043" class="paper-link">Paper</a>
+  </div>
 </div>
 
 ## Resume

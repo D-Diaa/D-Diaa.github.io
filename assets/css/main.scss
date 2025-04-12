@@ -41,7 +41,7 @@ $publication-background: rgba(255, 255, 255, 0.05);
   background-color: $publication-background;
   border: $publication-border;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  max-width: 90%;
+  max-width: 100%;
   
   &:hover {
     transform: translateY(-3px);
