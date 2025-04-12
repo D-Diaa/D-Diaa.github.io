@@ -477,6 +477,52 @@ h2 .section-header {
   margin-top: 10px;
 }
 
+/* Abstract toggle styling */
+.abstract-toggle {
+  display: inline-block;
+  padding: 4px 10px;
+  margin: 8px 5px 5px 0;
+  border-radius: 3px;
+  font-size: 0.65em;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  background-color: rgba(255, 193, 7, 0.15) !important;
+  border: 1px solid rgba(255, 193, 7, 0.3) !important;
+  cursor: pointer;
+}
+
+.abstract-toggle:hover {
+  background-color: rgba(255, 193, 7, 0.3) !important;
+  animation: link-glow 1.5s infinite;
+  text-decoration: none;
+}
+
+/* Publication abstract styling */
+.publication-abstract {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease-out, padding 0.5s ease-out, opacity 0.5s ease-out;
+  opacity: 0;
+  padding: 0;
+  margin: 0;
+  font-size: 0.9em;
+  line-height: 1.5;
+  border-left: 3px solid var(--border-color);
+}
+
+.publication-abstract.expanded {
+  max-height: 500px;
+  opacity: 1;
+  padding: 10px 0 10px 15px;
+  margin: 10px 0;
+}
+
+.abstract-toggle.active {
+  background-color: rgba(255, 193, 7, 0.3) !important;
+}
+
 .paper-link {
   background-color: rgba(var(--link-color-rgb, 42, 154, 243), 0.15) !important;
   border: 1px solid rgba(var(--link-color-rgb, 42, 154, 243), 0.3) !important;

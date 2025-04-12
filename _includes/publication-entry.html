@@ -19,5 +19,13 @@
     {% for link in include.publication.links %}
       <a href="{{ link.url }}" class="{{ link.type }}-link">{{ link.label }}</a>
     {% endfor %}
+    {% if include.publication.abstract %}
+      <span class="abstract-toggle">Abstract</span>
+    {% endif %}
   </div>
+  {% if include.publication.abstract %}
+  <div class="publication-abstract">
+    <p>{{ include.publication.abstract }}</p>
+  </div>
+  {% endif %}
 </div>

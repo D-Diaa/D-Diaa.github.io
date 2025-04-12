@@ -19,4 +19,25 @@ document.addEventListener('DOMContentLoaded', function() {
       contents[index].classList.toggle('expanded');
     });
   });
+  
+  // Handle abstract toggles for publications
+  const abstractToggles = document.querySelectorAll('.abstract-toggle');
+  
+  abstractToggles.forEach(function(toggle) {
+    toggle.addEventListener('click', function() {
+      // Toggle active class on the toggle button
+      this.classList.toggle('active');
+      
+      // Find the closest publication item
+      const publicationItem = this.closest('.publication-item');
+      
+      // Find the abstract section within this publication item
+      const abstract = publicationItem.querySelector('.publication-abstract');
+      
+      // Toggle expanded class on the abstract
+      if (abstract) {
+        abstract.classList.toggle('expanded');
+      }
+    });
+  });
 });

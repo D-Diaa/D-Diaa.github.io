@@ -7,6 +7,7 @@
       highlight: false
   title: "Optimizing Adaptive Attacks against Content Watermarks for Language Models"
   year: 2024
+  abstract: "Large Language Models (LLMs) can be \emph{misused} to spread online spam and misinformation. Content watermarking deters misuse by hiding a message in model-generated outputs, enabling their detection using a secret watermarking key. Robustness is a core security property, stating that evading detection requires (significant) degradation of the content's quality. Many LLM watermarking methods have been proposed, but robustness is tested only against \emph{non-adaptive} attackers who lack knowledge of the watermarking method and can find only suboptimal attacks. We formulate the robustness of LLM watermarking as an objective function and propose preference-based optimization to tune \emph{adaptive} attacks against the specific watermarking method. Our evaluation shows that (i) adaptive attacks substantially outperform non-adaptive baselines. (ii) Even in a non-adaptive setting, adaptive attacks optimized against a few known watermarks remain highly effective when tested against other unseen watermarks, and (iii) optimization-based attacks are practical and require less than seven GPU hours. Our findings underscore the need to test robustness against adaptive attackers."
   links:
     - type: "paper"
       url: "https://arxiv.org/abs/2410.02440"
@@ -24,6 +25,7 @@
       highlight: false
   title: "FastLloyd: Federated, Accurate, Secure, and Tunable $k$-Means Clustering with Differential Privacy"
   year: 2024
+  abstract: "We study the problem of privacy-preserving $k$-Means clustering in the horizontally federated setting. Existing federated approaches using secure computation suffer from substantial overheads and do not offer output privacy. At the same time, differentially private (DP) $k$-Means algorithms either assume a trusted central curator or significantly degrade utility by adding noise in the local DP model. Naively combining the secure and central DP solutions results in a protocol with impractical overhead. Instead, our work provides enhancements to both the DP and secure computation components, resulting in a design that is faster, more private, and more accurate than previous work. By utilizing the computational DP model, we design a lightweight, secure aggregation-based approach that achieves five orders of magnitude speed-up over state-of-the-art related work. Furthermore, we not only maintain the utility of the state-of-the-art in the central model of DP, but we improve the utility further by designing a new DP clustering mechanism."
   links:
     - type: "paper"
       url: "https://arxiv.org/abs/2405.02437"
@@ -41,6 +43,7 @@
       highlight: false
   title: "HE is all you need: Compressing FHE Ciphertexts using Additive HE"
   year: 2023
+  abstract: "Homomorphic Encryption (HE) is a commonly used tool for building privacy-preserving applications. However, in scenarios with many clients and high-latency networks, communication costs due to large ciphertext sizes are the bottleneck. In this paper, we present a new compression technique that uses an additive homomorphic encryption scheme with small ciphertexts to compress large homomorphic ciphertexts based on Learning with Errors (LWE). Our technique exploits the linear step in the decryption of such ciphertexts to delegate part of the decryption to the server. We achieve compression ratios up to 90% which only requires a small compression key. By compressing multiple ciphertexts simultaneously, we can over 99% compression rate. Our compression technique can be readily applied to applications which transmit LWE ciphertexts from the server to the client as the response to a query. Furthermore, we apply our technique to private information retrieval (PIR) where a client accesses a database without revealing its query. Using our compression technique, we propose ZipPIR, a PIR protocol which achieves the lowest overall communication cost among all protocols in the literature. ZipPIR does not require any communication with the client in the preprocessing phase, making it a great solution for use cases of PIR with ephemeral clients or high-latency networks."
   links:
     - type: "paper"
       url: "https://arxiv.org/abs/2303.09043"
