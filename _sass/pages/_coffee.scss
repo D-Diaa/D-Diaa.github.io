@@ -13,32 +13,32 @@ $coffee-accent: #d4a76a;
 .coffee-page {
   max-width: 900px;
   margin: 0 auto;
-  padding: 2rem 0;
+  padding: 1.5rem 0;
   font-family: var(--serif);
 }
 
 /* Coffee Header Styling */
 .coffee-header {
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
   animation: fadeIn 0.8s ease-in-out;
 }
 
 .coffee-icon {
-  font-size: 3rem;
-  margin-bottom: 1rem;
+  font-size: 2.5rem;
+  margin-bottom: 0.8rem;
   animation: bounce 2s infinite;
 }
 
 .page-title {
-  font-size: 2.5rem;
-  margin-bottom: 0.5rem;
+  font-size: 2.2rem;
+  margin-bottom: 0.4rem;
   color: var(--heading-color);
   font-weight: 700;
 }
 
 .page-subtitle {
-  font-size: 1.2rem;
+  font-size: 1rem;
   color: var(--text-color);
   opacity: 0.8;
   max-width: 600px;
@@ -49,7 +49,7 @@ $coffee-accent: #d4a76a;
 .recipe-card {
   background-color: var(--card-background);
   border-radius: 12px;
-  padding: 2.5rem;
+  padding: 2rem;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), 0 1px 8px rgba(0, 0, 0, 0.07);
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   border: 1px solid var(--border-color);
@@ -74,13 +74,13 @@ $coffee-accent: #d4a76a;
 
 .recipe-header {
   text-align: center;
-  margin-bottom: 2.5rem;
+  margin-bottom: 2rem;
 }
 
 .recipe-title {
-  font-size: 2rem;
-  margin: 0 auto 1rem;
-  padding-bottom: 0.5rem;
+  font-size: 1.8rem;
+  margin: 0 auto 0.8rem;
+  padding-bottom: 0.4rem;
   position: relative;
   color: var(--heading-color);
   font-weight: 700;
@@ -96,8 +96,8 @@ $coffee-accent: #d4a76a;
 .recipe-description {
   max-width: 700px;
   margin: 0 auto;
-  font-size: 1.1rem;
-  line-height: 1.6;
+  font-size: 1rem;
+  line-height: 1.5;
   color: var(--text-color);
   opacity: 0.9;
 }
@@ -106,22 +106,22 @@ $coffee-accent: #d4a76a;
 .recipe-metrics {
   display: flex;
   flex-wrap: wrap;
-  gap: 1.25rem;
+  gap: 0.8rem;
   justify-content: center;
-  margin-bottom: 3rem;
-  padding: 1.5rem;
+  margin-bottom: 2rem;
+  padding: 1rem;
   background-color: rgba(var(--link-color-rgb, 42, 154, 243), 0.05);
   border-radius: 10px;
   border: 1px dashed rgba(var(--link-color-rgb, 42, 154, 243), 0.2);
 }
 
 .metric-item {
-  flex: 1 0 calc(33.333% - 1.25rem);
-  min-width: 160px;
+  flex: 1 0 calc(33.333% - 0.8rem);
+  min-width: 140px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 1.25rem 1rem;
+  padding: 0.8rem 0.7rem;
   border-radius: 8px;
   background-color: var(--card-background);
   border: 1px solid var(--border-color);
@@ -157,8 +157,8 @@ $coffee-accent: #d4a76a;
 }
 
 .metric-icon {
-  font-size: 1.5rem;
-  margin-bottom: 0.75rem;
+  font-size: 1.3rem;
+  margin-bottom: 0.6rem;
   color: $coffee-medium;
   transition: transform 0.3s ease;
   
@@ -184,32 +184,32 @@ $coffee-accent: #d4a76a;
 }
 
 .metric-label {
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-bottom: 0.5rem;
+  letter-spacing: 0.4px;
+  margin-bottom: 0.4rem;
   color: var(--text-color);
   opacity: 0.8;
   font-weight: 600;
 }
 
 .metric-value {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   font-weight: 700;
   color: var(--heading-color);
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.2rem;
 }
 
 .metric-note {
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   color: var(--text-color);
   opacity: 0.7;
 }
 
 /* Brew Timeline Styling */
 .brew-timeline {
-  margin: 3rem 0;
-  padding: 1.5rem;
+  margin: 2rem 0;
+  padding: 1rem;
   background-color: var(--card-background);
   border-radius: 10px;
   border: 1px solid var(--border-color);
@@ -218,16 +218,16 @@ $coffee-accent: #d4a76a;
 
 .timeline-title {
   text-align: center;
-  margin-bottom: 1.5rem;
-  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
   color: var(--heading-color);
   font-weight: 600;
 }
 
 .timeline-container {
   position: relative;
-  height: 120px;
-  margin: 0 1rem;
+  height: 100px;
+  margin: 0 0.8rem;
 }
 
 .timeline-track {
@@ -334,15 +334,15 @@ $coffee-accent: #d4a76a;
 
 /* Recipe Steps Styling */
 .recipe-steps {
-  margin: 3rem 0;
+  margin: 2rem 0;
 }
 
 .steps-title, .notes-title, .timeline-title {
-  margin: 2rem 0 1.5rem;
-  padding-bottom: 0.75rem;
+  margin: 1.5rem 0 1rem;
+  padding-bottom: 0.5rem;
   border-bottom: 1px solid var(--border-color);
   position: relative;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   color: var(--heading-color);
   
   &:after {
@@ -375,9 +375,9 @@ $coffee-accent: #d4a76a;
 
 .step-item {
   position: relative;
-  margin-bottom: 1.5rem;
-  padding: 1.25rem 1.25rem 1.25rem 4rem;
-  border-radius: 10px;
+  margin-bottom: 1rem;
+  padding: 0.8rem 0.8rem 0.8rem 3.5rem;
+  border-radius: 8px;
   background-color: var(--card-background);
   border-left: 4px solid var(--border-color);
   transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -416,10 +416,10 @@ $coffee-accent: #d4a76a;
 }
 
 .step-header {
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.6rem;
   
   strong {
-    font-size: 1.1rem;
+    font-size: 1rem;
     color: var(--heading-color);
   }
 }
@@ -427,7 +427,7 @@ $coffee-accent: #d4a76a;
 .step-content {
   p {
     margin: 0;
-    line-height: 1.6;
+    line-height: 1.5;
     color: var(--text-color);
   }
 }
@@ -435,7 +435,7 @@ $coffee-accent: #d4a76a;
 /* Time Badge Styling */
 .time-badge {
   position: absolute;
-  left: 25px;
+  left: 15px;
   top: 50%;
   transform: translateY(-50%);
   background-color: var(--link-color);
@@ -455,17 +455,17 @@ $coffee-accent: #d4a76a;
 
 /* Duration Indicator Styling */
 .duration-indicator {
-  margin-top: 1.25rem;
+  margin-top: 1rem;
   padding-left: 0.5rem;
   width: 100%;
 }
 
 .duration-bar {
   display: flex;
-  height: 36px;
+  height: 32px;
   width: 100%;
   max-width: 450px;
-  border-radius: 18px;
+  border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
   border: 1px solid var(--border-color);
@@ -515,9 +515,9 @@ $coffee-accent: #d4a76a;
 
 /* Tweakables Styling */
 .notes-description {
-  margin-bottom: 1.5rem;
-  font-size: 1rem;
-  line-height: 1.6;
+  margin-bottom: 1.25rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
   color: var(--text-color);
   opacity: 0.9;
 }
@@ -525,15 +525,15 @@ $coffee-accent: #d4a76a;
 .tweakables-list {
   list-style-type: none;
   padding-left: 0;
-  margin-top: 1.5rem;
+  margin-top: 1.25rem;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1rem;
 }
 
 .tweakable-item {
   margin-bottom: 0;
-  padding: 1.25rem;
+  padding: 1rem;
   background-color: var(--card-background);
   border-radius: 10px;
   border: 1px solid var(--border-color);
@@ -550,8 +550,8 @@ $coffee-accent: #d4a76a;
 }
 
 .tweakable-icon {
-  font-size: 1.5rem;
-  margin-right: 1rem;
+  font-size: 1.3rem;
+  margin-right: 0.8rem;
   flex-shrink: 0;
 }
 
@@ -563,34 +563,34 @@ $coffee-accent: #d4a76a;
 .tweakable-goal {
   font-weight: 700;
   color: var(--heading-color);
-  margin-bottom: 0.5rem;
-  font-size: 1rem;
+  margin-bottom: 0.4rem;
+  font-size: 0.95rem;
 }
 
 .tweakable-action {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   color: var(--text-color);
-  line-height: 1.5;
+  line-height: 1.4;
 }
 
 /* Recipe Footer Styling */
 .recipe-footer {
-  margin-top: 3rem;
-  padding-top: 2rem;
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
   border-top: 1px solid var(--border-color);
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  gap: 1.5rem;
+  gap: 1.25rem;
 }
 
 .coffee-quote {
   font-style: italic;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   color: $coffee-medium;
   position: relative;
-  padding-left: 1.5rem;
+  padding-left: 1.25rem;
   
   &::before {
     content: '"';
