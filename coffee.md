@@ -167,7 +167,7 @@ permalink: /coffee/
             <div class="step-header">
               <strong>Immersion</strong>
             </div>
-            <p>Add the remaining water (140g) and let it steep until 3:00. Open the switch to drain the coffee. The coffee should finish draining before 4:00.</p>
+            <p>Add the remaining water (160g) and let it steep until 3:00. Open the switch to drain the coffee. The coffee should finish draining before 4:00.</p>
             <div class="duration-indicator">
               <div class="duration-bar">
                 <div class="duration-segment steep" style="width: 50%;">Steep (60s)</div>
