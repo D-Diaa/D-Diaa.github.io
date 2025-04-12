@@ -1,0 +1,74 @@
+- authors:
+    - name: "N. Lukas"
+      highlight: false
+    - name: "A. Diaa"
+      highlight: true
+    - name: "L. Fenaux"
+      highlight: false
+    - name: "F. Kerschbaum"
+      highlight: false
+  title: "Leveraging Optimization for Adaptive Attacks on Image Watermarks"
+  venue: "International Conference on Learning Representations (ICLR)"
+  year: 2024
+  links:
+    - type: "paper"
+      url: "https://openreview.net/forum?id=O9PArxKLe1"
+      label: "Paper"
+    - type: "code"
+      url: "https://github.com/nilslukas/adaptive-watermark-attacks"
+      label: "Code"
+
+- authors:
+    - name: "A. Diaa"
+      highlight: true
+    - name: "L. Fenaux"
+      highlight: false
+    - name: "T. Humphries"
+      highlight: false
+    - name: "M. Dietz"
+      highlight: false
+    - name: "F. Ebrahimianghazani"
+      highlight: false
+    - name: "B. Kacsmar"
+      highlight: false
+    - name: "X. Li"
+      highlight: false
+    - name: "N. Lukas"
+      highlight: false
+    - name: "RA. Mahdavi"
+      highlight: false
+    - name: "S. Oya"
+      highlight: false
+    - name: "E. Amjadian"
+      highlight: false
+    - name: "F. Kerschbaum"
+      highlight: false
+  title: "Fast and Private Inference of Deep Neural Networks by Co-designing Activation Functions"
+  venue: "Usenix Security Symposium"
+  year: 2024
+  links:
+    - type: "paper"
+      url: "https://www.usenix.org/system/files/sec24summer-prepub-373-diaa.pdf"
+      label: "Paper"
+    - type: "code"
+      url: "https://github.com/LucasFenaux/PILLAR-ESPN"
+      label: "Code"
+
+- authors:
+    - name: "S. Sav"
+      highlight: false
+    - name: "A. Diaa"
+      highlight: true
+    - name: "A. Pyrgelis"
+      highlight: false
+    - name: "J. Boussat"
+      highlight: false
+    - name: "J. Hubaux"
+      highlight: false
+  title: "Privacy-Preserving Federated Recurrent Neural Networks"
+  venue: "Proceedings on Privacy Enhancing Technologies (PoPETs)"
+  year: 2023
+  links:
+    - type: "paper"
+      url: "https://petsymposium.org/popets/2023/popets-2023-0122.pdf"
+      label: "Paper"

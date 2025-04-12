@@ -1,0 +1,47 @@
+- authors:
+    - name: "A. Diaa"
+      highlight: true
+    - name: "T. Aremu"
+      highlight: false
+    - name: "N. Lukas"
+      highlight: false
+  title: "Optimizing Adaptive Attacks against Content Watermarks for Language Models"
+  year: 2024
+  links:
+    - type: "paper"
+      url: "https://arxiv.org/abs/2410.02440"
+      label: "Paper"
+    - type: "code"
+      url: "https://huggingface.co/collections/DDiaa/watermark-removing-paraphrasers-673e3f01fcceafaa2da7e0cf"
+      label: "Models"
+
+- authors:
+    - name: "A. Diaa"
+      highlight: true
+    - name: "T. Humphries"
+      highlight: false
+    - name: "F. Kerschbaum"
+      highlight: false
+  title: "FastLloyd: Federated, Accurate, Secure, and Tunable $k$-Means Clustering with Differential Privacy"
+  year: 2024
+  links:
+    - type: "paper"
+      url: "https://arxiv.org/abs/2405.02437"
+      label: "Paper"
+    - type: "code"
+      url: "https://github.com/D-Diaa/FastLloyd"
+      label: "Code"
+
+- authors:
+    - name: "RA. Mahdavi"
+      highlight: false
+    - name: "A. Diaa"
+      highlight: true
+    - name: "F. Kerschbaum"
+      highlight: false
+  title: "HE is all you need: Compressing FHE Ciphertexts using Additive HE"
+  year: 2023
+  links:
+    - type: "paper"
+      url: "https://arxiv.org/abs/2303.09043"
+      label: "Paper"

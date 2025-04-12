@@ -1,0 +1,23 @@
+<div class="publication-item">
+  <div class="author-list">
+    {% for author in include.publication.authors %}
+      {% if author.highlight %}
+        <span class="author-highlight">{{ author.name }}</span>
+      {% else %}
+        {{ author.name }}
+      {% endif %}
+      {% unless forloop.last %}, {% endunless %}
+    {% endfor %}
+  </div>
+  <strong>{{ include.publication.title }}</strong>
+  {% if include.publication.venue %}
+  <div>{{ include.publication.venue }} <span class="pub-year">{{ include.publication.year }}</span></div>
+  {% else %}
+  <div><span class="pub-year">{{ include.publication.year }}</span></div>
+  {% endif %}
+  <div class="publication-links">
+    {% for link in include.publication.links %}
+      <a href="{{ link.url }}" class="{{ link.type }}-link">{{ link.label }}</a>
+    {% endfor %}
+  </div>
+</div>

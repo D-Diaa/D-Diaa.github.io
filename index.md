@@ -22,76 +22,17 @@ permalink: /
 ## <span class="section-header">Publications</span>
 
 <div class="section-content">
-  <div class="publication-item">
-  <div class="author-list">
-    N. Lukas, <span class="author-highlight">A. Diaa</span>, L. Fenaux, and F. Kerschbaum
-  </div>
-  <strong>Leveraging Optimization for Adaptive Attacks on Image Watermarks.</strong>
-  <div>International Conference on Learning Representations (ICLR) <span class="pub-year">2024</span></div>
-  <div class="publication-links">
-    <a href="https://openreview.net/forum?id=O9PArxKLe1" class="paper-link">Paper</a>
-    <a href="https://github.com/nilslukas/adaptive-watermark-attacks" class="code-link">Code</a>
-  </div>
-</div>
-
-<div class="publication-item">
-  <div class="author-list">
-    <span class="author-highlight">A. Diaa</span>, L. Fenaux, T. Humphries, M. Dietz, F. Ebrahimianghazani, B. Kacsmar, X. Li, N. Lukas, RA. Mahdavi, S. Oya, E. Amjadian, and F. Kerschbaum
-  </div>
-  <strong>Fast and Private Inference of Deep Neural Networks by Co-designing Activation Functions.</strong>
-  <div>Usenix Security Symposium <span class="pub-year">2024</span></div>
-  <div class="publication-links">
-    <a href="https://www.usenix.org/system/files/sec24summer-prepub-373-diaa.pdf" class="paper-link">Paper</a>
-    <a href="https://github.com/LucasFenaux/PILLAR-ESPN" class="code-link">Code</a>
-  </div>
-</div>
-
-<div class="publication-item">
-  <div class="author-list">
-    S. Sav, <span class="author-highlight">A. Diaa</span>, A. Pyrgelis, J. Boussat, and J. Hubaux
-  </div>
-  <strong>Privacy-Preserving Federated Recurrent Neural Networks.</strong>
-  <div>Proceedings on Privacy Enhancing Technologies (PoPETs) <span class="pub-year">2023</span></div>
-  <div class="publication-links">
-    <a href="https://petsymposium.org/popets/2023/popets-2023-0122.pdf" class="paper-link">Paper</a>
-  </div>
-  </div>
+  {% for publication in site.data.publications %}
+    {% include publication-entry.html publication=publication %}
+  {% endfor %}
 </div>
 
 ## <span class="section-header">Preprints</span>
 
 <div class="section-content">
-  <div class="publication-item">
-  <div class="author-list">
-    <span class="author-highlight">A. Diaa</span>, T. Aremu, and N. Lukas
-  </div>
-  <strong>Optimizing Adaptive Attacks against Content Watermarks for Language Models.</strong>
-  <div class="publication-links">
-    <a href="https://arxiv.org/abs/2410.02440" class="paper-link">Paper</a>
-    <a href="https://huggingface.co/collections/DDiaa/watermark-removing-paraphrasers-673e3f01fcceafaa2da7e0cf" class="code-link">Models</a>
-  </div>
-</div>
-
-<div class="publication-item">
-  <div class="author-list">
-    <span class="author-highlight">A. Diaa</span>, T. Humphries, and F. Kerschbaum
-  </div>
-  <strong>FastLloyd: Federated, Accurate, Secure, and Tunable $k$-Means Clustering with Differential Privacy.</strong>
-  <div class="publication-links">
-    <a href="https://arxiv.org/abs/2405.02437" class="paper-link">Paper</a>
-    <a href="https://github.com/D-Diaa/FastLloyd" class="code-link">Code</a>
-  </div>
-</div>
-
-<div class="publication-item">
-  <div class="author-list">
-    RA. Mahdavi, <span class="author-highlight">A. Diaa</span>, and F. Kerschbaum
-  </div>
-  <strong>HE is all you need: Compressing FHE Ciphertexts using Additive HE.</strong>
-  <div class="publication-links">
-    <a href="https://arxiv.org/abs/2303.09043" class="paper-link">Paper</a>
-  </div>
-  </div>
+  {% for publication in site.data.preprints %}
+    {% include publication-entry.html publication=publication %}
+  {% endfor %}
 </div>
 
 ## <span class="section-header">Resume</span>
@@ -104,29 +45,3 @@ permalink: /
     </iframe>
   </div>
 </div>
-
-
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    // Initialize all sections as collapsed except the first one
-    const headers = document.querySelectorAll('.section-header');
-    const contents = document.querySelectorAll('.section-content');
-    
-    // Expand the first section by default
-    if (headers.length > 0) {
-      headers[0].classList.add('active');
-      contents[0].classList.add('expanded');
-    }
-    
-    // Add click event listeners to all section headers
-    headers.forEach(function(header, index) {
-      header.addEventListener('click', function() {
-        // Toggle active class on the header
-        this.classList.toggle('active');
-        
-        // Toggle expanded class on the corresponding content
-        contents[index].classList.toggle('expanded');
-      });
-    });
-  });
-</script>
