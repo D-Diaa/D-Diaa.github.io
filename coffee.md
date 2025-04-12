@@ -87,7 +87,7 @@ permalink: /coffee/
     </div>
 
     <div class="recipe-steps">
-      <h3 class="steps-title">Brewing Steps</h3>
+      <h3 class="steps-title">Preparation Steps</h3>
       <ul class="steps-list">
         <li class="step-item preparation">
           <span class="time-badge prep-time">Prep</span>
@@ -116,6 +116,12 @@ permalink: /coffee/
             <p>Add the ground coffee to the filter and shake gently to level the bed.</p>
           </div>
         </li>
+      </ul>
+    </div>
+    
+    <div class="recipe-steps">
+      <h3 class="steps-title">Brewing Steps</h3>
+      <ul class="steps-list">
         <li class="step-item bloom">
           <span class="time-badge">0:00</span>
           <div class="step-content">
@@ -184,7 +190,7 @@ permalink: /coffee/
 
     <div class="recipe-notes">
       <h3 class="notes-title">Tweakables</h3>
-      <p class="notes-description">Adjust these parameters to fine-tune your brew to your taste preferences and coffee type.</p>
+      <p class="notes-description">Adjust these parameters to fine-tune your brew.</p>
       <ul class="tweakables-list">
         <li class="tweakable-item">
           <div class="tweakable-icon">💪</div>
