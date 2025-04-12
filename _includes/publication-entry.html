@@ -1,23 +1,30 @@
-<div class="publication-item">
+<div class="publication-item" itemscope itemtype="https://schema.org/ScholarlyArticle">
   <div class="author-list">
     {% for author in include.publication.authors %}
       {% if author.highlight %}
-        <span class="author-highlight">{{ author.name }}</span>
+        <span class="author-highlight" itemprop="author">{{ author.name }}</span>
       {% else %}
-        {{ author.name }}
+        <span itemprop="author">{{ author.name }}</span>
       {% endif %}
       {% unless forloop.last %}, {% endunless %}
     {% endfor %}
   </div>
-  <strong>{{ include.publication.title }}</strong>
+  <strong itemprop="name">{{ include.publication.title }}</strong>
   {% if include.publication.venue %}
-  <div>{{ include.publication.venue }} <span class="pub-year">{{ include.publication.year }}</span></div>
+  <div>
+    <span itemprop="publisher">{{ include.publication.venue }}</span> 
+    <span class="pub-year" itemprop="datePublished">{{ include.publication.year }}</span>
+  </div>
   {% else %}
-  <!-- <div><span class="pub-year">{{ include.publication.year }}</span></div> -->
+  <!-- <div><span class="pub-year" itemprop="datePublished">{{ include.publication.year }}</span></div> -->
   {% endif %}
   <div class="publication-links">
     {% for link in include.publication.links %}
-      <a href="{{ link.url }}" class="{{ link.type }}-link">{{ link.label }}</a>
+      {% if link.type == 'paper' %}
+        <a href="{{ link.url }}" class="{{ link.type }}-link" itemprop="url">{{ link.label }}</a>
+      {% else %}
+        <a href="{{ link.url }}" class="{{ link.type }}-link">{{ link.label }}</a>
+      {% endif %}
     {% endfor %}
     {% if include.publication.abstract %}
       <span class="abstract-toggle">Abstract</span>
@@ -30,7 +37,7 @@
       data-url="{{ include.publication.links | where: 'type', 'paper' | map: 'url' | first }}">BibTeX</span>
   </div>
   {% if include.publication.abstract %}
-  <div class="publication-abstract">
+  <div class="publication-abstract" itemprop="abstract">
     <p>{{ include.publication.abstract }}</p>
   </div>
   {% endif %}

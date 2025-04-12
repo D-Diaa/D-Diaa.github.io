@@ -21,9 +21,9 @@
 title: Abdulrahman Diaa
 email: a2diaa@uwaterloo.ca
 description: >- # this means to ignore newlines until "baseurl:"
-  My personal website.
+  Academic website of Abdulrahman Diaa, PhD student at University of Waterloo researching watermarking techniques for AI-generated content, digital trust, and misinformation prevention.
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "http://D-Diaa.github.io" # the base hostname & protocol for your site
+url: "https://D-Diaa.github.io" # the base hostname & protocol for your site
 
 author:
   name: "Abdulrahman Diaa"
@@ -84,6 +84,7 @@ footer:
 
 plugins:
   - jekyll-include-cache
+  - jekyll-sitemap
 
 # Exclude from processing.
 # The following items will not be processed, by default.

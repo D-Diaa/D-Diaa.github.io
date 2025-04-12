@@ -1,4 +1,20 @@
 <!-- start custom head snippets -->
+<!-- Canonical URL for SEO -->
+<link rel="canonical" href="{{ site.url }}{{ page.url | replace:'index.html','' }}" />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="{{ site.url }}{{ page.url | replace:'index.html','' }}">
+<meta property="og:title" content="{% if page.title %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }}{% endif %}">
+<meta property="og:description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
+<meta property="og:image" content="{{ site.url }}/assets/images/bio-photo.jpeg">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:url" content="{{ site.url }}{{ page.url | replace:'index.html','' }}">
+<meta name="twitter:title" content="{% if page.title %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }}{% endif %}">
+<meta name="twitter:description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
+<meta name="twitter:image" content="{{ site.url }}/assets/images/bio-photo.jpeg">
 
 <!-- insert favicons. use https://realfavicongenerator.net/ -->
 
@@ -28,6 +44,46 @@
       equationNumbers: { autoNumber: "AMS" }
     }
   });
+</script>
+
+<!-- Structured Data for SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Abdulrahman Diaa",
+  "url": "https://d-diaa.github.io",
+  "image": "https://d-diaa.github.io/assets/images/bio-photo.jpeg",
+  "jobTitle": "PhD Student",
+  "worksFor": {
+    "@type": "Organization",
+    "name": "University of Waterloo",
+    "url": "https://uwaterloo.ca"
+  },
+  "alumniOf": [
+    {
+      "@type": "Organization",
+      "name": "University of Waterloo",
+      "url": "https://uwaterloo.ca"
+    },
+    {
+      "@type": "Organization",
+      "name": "The American University in Cairo",
+      "url": "https://www.aucegypt.edu"
+    }
+  ],
+  "memberOf": {
+    "@type": "Organization",
+    "name": "Cryptography, Security, and Privacy (CrySP) lab",
+    "url": "https://crysp.uwaterloo.ca"
+  },
+  "sameAs": [
+    "https://github.com/D-Diaa",
+    "https://www.linkedin.com/in/abdulrahman-diaa-555300126/",
+    "https://scholar.google.com/citations?user=xFX1k1AAAAAJ"
+  ],
+  "knowsAbout": ["Watermarking", "AI-generated content", "Digital trust", "Misinformation prevention", "Privacy-preserving Machine Learning", "Cryptography", "Security", "Privacy"]
+}
 </script>
 
 <!-- end custom head snippets -->
