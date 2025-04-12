@@ -862,3 +862,246 @@ ul li, ol li {
     }
   }
 }
+
+/* 
+ * COFFEE PAGE STYLING
+ * Custom styling for the coffee brewing recipe page
+ */
+.coffee-page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem 0;
+}
+
+.recipe-card {
+  background-color: var(--card-background);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  
+  &:hover {
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+  }
+}
+
+.recipe-title {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid rgba(var(--link-color-rgb, 42, 154, 243), 0.3);
+  position: relative;
+  
+  &:after {
+    content: '☕';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--background-color);
+    padding: 0 10px;
+    font-size: 1.2rem;
+  }
+}
+
+.recipe-metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background-color: rgba(var(--link-color-rgb, 42, 154, 243), 0.05);
+  border-radius: 6px;
+  border: 1px dashed rgba(var(--link-color-rgb, 42, 154, 243), 0.2);
+}
+
+.metric-item {
+  flex: 1 0 calc(33.333% - 1rem);
+  min-width: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.75rem;
+  border-radius: 4px;
+  background-color: var(--card-background);
+  border: 1px solid var(--border-color);
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+    border-color: rgba(var(--link-color-rgb, 42, 154, 243), 0.3);
+  }
+}
+
+.metric-label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.25rem;
+  color: var(--text-color);
+  opacity: 0.8;
+}
+
+.metric-value {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--heading-color);
+}
+
+.metric-note {
+  font-size: 0.75rem;
+  color: var(--text-color);
+  opacity: 0.7;
+  margin-top: 0.25rem;
+}
+
+.steps-title, .notes-title {
+  margin: 1.5rem 0 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border-color);
+  position: relative;
+  
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 50px;
+    height: 2px;
+    background-color: var(--link-color);
+  }
+}
+
+.steps-list {
+  counter-reset: step-counter;
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.step-item {
+  position: relative;
+  margin-bottom: 1.25rem;
+  padding: 1rem 1rem 1rem 3rem;
+  border-radius: 6px;
+  background-color: var(--card-background);
+  border-left: 3px solid var(--border-color);
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: translateX(3px);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  &.preparation {
+    border-left-color: #9575cd; /* Purple */
+  }
+  
+  &.bloom {
+    border-left-color: #4db6ac; /* Teal */
+  }
+  
+  &.percolation {
+    border-left-color: #4fc3f7; /* Light Blue */
+  }
+  
+  &.immersion {
+    border-left-color: #7986cb; /* Indigo */
+  }
+  
+  &.serving {
+    border-left-color: #81c784; /* Green */
+  }
+}
+
+.step-number {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1.75rem;
+  height: 1.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--link-color);
+  color: white;
+  border-radius: 50%;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.step-content {
+  strong {
+    color: var(--heading-color);
+  }
+}
+
+.tweakables-list {
+  list-style-type: none;
+  padding-left: 0;
+  margin-top: 1rem;
+}
+
+.tweakable-item {
+  margin-bottom: 0.75rem;
+  padding: 0.75rem 1rem;
+  background-color: var(--card-background);
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+    border-color: rgba(var(--link-color-rgb, 42, 154, 243), 0.3);
+  }
+}
+
+.tweakable-goal {
+  font-weight: 600;
+  color: var(--heading-color);
+  margin-bottom: 0.25rem;
+}
+
+.tweakable-action {
+  font-size: 0.9rem;
+  color: var(--text-color);
+}
+
+/* Responsive adjustments for coffee page */
+@media (max-width: 768px) {
+  .recipe-card {
+    padding: 1.5rem;
+  }
+  
+  .metric-item {
+    flex: 1 0 calc(50% - 1rem);
+    min-width: 120px;
+  }
+  
+  .step-item {
+    padding: 0.75rem 0.75rem 0.75rem 2.5rem;
+  }
+  
+  .step-number {
+    left: 0.5rem;
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .recipe-card {
+    padding: 1rem;
+  }
+  
+  .metric-item {
+    flex: 1 0 100%;
+  }
+}
