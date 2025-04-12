@@ -20,7 +20,7 @@ permalink: /coffee/
       <div class="metric-item">
         <span class="metric-label">Grind Size</span>
         <span class="metric-value">Medium</span>
-        <span class="metric-note">(90 clicks on the K6 grinder)</span>
+        <span class="metric-note">(K6: 90 clicks)</span>
       </div>
       <div class="metric-item">
         <span class="metric-label">Water Temperature</span>
@@ -97,11 +97,11 @@ permalink: /coffee/
           <span class="step-number">4</span>
           <span class="time-badge">1:00</span>
           <div class="step-content">
-            <strong>Percolation:</strong> at 1:00, pour 120g of water in a spiral motion, aiming for a 45-second pour. This can be a bit faster if you want to increase the agitation. Selectivelly pour on darker, drier spots to ensure even saturation.
+            <strong>Percolation:</strong> at 1:00, pour 100g of water in a spiral motion, aiming for a 40-second pour. This can be a bit faster if you want to increase the agitation. Selectively pour on darker, drier spots to ensure even saturation.
             <div class="duration-indicator">
               <div class="duration-bar">
-                <div class="duration-segment pour" style="width: 75%;">Pour (45s)</div>
-                <div class="duration-segment wait" style="width: 25%;">Wait (15s)</div>
+                <div class="duration-segment pour" style="width: 66.67%;">Pour (40s)</div>
+                <div class="duration-segment wait" style="width: 33.33%;">Wait (20s)</div>
               </div>
             </div>
           </div>
@@ -153,7 +153,15 @@ permalink: /coffee/
         </li>
         <li class="tweakable-item">
           <span class="tweakable-goal">For developed/omni roasts:</span> 
-          <span class="tweakable-action">Lower temp in bloom or in immersion and see the effect for your coffee</span>
+          <span class="tweakable-action">lower temp in bloom or in immersion and see the effect for your coffee</span>
+        </li>
+        <li class="tweakable-item">
+          <span class="tweakable-goal">For fermented beans:</span> 
+          <span class="tweakable-action">do not close the switch</span>
+        </li>
+        <li class="tweakable-item">
+          <span class="tweakable-goal">For tough beans:</span> 
+          <span class="tweakable-action">make it only 1 long percolation pour (cancel immersion)</span>
         </li>
       </ul>
     </div>
