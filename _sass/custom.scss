@@ -294,7 +294,7 @@ h2 .section-header {
   margin-left: auto;
   
   li {
-    margin: 0 0 0 1.5em;
+    margin: 0 0 0 1em;
     
     a {
       font-size: 0.75em;
@@ -323,6 +323,38 @@ h2 .section-header {
         
         &:after {
           transform: scaleX(1);
+        }
+      }
+    }
+    
+    .social-icons-container {
+      display: flex;
+      align-items: center;
+      background-color: rgba(var(--link-color-rgb, 42, 154, 243), 0.1);
+      border-radius: 20px;
+      padding: 0.2em;
+      margin-right: 0.5em;
+      border: 1px solid rgba(var(--link-color-rgb, 42, 154, 243), 0.2);
+      
+      .header-social-link {
+        font-size: 0.85em;
+        padding: 0.4em 0.3em;
+        margin: 0 0.1em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+        &:after {
+          display: none;
+        }
+        
+        &:hover {
+          color: var(--link-color) !important;
+          transform: translateY(-2px);
+        }
+        
+        i {
+          font-size: 1em;
         }
       }
     }
@@ -551,6 +583,44 @@ h2 .section-header {
   }
   100% {
     box-shadow: 0 0 5px rgba(var(--link-color-rgb, 42, 154, 243), 0.6);
+  }
+}
+
+/* 
+ * RESUME SECTION STYLING
+ * Formatting for resume section and download button
+ */
+.resume-container {
+  position: relative;
+}
+
+.resume-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1em;
+}
+
+.download-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  padding: 0.6em 1.2em;
+  background-color: rgba(var(--link-color-rgb, 42, 154, 243), 0.15);
+  border: 1px solid rgba(var(--link-color-rgb, 42, 154, 243), 0.3);
+  border-radius: 4px;
+  font-size: 0.9em;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background-color: rgba(var(--link-color-rgb, 42, 154, 243), 0.3);
+    transform: translateY(-2px);
+    text-decoration: none;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  i {
+    font-size: 1em;
   }
 }
 

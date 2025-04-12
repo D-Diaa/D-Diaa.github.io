@@ -15,13 +15,6 @@ permalink: /
       <div class="hero-avatar">
         <img src="/assets/images/bio-photo.jpeg" alt="Abdulrahman Diaa" class="bio-photo">
       </div>
-      <div class="hero-links">
-        <a href="https://github.com/D-Diaa" class="social-link" target="_blank" aria-label="GitHub"><i class="fab fa-fw fa-github"></i></a>
-        <a href="https://www.linkedin.com/in/abdulrahman-diaa-555300126/" class="social-link" target="_blank" aria-label="LinkedIn"><i class="fab fa-fw fa-linkedin"></i></a>
-        <a href="https://scholar.google.com/citations?user=xFX1k1AAAAAJ" class="social-link" target="_blank" aria-label="Google Scholar"><i class="fas fa-fw fa-graduation-cap"></i></a>
-        <a href="mailto:a2diaa@uwaterloo.ca" class="social-link" aria-label="Email"><i class="fas fa-fw fa-envelope"></i></a>
-        <a href="/assets/resume.pdf" class="social-link" target="_blank" aria-label="Resume"><i class="fas fa-fw fa-file"></i></a>
-      </div>
     </div>
   </div>
 </section>
@@ -59,11 +52,18 @@ permalink: /
 <h2><span class="section-header">Resume</span></h2>
 
 <section class="section-content">
-  <div class="pdf-container">
-    <iframe src="{{ site.baseurl }}/assets/resume.pdf" width="100%" height="800px" style="border: none;" title="Abdulrahman Diaa's Resume">
-        This browser does not support PDFs. Please download the PDF to view it:
-        <a href="{{ site.baseurl }}/assets/resume.pdf" class="paper-link">Download PDF</a>.
-    </iframe>
+  <div class="resume-container">
+    <div class="resume-actions">
+      <a href="{{ site.baseurl }}/assets/resume.pdf" class="download-button" download>
+        <i class="fas fa-download"></i> Download Resume
+      </a>
+    </div>
+    <div class="pdf-container">
+      <iframe src="{{ site.baseurl }}/assets/resume.pdf" width="100%" height="800px" style="border: none;" title="Abdulrahman Diaa's Resume">
+          This browser does not support PDFs. Please download the PDF to view it:
+          <a href="{{ site.baseurl }}/assets/resume.pdf" class="paper-link">Download PDF</a>.
+      </iframe>
+    </div>
   </div>
 </section>
 </main>
