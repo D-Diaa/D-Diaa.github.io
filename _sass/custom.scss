@@ -873,6 +873,145 @@ ul li, ol li {
   padding: 1rem 0;
 }
 
+/* Brew Timeline Styling */
+.brew-timeline {
+  margin: 2rem 0;
+}
+
+.timeline-container {
+  position: relative;
+  height: 80px;
+  margin: 0 1rem;
+}
+
+.timeline-track {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background-color: var(--border-color);
+  border-radius: 2px;
+}
+
+.timeline-marker {
+  position: absolute;
+  top: 30px;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 24px;
+  background-color: var(--text-color);
+  
+  span {
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.8rem;
+    font-weight: 600;
+    white-space: nowrap;
+    color: var(--heading-color);
+  }
+}
+
+.timeline-phase {
+  position: absolute;
+  top: 42px;
+  height: 8px;
+  border-radius: 4px;
+  
+  .phase-label {
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.7rem;
+    white-space: nowrap;
+    color: var(--text-color);
+    opacity: 0.8;
+  }
+}
+
+.bloom-phase {
+  background-color: #4db6ac; /* Teal */
+}
+
+.percolation-phase {
+  background-color: #4fc3f7; /* Light Blue */
+}
+
+.immersion-phase {
+  background-color: #7986cb; /* Indigo */
+}
+
+.drain-phase {
+  background-color: #81c784; /* Green */
+}
+
+/* Time Badge Styling */
+.time-badge {
+  position: absolute;
+  right: calc(100% + 10px);
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: var(--link-color);
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 12px;
+  white-space: nowrap;
+}
+
+.time-badge.prep-time {
+  background-color: #9575cd; /* Purple */
+}
+
+/* Duration Indicator Styling */
+.duration-indicator {
+  margin-top: 1rem;
+  padding-left: 0.5rem;
+  width: 100%;
+}
+
+.duration-bar {
+  display: flex;
+  height: 30px;
+  width: 100%;
+  max-width: 400px;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--border-color);
+}
+
+.duration-segment {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: white;
+  padding: 0 8px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.duration-segment.pour {
+  background-color: #4fc3f7; /* Light Blue */
+}
+
+.duration-segment.wait {
+  background-color: #9575cd; /* Purple */
+}
+
+.duration-segment.steep {
+  background-color: #7986cb; /* Indigo */
+}
+
+.duration-segment.drain {
+  background-color: #81c784; /* Green */
+}
+
 .recipe-card {
   background-color: var(--card-background);
   border: 1px solid var(--border-color);
@@ -996,6 +1135,11 @@ ul li, ol li {
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
   }
   
+  /* Add space for time badge */
+  @media (min-width: 768px) {
+    padding-left: 5rem;
+  }
+  
   &.preparation {
     border-left-color: #9575cd; /* Purple */
   }
@@ -1087,12 +1231,45 @@ ul li, ol li {
   
   .step-item {
     padding: 0.75rem 0.75rem 0.75rem 2.5rem;
+    margin-left: 2.5rem; /* Make space for time badge */
   }
   
   .step-number {
     left: 0.5rem;
     width: 1.5rem;
     height: 1.5rem;
+  }
+  
+  .time-badge {
+    right: auto;
+    left: -2.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.65rem;
+    padding: 2px 6px;
+  }
+  
+  .timeline-container {
+    height: 100px;
+    margin: 0;
+  }
+  
+  .timeline-marker span {
+    font-size: 0.7rem;
+  }
+  
+  .timeline-phase .phase-label {
+    font-size: 0.6rem;
+  }
+  
+  .duration-bar {
+    max-width: 350px;
+    height: 26px;
+  }
+  
+  .duration-segment {
+    font-size: 0.7rem;
+    padding: 0 5px;
   }
 }
 
@@ -1103,5 +1280,14 @@ ul li, ol li {
   
   .metric-item {
     flex: 1 0 100%;
+  }
+  
+  .timeline-container {
+    height: 120px;
+  }
+  
+  .timeline-phase .phase-label {
+    bottom: -30px;
+    font-size: 0.55rem;
   }
 }
