@@ -18,7 +18,7 @@ class SectionToggler {
       publicationAbstractSelector: '.publication-abstract',
       activeClass: 'active',
       expandedClass: 'expanded',
-      excludeSections: ['Resume'],
+      excludeSections: [],
       ...options
     };
     

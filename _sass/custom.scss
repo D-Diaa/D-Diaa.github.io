@@ -420,10 +420,32 @@ h2 .section-header {
 @media (max-width: 64em) {
   .sidebar {
     margin-bottom: 1em;
+    position: static !important; /* Prevent sticky positioning on small screens */
+    float: none !important;
+    width: 100% !important;
+  }
+  
+  .sidebar.sticky {
+    position: static !important; /* Override sticky positioning */
+    top: 0 !important;
+  }
+  
+  .author__avatar {
+    display: inline-block;
+    max-width: 80px !important; /* Smaller avatar on mobile */
+    margin-right: 15px;
+    vertical-align: middle;
+  }
+  
+  .author__content {
+    display: inline-block;
+    vertical-align: middle;
+    max-width: calc(100% - 100px);
   }
   
   .page {
     width: 100%;
+    float: none !important;
   }
 }
 
