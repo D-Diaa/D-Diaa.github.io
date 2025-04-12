@@ -1,0 +1,148 @@
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+---
+
+@charset "utf-8";
+
+/* Custom font additions */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Source+Sans+Pro:wght@300;400;600;700&display=swap');
+
+/* Typography improvements */
+$serif: Georgia, Times, serif;
+$sans-serif: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Roboto", "Segoe UI", "Helvetica Neue", "Lucida Grande", Arial, sans-serif;
+$monospace: Monaco, Consolas, "Lucida Console", monospace;
+
+$global-font-family: $sans-serif;
+$header-font-family: $sans-serif;
+
+/* Colors - keeping dark scheme but enhancing */
+$background-color: #121212;
+$text-color: #e6e6e6;
+$primary-color: #2a9af3;
+$link-color: lighten($primary-color, 10%);
+$link-color-hover: mix(#fff, $link-color, 25%);
+$link-color-visited: mix(#000, $link-color, 15%);
+
+/* Publication styling */
+$publication-border: 1px solid rgba(255, 255, 255, 0.1);
+$publication-background: rgba(255, 255, 255, 0.05);
+
+@import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
+@import "minimal-mistakes"; // main partials
+@import "custom"; // custom styles
+
+/* Additional custom styles */
+
+/* Enhance publications appearance */
+.publication-item {
+  padding: 1.5em;
+  margin-bottom: 1.5em;
+  border-radius: 5px;
+  background-color: $publication-background;
+  border: $publication-border;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  max-width: 90%;
+  
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* Improve headings */
+.page__content {
+  h2 {
+    border-bottom: 1px solid $primary-color;
+    padding-bottom: 0.5em;
+    margin-top: 2em;
+    position: relative;
+    
+    &:after {
+      content: "";
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      width: 100px;
+      height: 3px;
+      background-color: $primary-color;
+    }
+  }
+}
+
+/* Improve intro section */
+.intro-section, .research-summary {
+  margin-bottom: 2em;
+  font-size: 1.1em;
+  line-height: 1.7;
+  
+  p {
+    margin-bottom: 1em;
+  }
+  
+  a {
+    font-weight: 600;
+    position: relative;
+    
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background-color: $primary-color;
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+      transform-origin: right;
+    }
+    
+    &:hover:after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+  }
+}
+
+.research-summary {
+  background-color: rgba(255, 255, 255, 0.03);
+  border-left: 3px solid $primary-color;
+  padding: 1em 1.5em;
+  border-radius: 0 5px 5px 0;
+}
+
+/* Better link highlighting */
+a {
+  text-decoration: none;
+  
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+/* Improve code blocks */
+.language-plaintext {
+  font-family: $monospace;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+}
+
+/* Improve PDF container */
+.pdf-container {
+  border: $publication-border;
+  border-radius: 5px;
+  padding: 10px;
+  background-color: $publication-background;
+  margin: 20px 0;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Enhance buttons */
+.btn {
+  border-radius: 3px;
+  font-weight: 600;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  }
+}

@@ -1,0 +1,124 @@
+/* 
+  Custom SCSS styling for Abdulrahman Diaa's website
+  This file handles additional custom styling beyond what's in main.scss
+*/
+
+// Animation for link hover effects
+@keyframes link-glow {
+  0% {
+    box-shadow: 0 0 5px rgba(42, 154, 243, 0.6);
+  }
+  50% {
+    box-shadow: 0 0 15px rgba(42, 154, 243, 0.8);
+  }
+  100% {
+    box-shadow: 0 0 5px rgba(42, 154, 243, 0.6);
+  }
+}
+
+// Paper links with special styling
+.paper-link, .code-link {
+  display: inline-block;
+  padding: 4px 10px;
+  margin: 0 5px 5px 0;
+  border-radius: 3px;
+  font-size: 0.8em;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+}
+
+.paper-link {
+  background-color: rgba(42, 154, 243, 0.15);
+  border: 1px solid rgba(42, 154, 243, 0.3);
+  
+  &:hover {
+    background-color: rgba(42, 154, 243, 0.3);
+    animation: link-glow 1.5s infinite;
+    text-decoration: none;
+  }
+}
+
+.code-link {
+  background-color: rgba(101, 211, 110, 0.15);
+  border: 1px solid rgba(101, 211, 110, 0.3);
+  
+  &:hover {
+    background-color: rgba(101, 211, 110, 0.3);
+    animation: link-glow 1.5s infinite;
+    text-decoration: none;
+  }
+}
+
+// Improve author lists in publications
+.author-list {
+  margin-bottom: 0.5em;
+  font-size: 0.9em;
+  line-height: 1.4;
+  
+  .author-highlight {
+    font-weight: bold;
+  }
+}
+
+// Publication year tag
+.pub-year {
+  display: inline-block;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.75em;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+
+// Enhance bio section
+.author__bio {
+  font-size: 1em;
+  line-height: 1.6;
+  font-style: italic;
+  margin-top: 1em;
+}
+
+// Enhance avatar
+.author__avatar {
+  img {
+    border-radius: 50%;
+    border: 3px solid rgba(42, 154, 243, 0.5);
+    transition: all 0.3s ease;
+    
+    &:hover {
+      border-color: rgba(42, 154, 243, 0.8);
+      transform: scale(1.05);
+    }
+  }
+}
+
+// Improve list spacing
+ul li, ol li {
+  margin-bottom: 0.5em;
+}
+
+// Add subtle animation to navigation
+.greedy-nav {
+  a {
+    position: relative;
+    
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: $primary-color;
+      transition: all 0.3s ease;
+    }
+    
+    &:hover:after {
+      width: 100%;
+      left: 0;
+    }
+  }
+}
