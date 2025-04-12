@@ -30,6 +30,7 @@ permalink: /
   <div>International Conference on Learning Representations (ICLR) <span class="pub-year">2024</span></div>
   <div class="publication-links">
     <a href="https://openreview.net/forum?id=O9PArxKLe1" class="paper-link">Paper</a>
+    <a href="https://github.com/nilslukas/adaptive-watermark-attacks" class="code-link">Code</a>
   </div>
 </div>
 
