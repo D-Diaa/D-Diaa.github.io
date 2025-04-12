@@ -21,7 +21,7 @@
 title: Abdulrahman Diaa
 email: a2diaa@uwaterloo.ca
 description: >- # this means to ignore newlines until "baseurl:"
-  Academic website of Abdulrahman Diaa, PhD student at University of Waterloo researching watermarking techniques for AI-generated content, digital trust, and misinformation prevention.
+  Academic website of Abdulrahman Diaa, PhD student at University of Waterloo researching watermarking techniques for AI-generated content, privacy-preserving machine learning and encrypted computation.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://D-Diaa.github.io" # the base hostname & protocol for your site
 

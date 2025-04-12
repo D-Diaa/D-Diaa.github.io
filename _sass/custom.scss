@@ -410,8 +410,8 @@ h2 .section-header {
     justify-content: flex-end; /* Right align content */
   }
   
-  .nav-links li:not(:has(.social-icons-container)):not(:has(.theme-toggle)) {
-    display: none; /* Hide regular nav links but keep theme toggle visible */
+  .nav-links li:not(:has(.social-icons-container)):not(:has(.theme-toggle)):not(:has([aria-label="Coffee"])) {
+    display: none; /* Hide regular nav links but keep theme toggle and coffee icon visible */
   }
   
   .nav-links li .social-icons-container {

@@ -36,13 +36,20 @@
               <span class="theme-toggle-icon dark-icon"><i class="fas fa-moon"></i></span>
             </button>
           </li>
+          <li>
+            <a href="/coffee" class="header-social-link" aria-label="Coffee">
+              <i class="fas fa-coffee"></i>
+            </a>
+          </li>
         </ul>
         
         <button class="greedy-nav__toggle hidden" type="button">
           <span class="visually-hidden">{{ site.data.ui-text[site.locale].menu_label | default: "Toggle menu" }}</span>
           <div class="navicon"></div>
         </button>
-        <ul class="hidden-links hidden"></ul>
+        <ul class="hidden-links hidden">
+          <li><a href="/coffee" aria-label="Coffee"><i class="fas fa-coffee"></i> Coffee</a></li>
+        </ul>
       </nav>
     </div>
   </div>
