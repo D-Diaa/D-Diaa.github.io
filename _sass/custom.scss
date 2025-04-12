@@ -338,11 +338,12 @@ h2 .section-header {
       
       .header-social-link {
         font-size: 0.85em;
-        padding: 0.4em 0.3em;
+        padding: 0.5em 0.8em;
         margin: 0 0.1em;
         display: flex;
         align-items: center;
         justify-content: center;
+        background-color: transparent !important;
         
         &:after {
           display: none;
@@ -351,6 +352,7 @@ h2 .section-header {
         &:hover {
           color: var(--link-color) !important;
           transform: translateY(-2px);
+          background-color: transparent !important;
         }
         
         i {
