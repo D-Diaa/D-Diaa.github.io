@@ -28,7 +28,7 @@ url: "http://D-Diaa.github.io" # the base hostname & protocol for your site
 author:
   name: "Abdulrahman Diaa"
   avatar: "/assets/images/bio-photo.jpeg"
-  bio: "Weird coffee guy" # Note: Markdown is allowed
+  bio: "Always Brewing ☕" # Note: Markdown is allowed
   location: "Waterloo, ON"
   links:
     - label: "GitHub"

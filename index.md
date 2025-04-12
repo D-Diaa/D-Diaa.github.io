@@ -54,6 +54,7 @@ permalink: /
 </div>
 
 ## Preprints
+
 <div class="publication-item">
   <div class="author-list">
     <span class="author-highlight">A. Diaa</span>, T. Aremu, and N. Lukas
@@ -90,7 +91,7 @@ permalink: /
 
 <div class="pdf-container">
     <iframe src="{{ site.baseurl }}/assets/resume.pdf" width="100%" height="800px" style="border: none;">
-        This browser does not support PDFs. Please download the PDF to view it: 
+        This browser does not support PDFs. Please download the PDF to view it:
         <a href="{{ site.baseurl }}/assets/resume.pdf" class="paper-link">Download PDF</a>.
     </iframe>
 </div>

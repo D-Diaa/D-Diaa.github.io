@@ -35,14 +35,14 @@ $publication-background: rgba(255, 255, 255, 0.05);
 
 /* Enhance publications appearance */
 .publication-item {
-  padding: 1.5em;
-  margin-bottom: 1.5em;
+  padding: 1em;
+  margin-bottom: 1em;
   border-radius: 5px;
   background-color: $publication-background;
   border: $publication-border;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   max-width: 100%;
-  
+  font-size: 0.8em;
   &:hover {
     transform: translateY(-3px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
@@ -71,9 +71,9 @@ $publication-background: rgba(255, 255, 255, 0.05);
 
 /* Improve intro section */
 .intro-section, .research-summary {
-  margin-bottom: 2em;
-  font-size: 1.1em;
-  line-height: 1.7;
+  margin-bottom: 1em;
+  font-size: 1em;
+  line-height: 1.25;
   
   p {
     margin-bottom: 1em;
