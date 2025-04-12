@@ -58,7 +58,7 @@ defaults:
       path: ""
     values:
       layout: single
-      author_profile: true
+      author_profile: false
 
 enable_copy_code_button: true
 search: false

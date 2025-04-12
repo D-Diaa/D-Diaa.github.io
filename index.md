@@ -4,10 +4,26 @@ permalink: /
 ---
 
 <main>
-<section class="intro-section">
-  <p>I am a Ph.D. student under the supervision of <a href="https://cs.uwaterloo.ca/~fkerschb/" target="_blank">Florian Kerschbaum</a>. I'm also a member of the <a href="https://crysp.uwaterloo.ca" target="_blank">Cryptography, Security, and Privacy (CrySP)</a> lab at the <a href="https://uwaterloo.ca" target="_blank">University of Waterloo</a>.</p>
+<section class="hero-section">
+  <div class="hero-content">
+    <div class="hero-text">
+      <p>I am a Ph.D. student under the supervision of <a href="https://cs.uwaterloo.ca/~fkerschb/" target="_blank">Florian Kerschbaum</a>. I'm also a member of the <a href="https://crysp.uwaterloo.ca" target="_blank">Cryptography, Security, and Privacy (CrySP)</a> lab at the <a href="https://uwaterloo.ca" target="_blank">University of Waterloo</a>.</p>
 
-  <p>I hold a Masters degree in Computer Science from the University of Waterloo and a Bachelor of Science in Computer Engineering and Mathematics from <a href="https://www.aucegypt.edu" target="_blank">The American University in Cairo</a>.</p>
+      <p>I hold a Masters degree in Computer Science from the University of Waterloo and a Bachelor of Science in Computer Engineering and Mathematics from <a href="https://www.aucegypt.edu" target="_blank">The American University in Cairo</a>.</p>
+    </div>
+    <div class="hero-profile">
+      <div class="hero-avatar">
+        <img src="/assets/images/bio-photo.jpeg" alt="Abdulrahman Diaa" class="bio-photo">
+      </div>
+      <div class="hero-links">
+        <a href="https://github.com/D-Diaa" class="social-link" target="_blank" aria-label="GitHub"><i class="fab fa-fw fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/abdulrahman-diaa-555300126/" class="social-link" target="_blank" aria-label="LinkedIn"><i class="fab fa-fw fa-linkedin"></i></a>
+        <a href="https://scholar.google.com/citations?user=xFX1k1AAAAAJ" class="social-link" target="_blank" aria-label="Google Scholar"><i class="fas fa-fw fa-graduation-cap"></i></a>
+        <a href="mailto:a2diaa@uwaterloo.ca" class="social-link" aria-label="Email"><i class="fas fa-fw fa-envelope"></i></a>
+        <a href="/assets/resume.pdf" class="social-link" target="_blank" aria-label="Resume"><i class="fas fa-fw fa-file"></i></a>
+      </div>
+    </div>
+  </div>
 </section>
 
 <h2><span class="section-header">Research</span></h2>
