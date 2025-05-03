@@ -1,27 +1,25 @@
 /* 
- * COFFEE PAGE STYLING
- * Custom styling for the coffee brewing recipe page
+ * COFFEE PAGE STYLING - OPTIMIZED VERSION
+ * Performance-optimized styling for the coffee brewing recipe page
  */
 
-// Coffee-themed color variables
+// Core variables - consolidated and simplified
 $coffee-dark: #3a2c24;
 $coffee-medium: #6f4e37;
 $coffee-light: #b18f6a;
-$coffee-cream: #f5f0e1;
 $coffee-accent: #d4a76a;
 
+// Base page structure
 .coffee-page {
   max-width: 900px;
   margin: 0 auto;
   padding: 1.5rem 0;
-  font-family: var(--serif);
 }
 
-/* Coffee Header Styling */
+// Coffee header section
 .coffee-header {
   text-align: center;
   margin-bottom: 2rem;
-  animation: fadeIn 0.8s ease-in-out;
 }
 
 .coffee-icon {
@@ -45,21 +43,15 @@ $coffee-accent: #d4a76a;
   margin: 0 auto;
 }
 
-/* Recipe Card Styling */
+// Recipe card container
 .recipe-card {
   background-color: var(--card-background);
   border-radius: 12px;
   padding: 2rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), 0 1px 8px rgba(0, 0, 0, 0.07);
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   border: 1px solid var(--border-color);
   position: relative;
   overflow: hidden;
-  
-  &:hover {
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15), 0 3px 10px rgba(0, 0, 0, 0.1);
-    transform: translateY(-5px);
-  }
   
   &::before {
     content: '';
@@ -72,6 +64,7 @@ $coffee-accent: #d4a76a;
   }
 }
 
+// Header section of recipe
 .recipe-header {
   text-align: center;
   margin-bottom: 2rem;
@@ -81,7 +74,6 @@ $coffee-accent: #d4a76a;
   font-size: 1.8rem;
   margin: 0 auto 0.8rem;
   padding-bottom: 0.4rem;
-  position: relative;
   color: var(--heading-color);
   font-weight: 700;
   
@@ -102,7 +94,7 @@ $coffee-accent: #d4a76a;
   opacity: 0.9;
 }
 
-/* Recipe Metrics Styling */
+// Recipe metrics section
 .recipe-metrics {
   display: flex;
   flex-wrap: wrap;
@@ -125,34 +117,10 @@ $coffee-accent: #d4a76a;
   border-radius: 8px;
   background-color: var(--card-background);
   border: 1px solid var(--border-color);
-  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  position: relative;
-  overflow: hidden;
   
   &:hover {
-    transform: translateY(-3px) scale(1.02);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    transform: translateY(-3px);
     border-color: rgba(var(--link-color-rgb, 42, 154, 243), 0.4);
-    
-    .metric-icon {
-      transform: translateY(-2px);
-    }
-  }
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background: linear-gradient(to right, $coffee-medium, $coffee-light);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-  
-  &:hover::before {
-    opacity: 1;
   }
 }
 
@@ -160,27 +128,10 @@ $coffee-accent: #d4a76a;
   font-size: 1.3rem;
   margin-bottom: 0.6rem;
   color: $coffee-medium;
-  transition: transform 0.3s ease;
   
-  &.coffee-bean-icon {
-    color: $coffee-dark;
-  }
-  
-  &.water-icon {
-    color: #4fc3f7;
-  }
-  
-  &.grind-icon {
-    color: $coffee-medium;
-  }
-  
-  &.temp-icon {
-    color: #ff7043;
-  }
-  
-  &.time-icon {
-    color: #7986cb;
-  }
+  &.water-icon { color: #4fc3f7; }
+  &.temp-icon { color: #ff7043; }
+  &.time-icon { color: #7986cb; }
 }
 
 .metric-label {
@@ -206,7 +157,7 @@ $coffee-accent: #d4a76a;
   opacity: 0.7;
 }
 
-/* Brew Timeline Styling */
+// Brew timeline
 .brew-timeline {
   margin: 2rem 0;
   padding: 1rem;
@@ -238,7 +189,6 @@ $coffee-accent: #d4a76a;
   height: 6px;
   background-color: var(--border-color);
   border-radius: 3px;
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .timeline-marker {
@@ -261,7 +211,6 @@ $coffee-accent: #d4a76a;
     background-color: var(--card-background);
     padding: 2px 6px;
     border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
 }
 
@@ -270,18 +219,12 @@ $coffee-accent: #d4a76a;
   top: 58px;
   height: 10px;
   border-radius: 5px;
-  transition: all 0.3s ease;
   
   &:hover {
-    transform: translateY(-2px);
     height: 14px;
     
     .phase-label {
       opacity: 1;
-    }
-    
-    .phase-icon {
-      transform: translateY(-5px) scale(1.1);
     }
   }
   
@@ -291,7 +234,6 @@ $coffee-accent: #d4a76a;
     left: 50%;
     transform: translateX(-50%);
     font-size: 1.2rem;
-    transition: transform 0.3s ease;
   }
   
   .phase-label {
@@ -304,40 +246,24 @@ $coffee-accent: #d4a76a;
     color: var(--text-color);
     font-weight: 600;
     opacity: 0.9;
-    transition: opacity 0.3s ease;
     background-color: var(--card-background);
     padding: 2px 8px;
     border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   }
 }
 
-.bloom-phase {
-  background-color: #4db6ac; /* Teal */
-  box-shadow: 0 0 10px rgba(77, 182, 172, 0.3);
-}
+// Timeline phase colors
+.bloom-phase { background-color: #4db6ac; }
+.percolation-phase { background-color: #4fc3f7; }
+.immersion-phase { background-color: #7986cb; }
+.drain-phase { background-color: #81c784; }
 
-.percolation-phase {
-  background-color: #4fc3f7; /* Light Blue */
-  box-shadow: 0 0 10px rgba(79, 195, 247, 0.3);
-}
-
-.immersion-phase {
-  background-color: #7986cb; /* Indigo */
-  box-shadow: 0 0 10px rgba(121, 134, 203, 0.3);
-}
-
-.drain-phase {
-  background-color: #81c784; /* Green */
-  box-shadow: 0 0 10px rgba(129, 199, 132, 0.3);
-}
-
-/* Recipe Steps Styling */
+// Recipe steps section
 .recipe-steps {
   margin: 2rem 0;
 }
 
-.steps-title, .notes-title, .timeline-title {
+.steps-title, .notes-title {
   margin: 1.5rem 0 1rem;
   padding-bottom: 0.5rem;
   border-bottom: 1px solid var(--border-color);
@@ -380,39 +306,22 @@ $coffee-accent: #d4a76a;
   border-radius: 8px;
   background-color: var(--card-background);
   border-left: 4px solid var(--border-color);
-  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   z-index: 1;
   
   &:hover {
     transform: translateX(5px);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
   }
   
-  /* Add space for time badge */
   @media (min-width: 768px) {
     padding-left: 5.5rem;
   }
   
-  &.preparation {
-    border-left-color: #9575cd; /* Purple */
-  }
-  
-  &.bloom {
-    border-left-color: #4db6ac; /* Teal */
-  }
-  
-  &.percolation {
-    border-left-color: #4fc3f7; /* Light Blue */
-  }
-  
-  &.immersion {
-    border-left-color: #7986cb; /* Indigo */
-  }
-  
-  &.serving {
-    border-left-color: #81c784; /* Green */
-  }
+  &.preparation { border-left-color: #9575cd; }
+  &.bloom { border-left-color: #4db6ac; }
+  &.percolation { border-left-color: #4fc3f7; }
+  &.immersion { border-left-color: #7986cb; }
+  &.serving { border-left-color: #81c784; }
 }
 
 .step-header {
@@ -424,15 +333,13 @@ $coffee-accent: #d4a76a;
   }
 }
 
-.step-content {
-  p {
-    margin: 0;
-    line-height: 1.5;
-    color: var(--text-color);
-  }
+.step-content p {
+  margin: 0;
+  line-height: 1.5;
+  color: var(--text-color);
 }
 
-/* Time Badge Styling */
+// Time badge
 .time-badge {
   position: absolute;
   left: 15px;
@@ -445,15 +352,14 @@ $coffee-accent: #d4a76a;
   padding: 4px 10px;
   border-radius: 20px;
   white-space: nowrap;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   z-index: 2;
+  
+  &.prep-time {
+    background-color: #9575cd;
+  }
 }
 
-.time-badge.prep-time {
-  background-color: #9575cd; /* Purple */
-}
-
-/* Duration Indicator Styling */
+// Duration indicator
 .duration-indicator {
   margin-top: 1rem;
   padding-left: 0.5rem;
@@ -467,14 +373,7 @@ $coffee-accent: #d4a76a;
   max-width: 450px;
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
   border: 1px solid var(--border-color);
-  transition: all 0.3s ease;
-  
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
-  }
 }
 
 .duration-segment {
@@ -486,34 +385,14 @@ $coffee-accent: #d4a76a;
   color: white;
   padding: 0 10px;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease;
   
-  &:hover {
-    flex-grow: 1.1;
-  }
+  &.pour { background-color: #4fc3f7; }
+  &.wait { background-color: #9575cd; }
+  &.steep { background-color: #7986cb; }
+  &.drain { background-color: #81c784; }
 }
 
-.duration-segment.pour {
-  background-color: #4fc3f7; /* Light Blue */
-  background-image: linear-gradient(135deg, #4fc3f7, #29b6f6);
-}
-
-.duration-segment.wait {
-  background-color: #9575cd; /* Purple */
-  background-image: linear-gradient(135deg, #9575cd, #7e57c2);
-}
-
-.duration-segment.steep {
-  background-color: #7986cb; /* Indigo */
-  background-image: linear-gradient(135deg, #7986cb, #5c6bc0);
-}
-
-.duration-segment.drain {
-  background-color: #81c784; /* Green */
-  background-image: linear-gradient(135deg, #81c784, #66bb6a);
-}
-
-/* Tweakables Styling */
+// Tweakables section
 .notes-description {
   margin-bottom: 1.25rem;
   font-size: 0.95rem;
@@ -532,19 +411,16 @@ $coffee-accent: #d4a76a;
 }
 
 .tweakable-item {
-  margin-bottom: 0;
   padding: 1rem;
   background-color: var(--card-background);
   border-radius: 10px;
   border: 1px solid var(--border-color);
   display: flex;
   align-items: flex-start;
-  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   
   &:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
     border-color: rgba(var(--link-color-rgb, 42, 154, 243), 0.4);
   }
 }
@@ -573,7 +449,7 @@ $coffee-accent: #d4a76a;
   line-height: 1.4;
 }
 
-/* Recipe Footer Styling */
+// Recipe footer
 .recipe-footer {
   margin-top: 2.5rem;
   padding-top: 1.5rem;
@@ -615,10 +491,6 @@ $coffee-accent: #d4a76a;
   opacity: 0.8;
 }
 
-.print-button {
-  display: flex;
-}
-
 .print-icon {
   display: flex;
   align-items: center;
@@ -629,42 +501,15 @@ $coffee-accent: #d4a76a;
   background-color: var(--card-background);
   color: var(--text-color);
   border: 1px solid var(--border-color);
-  transition: all 0.3s ease;
   font-size: 1.2rem;
   
   &:hover {
     background-color: $coffee-medium;
     color: white;
-    transform: translateY(-3px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
   }
 }
 
-/* Animations */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes bounce {
-  0%, 20%, 50%, 80%, 100% {
-    transform: translateY(0);
-  }
-  40% {
-    transform: translateY(-10px);
-  }
-  60% {
-    transform: translateY(-5px);
-  }
-}
-
-/* Responsive adjustments for coffee page */
+// Responsive adjustments
 @media (max-width: 900px) {
   .recipe-card {
     padding: 2rem;
@@ -690,7 +535,6 @@ $coffee-accent: #d4a76a;
   
   .metric-item {
     flex: 1 0 calc(50% - 1.25rem);
-    min-width: 140px;
   }
   
   .step-item {
@@ -708,24 +552,6 @@ $coffee-accent: #d4a76a;
     margin: 0;
   }
   
-  .timeline-marker span {
-    font-size: 0.8rem;
-  }
-  
-  .timeline-phase .phase-label {
-    font-size: 0.7rem;
-  }
-  
-  .duration-bar {
-    max-width: 400px;
-    height: 32px;
-  }
-  
-  .duration-segment {
-    font-size: 0.8rem;
-    padding: 0 8px;
-  }
-  
   .tweakables-list {
     grid-template-columns: 1fr;
   }
@@ -733,7 +559,6 @@ $coffee-accent: #d4a76a;
   .recipe-footer {
     flex-direction: column;
     align-items: flex-start;
-    gap: 1rem;
   }
 }
 
@@ -751,51 +576,15 @@ $coffee-accent: #d4a76a;
     font-size: 1.75rem;
   }
   
-  .page-subtitle {
-    font-size: 1rem;
-  }
-  
   .recipe-title {
     font-size: 1.5rem;
   }
   
   .metric-item {
     flex: 1 0 100%;
-    min-width: 0;
   }
   
   .timeline-container {
     height: 160px;
-  }
-  
-  .timeline-phase .phase-icon {
-    font-size: 1rem;
-  }
-  
-  .timeline-phase .phase-label {
-    bottom: -35px;
-    font-size: 0.65rem;
-  }
-  
-  .step-header strong {
-    font-size: 1rem;
-  }
-  
-  .step-content p {
-    font-size: 0.9rem;
-  }
-  
-  .duration-bar {
-    max-width: 100%;
-    height: 28px;
-  }
-  
-  .duration-segment {
-    font-size: 0.7rem;
-    padding: 0 5px;
-  }
-  
-  .coffee-quote {
-    font-size: 1rem;
   }
 }
