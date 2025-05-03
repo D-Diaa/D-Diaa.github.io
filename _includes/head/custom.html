@@ -1,4 +1,7 @@
 <!-- start custom head snippets -->
+<!-- Preconnect to external domains for faster loading -->
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+
 <!-- Canonical URL for SEO -->
 <link rel="canonical" href="{{ site.url }}{{ page.url | replace:'index.html','' }}" />
 
@@ -16,9 +19,11 @@
 <meta name="twitter:description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
 <meta name="twitter:image" content="{{ site.url }}/assets/images/bio-photo.jpeg">
 
-<!-- insert favicons. use https://realfavicongenerator.net/ -->
+<!-- Insert favicons. use https://realfavicongenerator.net/ -->
 <link rel="icon" type="image/jpeg" href="{{ '/favicon.jpeg' | relative_url }}">
-<link rel="canonical" href="{{ site.url }}{{ page.url | replace:'index.html','' }}">
+
+<!-- Preload critical assets -->
+<link rel="preload" href="{{ '/assets/images/bio-photo.jpeg' | relative_url }}" as="image">
 
 <!-- Theme toggle script - loaded with defer for better performance -->
 <script src="{{ '/assets/js/theme-toggle.js' | relative_url }}" defer></script>
@@ -29,16 +34,15 @@
 <!-- BibTeX export script - added defer attribute -->
 <script src="{{ '/assets/js/bibtex-export.js' | relative_url }}" defer></script>
 
-<!-- Only include Font Awesome on pages that need it -->
+<!-- Only include Font Awesome on pages that need it with non-blocking loading -->
 {% if page.url contains 'resume' or page.url contains 'publications' %}
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"></noscript>
 {% endif %}
 
-<!-- Only load MathJax if the page contains mathematical content -->
+<!-- Only load MathJax if the page contains mathematical content with non-blocking loading -->
 {% if page.math or page.url contains 'publications' or page.url contains 'preprints' %}
-<script type="text/javascript" async
-  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
     tex2jax: {

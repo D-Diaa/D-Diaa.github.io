@@ -53,17 +53,59 @@ permalink: /
 
 <section class="section-content">
   <div class="resume-container">
-    <div class="resume-actions">
-      <a href="{{ site.baseurl }}/assets/resume.pdf" class="download-button" download>
-        <i class="fas fa-download"></i> Download Resume
-      </a>
-    </div>
-    <div class="pdf-container">
-      <iframe src="{{ site.baseurl }}/assets/resume.pdf" width="100%" height="800px" style="border: none;" title="Abdulrahman Diaa's Resume">
-          This browser does not support PDFs. Please download the PDF to view it:
-          <a href="{{ site.baseurl }}/assets/resume.pdf" class="paper-link">Download PDF</a>.
-      </iframe>
+    <div class="resume-card">
+      <div class="resume-preview-container">
+        <div class="resume-thumbnail" aria-label="Resume preview image">
+          <div class="resume-overlay">
+            <span class="click-to-view">Click to view full resume</span>
+          </div>
+          <img src="{{ site.baseurl }}/assets/images/resume-thumbnail.png" alt="Resume thumbnail" class="resume-thumbnail-img" loading="lazy">
+        </div>
+      </div>
+      <div class="resume-actions">
+        <a href="{{ site.baseurl }}/assets/resume.pdf" class="download-button" download>
+          <i class="fas fa-download"></i> Download Resume
+        </a>
+        <a href="{{ site.baseurl }}/assets/resume.pdf" class="view-button" target="_blank">
+          <i class="fas fa-eye"></i> View Resume
+        </a>
+      </div>
     </div>
   </div>
 </section>
 </main>
+
+<script>
+  // Lazy load the resume section when user scrolls near it
+  document.addEventListener('DOMContentLoaded', function() {
+    const resumeSection = document.getElementById('resume');
+    const handleIntersection = (entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // Preload the PDF when user gets close to the resume section
+          const link = document.createElement('link');
+          link.rel = 'prefetch';
+          link.href = '{{ site.baseurl }}/assets/resume.pdf';
+          document.head.appendChild(link);
+          observer.unobserve(entry.target);
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(handleIntersection, {
+      rootMargin: '200px 0px'
+    });
+
+    if (resumeSection) {
+      observer.observe(resumeSection);
+    }
+
+    // Open PDF in new tab when clicking on thumbnail
+    const resumeThumbnail = document.querySelector('.resume-thumbnail');
+    if (resumeThumbnail) {
+      resumeThumbnail.addEventListener('click', function() {
+        window.open('{{ site.baseurl }}/assets/resume.pdf', '_blank');
+      });
+    }
+  });
+</script>
