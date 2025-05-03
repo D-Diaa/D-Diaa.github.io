@@ -30,3 +30,5 @@
     - type: "paper"
       url: "https://arxiv.org/abs/2303.09043"
       label: "Paper"
+  highlights:
+    - "Presented at FHE.org Conference 2023"

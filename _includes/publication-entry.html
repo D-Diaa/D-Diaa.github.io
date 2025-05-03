@@ -36,6 +36,15 @@
       data-year="{{ include.publication.year }}"
       data-url="{{ include.publication.links | where: 'type', 'paper' | map: 'url' | first }}">BibTeX</span>
   </div>
+  {% if include.publication.highlights %}
+    <div class="publication-highlights">
+      <ul>
+        {% for highlight in include.publication.highlights %}
+          <li>{{ highlight }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
   {% if include.publication.abstract %}
   <div class="publication-abstract" itemprop="abstract">
     <p>{{ include.publication.abstract }}</p>
