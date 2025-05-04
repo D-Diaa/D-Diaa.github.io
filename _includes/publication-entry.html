@@ -1,5 +1,7 @@
 <div class="publication-item" itemscope itemtype="https://schema.org/ScholarlyArticle">
-  <div class="author-list">
+  <div class="publication-content-wrapper">
+    <div class="publication-details">
+      <div class="author-list">
     {% for author in include.publication.authors %}
       {% if author.highlight %}
         <span class="author-highlight" itemprop="author">{{ author.name }}</span>
@@ -18,23 +20,30 @@
   {% else %}
   <!-- <div><span class="pub-year" itemprop="datePublished">{{ include.publication.year }}</span></div> -->
   {% endif %}
-  <div class="publication-links">
-    {% for link in include.publication.links %}
-      {% if link.type == 'paper' %}
-        <a href="{{ link.url }}" class="{{ link.type }}-link" itemprop="url">{{ link.label }}</a>
-      {% else %}
-        <a href="{{ link.url }}" class="{{ link.type }}-link">{{ link.label }}</a>
+    </div>
+    <div class="publication-links">
+      {% assign paper_link = include.publication.links | where: 'type', 'paper' | first %}
+      {% assign code_link = include.publication.links | where: 'type', 'code' | first %}
+
+      {% if paper_link %}
+        <a href="{{ paper_link.url }}" class="paper-link grid-item-paper" itemprop="url">{{ paper_link.label }}</a>
       {% endif %}
-    {% endfor %}
-    {% if include.publication.abstract %}
-      <span class="abstract-toggle">Abstract</span>
-    {% endif %}
-    <span class="bibtex-button" 
-      data-authors="{{ include.publication.authors | map: 'name' | join: '|' }}"
-      data-title="{{ include.publication.title }}"
-      data-venue="{{ include.publication.venue }}"
-      data-year="{{ include.publication.year }}"
-      data-url="{{ include.publication.links | where: 'type', 'paper' | map: 'url' | first }}">BibTeX</span>
+
+      {% if code_link %}
+        <a href="{{ code_link.url }}" class="code-link grid-item-code">{{ code_link.label }}</a>
+      {% endif %}
+
+      {% if include.publication.abstract %}
+        <span class="abstract-toggle grid-item-abstract">Abstract</span>
+      {% endif %}
+
+      <span class="bibtex-button grid-item-bibtex"
+        data-authors="{{ include.publication.authors | map: 'name' | join: '|' }}"
+        data-title="{{ include.publication.title }}"
+        data-venue="{{ include.publication.venue }}"
+        data-year="{{ include.publication.year }}"
+        data-url="{{ paper_link.url }}">BibTeX</span>
+    </div>
   </div>
   {% if include.publication.highlights %}
     <div class="publication-highlights">
