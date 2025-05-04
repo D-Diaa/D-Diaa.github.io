@@ -95,7 +95,7 @@ permalink: /coffee/
             <div class="step-header">
               <strong>Preheat the dripper</strong>
             </div>
-            <p>With the switch closed, fill the dripper with hot water and let it sit for a minute. Drain the water before adding the filter.</p>
+            <p>With the switch closed, fill the dripper with hot water and let it sit for a minute.</p><p> Drain the water before adding the filter.</p>
           </div>
         </li>
         <li class="step-item preparation">
@@ -128,7 +128,7 @@ permalink: /coffee/
             <div class="step-header">
               <strong>Bloom</strong>
             </div>
-            <p>Pour 60g of water slowly over the coffee grounds in a spiral motion. Aim for a 30-second pour; then wait for 30 seconds to let the coffee bloom.</p>
+            <p>Pour 60g of water slowly over the coffee grounds in a spiral motion. </p><p>Aim for a 30-second pour; then wait for 30 seconds to let the coffee bloom.</p>
             <div class="duration-indicator">
               <div class="duration-bar">
                 <div class="duration-segment pour" style="width: 50%;">Pour (30s)</div>
@@ -167,7 +167,7 @@ permalink: /coffee/
             <div class="step-header">
               <strong>Immersion</strong>
             </div>
-            <p>Add the remaining water (160g) and let it steep until 3:00. Open the switch to drain the coffee. The coffee should finish draining before 4:00.</p>
+            <p>Add the remaining water (160g) and let it steep until 3:00. Open the switch to drain the coffee. </p><p>The coffee should finish draining before 4:00.</p>
             <div class="duration-indicator">
               <div class="duration-bar">
                 <div class="duration-segment steep" style="width: 50%;">Steep (60s)</div>

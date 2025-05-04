@@ -191,19 +191,19 @@ $bp-small: 480px;
 .recipe-metrics {
   display: flex;
   flex-wrap: wrap;
-  gap: $coffee-spacing-sm + 0.1rem; // ~0.6rem
+  gap: $coffee-spacing-sm; // Reduced from ~0.6rem
   justify-content: center;
-  margin-bottom: $coffee-spacing-xl;
-  padding: $coffee-spacing-md;
+  margin-bottom: $coffee-spacing-lg; // Reduced from xl (1.5rem)
+  padding: $coffee-spacing-sm; // Reduced from md (0.75rem)
   background-color: rgba(var(--link-color-rgb, 42, 154, 243), 0.05);
   border-radius: $coffee-border-radius-md;
   border: 1px dashed rgba(var(--link-color-rgb, 42, 154, 243), 0.2);
 }
 
 .metric-item {
-  @include card-base($radius: $coffee-border-radius-sm, $padding: $coffee-spacing-sm + 0.1rem $coffee-spacing-sm); // ~0.6rem 0.5rem
+  @include card-base($radius: $coffee-border-radius-sm, $padding: $coffee-spacing-sm $coffee-spacing-xs); // Reduced padding
   flex: 1 0 calc(33.333% - 0.8rem); // Keep original calc for responsiveness
-  min-width: 140px;
+  min-width: 130px; // Slightly reduced min-width
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -222,8 +222,8 @@ $bp-small: 480px;
 }
 
 .metric-icon {
-  font-size: 1.3rem;
-  margin-bottom: $coffee-spacing-xs * 1.5; // ~0.4rem
+  font-size: 1.2rem; // Slightly reduced size
+  margin-bottom: $coffee-spacing-xs; // Reduced from ~0.4rem
   color: $coffee-medium;
   
   &.water-icon { color: #4fc3f7; }
@@ -232,20 +232,20 @@ $bp-small: 480px;
 }
 
 .metric-label {
-  font-size: $coffee-label-size;
+  font-size: $coffee-label-size - 0.05rem; // Slightly reduced size (~0.7rem)
   text-transform: uppercase;
   letter-spacing: 0.4px;
-  margin-bottom: $coffee-spacing-xs;
+  margin-bottom: 0; // Removed margin
   color: var(--text-color);
   opacity: 0.8;
   font-weight: 600;
 }
 
 .metric-value {
-  font-size: 1.2rem;
+  font-size: 1.1rem; // Reduced from 1.2rem
   font-weight: 700;
   color: var(--heading-color);
-  margin-bottom: $coffee-spacing-xs;
+  margin-bottom: $coffee-spacing-xs; // Kept small margin
 }
 
 .metric-note {
@@ -256,57 +256,57 @@ $bp-small: 480px;
 
 // --- Brew Timeline ---
 .brew-timeline {
-  @include card-base($radius: $coffee-border-radius-md, $padding: $coffee-spacing-md);
-  margin: $coffee-spacing-xl 0;
+  @include card-base($radius: $coffee-border-radius-md, $padding: $coffee-spacing-sm); // Reduced padding
+  margin: $coffee-spacing-lg 0; // Reduced margin
 }
 
 .timeline-title {
-  // Removed @include section-title as it was mostly overridden
   text-align: center;
-  margin-bottom: $coffee-spacing-md;
-  font-size: 1.2rem;
+  margin-bottom: $coffee-spacing-sm; // Reduced margin
+  font-size: 1.1rem; // Reduced size
   color: var(--heading-color);
   font-weight: 600;
 }
 
 .timeline-container {
   position: relative;
-  height: 100px;
+  height: 65px; // Reduced height significantly
   margin: 0 $coffee-spacing-sm * 1.6; // ~0.8rem
 
   @media (max-width: $bp-medium) {
-    height: 140px; // Original value for this breakpoint
-    margin: 0; // Original value for this breakpoint
+    // Adjust responsive heights if needed, keeping them smaller
+    height: 80px; 
+    margin: 0; 
   }
    @media (max-width: $bp-small) {
-    height: 160px; // Original value for this breakpoint
+    height: 90px; 
   }
 }
 
 .timeline-track {
   position: absolute;
-  top: 60px;
+  top: 35px; // Adjusted top position
   left: 0;
   right: 0;
-  height: 6px;
+  height: 4px; // Slightly thinner track
   background-color: var(--border-color);
   border-radius: 3px;
 }
 
 .timeline-marker {
   position: absolute;
-  top: 45px;
+  top: 28px; // Adjusted top position
   transform: translateX(-50%);
   width: 2px;
-  height: 36px;
+  height: 24px; // Reduced height
   background-color: var(--text-color);
   
   span {
     position: absolute;
-    top: -30px;
+    top: -22px; // Adjusted top position
     left: 50%;
     transform: translateX(-50%);
-    font-size: $coffee-text-size;
+    font-size: $coffee-text-size - 0.05rem; // Slightly smaller
     font-weight: 700;
     white-space: nowrap;
     color: var(--heading-color);
@@ -318,30 +318,30 @@ $bp-small: 480px;
 
 .timeline-phase {
   position: absolute;
-  top: 58px;
-  height: 10px;
-  border-radius: 5px;
+  top: 33px; // Adjusted top position
+  height: 8px; // Reduced height
+  border-radius: 4px; // Adjusted radius
   transition: height 0.2s ease;
   
   &:hover {
-    height: 14px;
+    height: 10px; // Adjusted hover height
     .phase-label { opacity: 1; }
   }
   
   .phase-icon {
     position: absolute;
-    top: -25px;
+    top: -20px; // Adjusted top position
     left: 50%;
     transform: translateX(-50%);
-    font-size: 1.2rem;
+    font-size: 1.1rem; // Slightly smaller
   }
   
   .phase-label {
     position: absolute;
-    bottom: -25px;
+    bottom: -20px; // Adjusted bottom position
     left: 50%;
     transform: translateX(-50%);
-    font-size: $coffee-label-size;
+    font-size: $coffee-label-size - 0.05rem; // Slightly smaller
     white-space: nowrap;
     color: var(--text-color);
     font-weight: 600;
