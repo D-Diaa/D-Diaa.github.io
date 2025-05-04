@@ -27,10 +27,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const year = dataset.year;
     const url = dataset.url;
     
-    // Create citation key from first author's last name and year
+    // Create citation key from first author's last name, year, and first word of title
     const firstAuthor = authors[0];
-    const lastName = firstAuthor.split(' ').pop().replace('.', '');
-    const citationKey = `${lastName}${year}`;
+    const lastName = firstAuthor.split(' ').pop().replace(/[.,]/g, ''); // Remove dots and commas
+    const firstWord = title.split(' ')[0].replace(/[^a-zA-Z0-9]/g, ''); // Get first word, remove non-alphanumeric
+    const citationKey = `${lastName}${year}${firstWord}`;
     
     // Start building BibTeX entry
     let bibtex = `@${venue ? 'article' : 'unpublished'}{${citationKey},\n`;

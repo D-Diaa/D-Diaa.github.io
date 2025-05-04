@@ -85,6 +85,14 @@
   opacity: 1;
 }
 
+// Style for error toasts
+.clipboard-toast.error {
+  $error-color: #f44336; // Material Design Red 500
+  background-color: rgba($error-color, 0.9); // Slightly transparent red background
+  border-color: darken($error-color, 10%); // Darker red border
+  color: #fff; // White text for contrast
+}
+
 /* Publication abstract styling */
 .publication-abstract {
   max-height: 0;
@@ -177,5 +185,21 @@
     &:last-child {
       margin-bottom: 0;
     }
+  }
+}
+
+/* Publication item cards */
+.publication-item {
+  padding: 1em;
+  margin-bottom: 1em;
+  border-radius: 5px;
+  background-color: $publication-background;
+  border: $publication-border;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  max-width: 100%;
+  font-size: 0.8em;
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   }
 }

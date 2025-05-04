@@ -74,38 +74,3 @@ permalink: /
   </div>
 </section>
 </main>
-
-<script>
-  // Lazy load the resume section when user scrolls near it
-  document.addEventListener('DOMContentLoaded', function() {
-    const resumeSection = document.getElementById('resume');
-    const handleIntersection = (entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          // Preload the PDF when user gets close to the resume section
-          const link = document.createElement('link');
-          link.rel = 'prefetch';
-          link.href = '{{ site.baseurl }}/assets/resume.pdf';
-          document.head.appendChild(link);
-          observer.unobserve(entry.target);
-        }
-      });
-    };
-
-    const observer = new IntersectionObserver(handleIntersection, {
-      rootMargin: '200px 0px'
-    });
-
-    if (resumeSection) {
-      observer.observe(resumeSection);
-    }
-
-    // Open PDF in new tab when clicking on thumbnail
-    const resumeThumbnail = document.querySelector('.resume-thumbnail');
-    if (resumeThumbnail) {
-      resumeThumbnail.addEventListener('click', function() {
-        window.open('{{ site.baseurl }}/assets/resume.pdf', '_blank');
-      });
-    }
-  });
-</script>
