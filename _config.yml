@@ -63,9 +63,6 @@ defaults:
 enable_copy_code_button: true
 search: false
 
-header:
-  teaser: /assets/images/my-awesome-post-teaser.jpg
-
 footer:
   links:
     - label: ""
@@ -85,6 +82,8 @@ footer:
 plugins:
   - jekyll-include-cache
   - jekyll-sitemap
+
+incremental: true
 
 # Exclude from processing.
 # The following items will not be processed, by default.
