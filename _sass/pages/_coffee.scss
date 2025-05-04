@@ -1,36 +1,94 @@
 /* 
- * COFFEE PAGE STYLING - OPTIMIZED VERSION
- * Performance-optimized styling for the coffee brewing recipe page
+ * COFFEE PAGE STYLING - REFACTORED VERSION
+ * Styling for the coffee brewing recipe page using variables and mixins.
  */
 
-// Core variables - consolidated and simplified
+// --- Core Variables ---
 $coffee-dark: #3a2c24;
 $coffee-medium: #6f4e37;
 $coffee-light: #b18f6a;
 $coffee-accent: #d4a76a;
 
-// Base page structure
+// --- Spacing Variables ---
+$coffee-spacing-xs: 0.25rem;
+$coffee-spacing-sm: 0.5rem;
+$coffee-spacing-md: 0.75rem;
+$coffee-spacing-lg: 1rem;
+$coffee-spacing-xl: 1.5rem;
+$coffee-spacing-xxl: 2rem;
+
+// --- Typography Variables ---
+$coffee-text-size: 0.75rem;
+$coffee-text-line-height: 1.25;
+$coffee-note-size: 0.75rem;
+$coffee-label-size: 0.75rem;
+$coffee-justify-text: justify;
+
+// --- Border & Shadow Variables ---
+$coffee-border-radius-sm: 8px;
+$coffee-border-radius-md: 10px;
+$coffee-border-radius-lg: 12px;
+$coffee-shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.05);
+$coffee-shadow-md: 0 5px 15px rgba(0, 0, 0, 0.1);
+
+// --- Mixins ---
+@mixin card-base($radius: $coffee-border-radius-md, $padding: $coffee-spacing-md, $shadow: $coffee-shadow-sm) {
+  background-color: var(--card-background);
+  border-radius: $radius;
+  padding: $padding;
+  border: 1px solid var(--border-color);
+  box-shadow: $shadow;
+}
+
+@mixin hover-lift($amount: -3px) {
+  transition: transform 0.2s ease-in-out;
+  &:hover {
+    transform: translateY($amount);
+  }
+}
+
+@mixin section-title {
+  margin: $coffee-spacing-lg 0 $coffee-spacing-md;
+  padding-bottom: $coffee-spacing-sm;
+  border-bottom: 1px solid var(--border-color);
+  position: relative;
+  font-size: 1.2rem;
+  color: var(--heading-color);
+  font-weight: 600; // Added consistency
+
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(to right, $coffee-dark, $coffee-medium);
+  }
+}
+
+// --- Base Page Structure ---
 .coffee-page {
   max-width: 900px;
   margin: 0 auto;
-  padding: 1rem 0; /* Reduced from 1.5rem */
+  padding: $coffee-spacing-lg 0;
 }
 
-// Coffee header section
+// --- Coffee Header Section ---
 .coffee-header {
   text-align: center;
-  margin-bottom: 1.5rem; /* Reduced from 2rem */
+  margin-bottom: $coffee-spacing-xl;
 }
 
 .coffee-icon {
   font-size: 2.5rem;
-  margin-bottom: 0.5rem; /* Reduced from 0.8rem */
+  margin-bottom: $coffee-spacing-sm;
   animation: bounce 2s infinite;
 }
 
 .page-title {
   font-size: 2.2rem;
-  margin-bottom: 0.4rem;
+  margin-bottom: $coffee-spacing-xs * 1.5; // ~0.4rem
   color: var(--heading-color);
   font-weight: 700;
 }
@@ -43,13 +101,9 @@ $coffee-accent: #d4a76a;
   margin: 0 auto;
 }
 
-// Recipe card container
+// --- Recipe Card Container ---
 .recipe-card {
-  background-color: var(--card-background);
-  border-radius: 12px;
-  padding: 1.5rem; /* Reduced from 2rem */
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  border: 1px solid var(--border-color);
+  @include card-base($radius: $coffee-border-radius-lg, $padding: $coffee-spacing-xl, $shadow: $coffee-shadow-md);
   position: relative;
   overflow: hidden;
   
@@ -64,23 +118,23 @@ $coffee-accent: #d4a76a;
   }
 }
 
-// Header section of recipe
+// --- Header Section of Recipe ---
 .recipe-header {
   text-align: center;
-  margin-bottom: 1.5rem; /* Reduced from 2rem */
+  margin-bottom: $coffee-spacing-xl;
 }
 
 .recipe-title {
   font-size: 1.8rem;
-  margin: 0 auto 0.5rem; /* Reduced bottom margin from 0.8rem */
-  padding-bottom: 0.2rem; /* Reduced from 0.4rem */
+  margin: 0 auto $coffee-spacing-sm;
+  padding-bottom: $coffee-spacing-xs;
   color: var(--heading-color);
   font-weight: 700;
   
   &:after {
     content: '☕';
     display: block;
-    margin: 0.5rem auto 0; /* Reduced top margin from 0.75rem */
+    margin: $coffee-spacing-sm auto 0;
     font-size: 1.5rem;
   }
 }
@@ -88,46 +142,43 @@ $coffee-accent: #d4a76a;
 .recipe-description {
   max-width: 700px;
   margin: 0 auto;
-  font-size: 0.95rem; /* Reduced from 1rem */
-  line-height: 1.25; /* Reduced from 1.5 */
+  font-size: $coffee-text-size + 0.05rem; // ~0.95rem
+  line-height: $coffee-text-line-height;
   color: var(--text-color);
   opacity: 0.9;
-  text-align: justify; /* Added */
+  text-align: $coffee-justify-text;
 }
 
-// Recipe metrics section
+// --- Recipe Metrics Section ---
 .recipe-metrics {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.6rem; /* Reduced from 0.8rem */
+  gap: $coffee-spacing-sm + 0.1rem; // ~0.6rem
   justify-content: center;
-  margin-bottom: 1.5rem; /* Reduced from 2rem */
-  padding: 0.75rem; /* Reduced from 1rem */
+  margin-bottom: $coffee-spacing-xl;
+  padding: $coffee-spacing-md;
   background-color: rgba(var(--link-color-rgb, 42, 154, 243), 0.05);
-  border-radius: 10px;
+  border-radius: $coffee-border-radius-md;
   border: 1px dashed rgba(var(--link-color-rgb, 42, 154, 243), 0.2);
 }
 
 .metric-item {
-  flex: 1 0 calc(33.333% - 0.8rem);
+  @include card-base($radius: $coffee-border-radius-sm, $padding: $coffee-spacing-sm + 0.1rem $coffee-spacing-sm); // ~0.6rem 0.5rem
+  flex: 1 0 calc(33.333% - 0.8rem); // Keep original calc for responsiveness
   min-width: 140px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0.6rem 0.5rem; /* Reduced from 0.8rem 0.7rem */
-  border-radius: 8px;
-  background-color: var(--card-background);
-  border: 1px solid var(--border-color);
   
   &:hover {
-    transform: translateY(-3px);
+    @include hover-lift();
     border-color: rgba(var(--link-color-rgb, 42, 154, 243), 0.4);
   }
 }
 
 .metric-icon {
   font-size: 1.3rem;
-  margin-bottom: 0.4rem; /* Reduced from 0.6rem */
+  margin-bottom: $coffee-spacing-xs * 1.5; // ~0.4rem
   color: $coffee-medium;
   
   &.water-icon { color: #4fc3f7; }
@@ -136,10 +187,10 @@ $coffee-accent: #d4a76a;
 }
 
 .metric-label {
-  font-size: 0.8rem;
+  font-size: $coffee-label-size;
   text-transform: uppercase;
   letter-spacing: 0.4px;
-  margin-bottom: 0.2rem; /* Reduced from 0.4rem */
+  margin-bottom: $coffee-spacing-xs;
   color: var(--text-color);
   opacity: 0.8;
   font-weight: 600;
@@ -149,37 +200,34 @@ $coffee-accent: #d4a76a;
   font-size: 1.2rem;
   font-weight: 700;
   color: var(--heading-color);
-  margin-bottom: 0.2rem;
+  margin-bottom: $coffee-spacing-xs;
 }
 
 .metric-note {
-  font-size: 0.75rem;
+  font-size: $coffee-note-size;
   color: var(--text-color);
   opacity: 0.7;
 }
 
-// Brew timeline
+// --- Brew Timeline ---
 .brew-timeline {
-  margin: 1.5rem 0; /* Reduced from 2rem */
-  padding: 0.75rem; /* Reduced from 1rem */
-  background-color: var(--card-background);
-  border-radius: 10px;
-  border: 1px solid var(--border-color);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  @include card-base($radius: $coffee-border-radius-md, $padding: $coffee-spacing-md);
+  margin: $coffee-spacing-xl 0;
 }
 
 .timeline-title {
+  @include section-title;
   text-align: center;
-  margin-bottom: 0.75rem; /* Reduced from 1rem */
-  font-size: 1.2rem;
-  color: var(--heading-color);
-  font-weight: 600;
+  margin: 0 0 $coffee-spacing-md; // Override margin from mixin
+  border-bottom: none; // Override border from mixin
+  padding-bottom: 0; // Override padding from mixin
+  &:after { display: none; } // Override pseudo-element from mixin
 }
 
 .timeline-container {
   position: relative;
   height: 100px;
-  margin: 0 0.8rem;
+  margin: 0 $coffee-spacing-sm * 1.6; // ~0.8rem
 }
 
 .timeline-track {
@@ -205,7 +253,7 @@ $coffee-accent: #d4a76a;
     top: -30px;
     left: 50%;
     transform: translateX(-50%);
-    font-size: 0.9rem;
+    font-size: $coffee-text-size;
     font-weight: 700;
     white-space: nowrap;
     color: var(--heading-color);
@@ -220,13 +268,11 @@ $coffee-accent: #d4a76a;
   top: 58px;
   height: 10px;
   border-radius: 5px;
+  transition: height 0.2s ease; // Added transition
   
   &:hover {
     height: 14px;
-    
-    .phase-label {
-      opacity: 1;
-    }
+    .phase-label { opacity: 1; }
   }
   
   .phase-icon {
@@ -242,7 +288,7 @@ $coffee-accent: #d4a76a;
     bottom: -25px;
     left: 50%;
     transform: translateX(-50%);
-    font-size: 0.8rem;
+    font-size: $coffee-label-size;
     white-space: nowrap;
     color: var(--text-color);
     font-weight: 600;
@@ -250,6 +296,7 @@ $coffee-accent: #d4a76a;
     background-color: var(--card-background);
     padding: 2px 8px;
     border-radius: 4px;
+    transition: opacity 0.2s ease; // Added transition
   }
 }
 
@@ -259,62 +306,32 @@ $coffee-accent: #d4a76a;
 .immersion-phase { background-color: #7986cb; }
 .drain-phase { background-color: #81c784; }
 
-// Recipe steps section
+// --- Recipe Steps Section ---
 .recipe-steps {
-  margin: 1.5rem 0; /* Reduced from 2rem */
+  margin: $coffee-spacing-xl 0;
 }
 
 .steps-title, .notes-title {
-  margin: 1rem 0 0.75rem; /* Reduced from 1.5rem 0 1rem */
-  padding-bottom: 0.3rem; /* Reduced from 0.5rem */
-  border-bottom: 1px solid var(--border-color);
-  position: relative;
-  font-size: 1.2rem;
-  color: var(--heading-color);
-  
-  &:after {
-    content: '';
-    position: absolute;
-    bottom: -1px;
-    left: 0;
-    width: 60px;
-    height: 3px;
-    background: linear-gradient(to right, $coffee-dark, $coffee-medium);
-  }
+  @include section-title;
 }
 
 .steps-list {
   list-style-type: none;
-  padding-left: 0; /* Removed padding */
+  padding-left: 0;
   position: relative;
-  
-  // Removed ::before pseudo-element for the vertical line
 }
 
 .step-item {
-  position: relative;
-  margin-bottom: 0.75rem; 
-  padding: 0.6rem; /* Removed specific left padding */
-  border-radius: 8px;
-  background-color: var(--card-background);
-  // border-left: 4px solid var(--border-color); /* Removed border */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  @include card-base($radius: $coffee-border-radius-sm, $padding: $coffee-spacing-sm + 0.1rem); // ~0.6rem
+  margin-bottom: $coffee-spacing-md; 
   z-index: 1;
-  display: flex; /* Added for badge positioning */
-  align-items: flex-start; /* Align items to top */
-  gap: 0.75rem; /* Added gap between badge and content */
-  
-  &:hover {
-    // transform: translateX(5px); /* Removed hover transform */
-  }
-  
-  // Removed media query for padding-left
-  
-  // Removed border-left color changes
+  display: flex;
+  align-items: flex-start;
+  gap: $coffee-spacing-md;
 }
 
 .step-header {
-  margin-bottom: 0.4rem; /* Reduced from 0.6rem */
+  margin-bottom: $coffee-spacing-xs * 1.5; // ~0.4rem
   
   strong {
     font-size: 1rem;
@@ -322,34 +339,31 @@ $coffee-accent: #d4a76a;
   }
 }
 
-.step-content { /* Added flex-grow for content */
+.step-content {
   flex-grow: 1;
-}
-
-.step-content p {
-  margin: 0;
-  font-size: 0.9rem; /* Reduced font size */
-  line-height: 1.25; /* Reduced line height */
-  color: var(--text-color);
-  text-align: justify; /* Added */
+  
+  p {
+    margin: 0;
+    font-size: $coffee-text-size;
+    line-height: $coffee-text-line-height;
+    color: var(--text-color);
+    text-align: $coffee-justify-text;
+  }
 }
 
 // Time badge
 .time-badge {
-  // position: absolute; /* Removed absolute positioning */
-  // left: 15px;
-  // top: 50%;
-  // transform: translateY(-50%);
   background-color: var(--link-color);
   color: white;
-  align-self: center; /* Vertically center badge */
-  margin-top: 2px; /* Fine-tune vertical alignment if needed */
-  font-size: 0.8rem;
+  align-self: center;
+  margin-top: 2px; // Fine-tune vertical alignment
+  font-size: $coffee-label-size;
   font-weight: 700;
   padding: 4px 10px;
   border-radius: 20px;
   white-space: nowrap;
   z-index: 2;
+  flex-shrink: 0; // Prevent shrinking
   
   &.prep-time {
     background-color: #9575cd;
@@ -358,8 +372,8 @@ $coffee-accent: #d4a76a;
 
 // Duration indicator
 .duration-indicator {
-  margin-top: 0.75rem; /* Reduced from 1rem */
-  padding-left: 0.5rem;
+  margin-top: $coffee-spacing-md;
+  padding-left: $coffee-spacing-sm;
   width: 100%;
 }
 
@@ -389,43 +403,39 @@ $coffee-accent: #d4a76a;
   &.drain { background-color: #81c784; }
 }
 
-// Tweakables section
+// --- Tweakables Section ---
 .notes-description {
-  margin-bottom: 1rem; 
-  font-size: 0.9rem; /* Reduced from 0.95rem */
-  line-height: 1.25; /* Reduced from 1.5 */
+  margin-bottom: $coffee-spacing-lg; 
+  font-size: $coffee-text-size;
+  line-height: $coffee-text-line-height;
   color: var(--text-color);
   opacity: 0.9;
-  text-align: justify; /* Added */
+  text-align: $coffee-justify-text;
 }
 
 .tweakables-list {
   list-style-type: none;
   padding-left: 0;
-  margin-top: 1rem; /* Reduced from 1.25rem */
+  margin-top: $coffee-spacing-lg;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 0.75rem; /* Reduced from 1rem */
+  gap: $coffee-spacing-md;
 }
 
 .tweakable-item {
-  padding: 0.75rem; /* Reduced from 1rem */
-  background-color: var(--card-background);
-  border-radius: 10px;
-  border: 1px solid var(--border-color);
+  @include card-base($radius: $coffee-border-radius-md, $padding: $coffee-spacing-md);
   display: flex;
   align-items: flex-start;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   
   &:hover {
-    transform: translateY(-5px);
+    @include hover-lift(-5px); // Slightly larger lift
     border-color: rgba(var(--link-color-rgb, 42, 154, 243), 0.4);
   }
 }
 
 .tweakable-icon {
   font-size: 1.3rem;
-  margin-right: 0.6rem; /* Reduced from 0.8rem */
+  margin-right: $coffee-spacing-sm + 0.1rem; // ~0.6rem
   flex-shrink: 0;
 }
 
@@ -437,27 +447,27 @@ $coffee-accent: #d4a76a;
 .tweakable-goal {
   font-weight: 700;
   color: var(--heading-color);
-  margin-bottom: 0.2rem; /* Reduced from 0.4rem */
+  margin-bottom: $coffee-spacing-xs;
   font-size: 0.95rem;
 }
 
 .tweakable-action {
-  font-size: 0.85rem; /* Reduced from 0.9rem */
+  font-size: $coffee-text-size - 0.05rem; // ~0.85rem
   color: var(--text-color);
-  line-height: 1.35; /* Reduced from 1.4 */
-  text-align: justify; /* Added */
+  line-height: $coffee-text-line-height - 0.05; // ~1.35
+  // text-align: $coffee-justify-text; /* Removed justification */
 }
 
-// Recipe footer
+// --- Recipe Footer ---
 .recipe-footer {
-  margin-top: 2rem; /* Reduced from 2.5rem */
-  padding-top: 1rem; /* Reduced from 1.5rem */
+  margin-top: $coffee-spacing-xxl;
+  padding-top: $coffee-spacing-lg;
   border-top: 1px solid var(--border-color);
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  gap: 1rem; /* Reduced from 1.25rem */
+  gap: $coffee-spacing-lg;
 }
 
 .coffee-quote {
@@ -465,7 +475,7 @@ $coffee-accent: #d4a76a;
   font-size: 1.1rem;
   color: $coffee-medium;
   position: relative;
-  padding-left: 1.25rem;
+  padding-left: 1.25rem; // Keep specific padding for quote mark
   
   &::before {
     content: '"';
@@ -481,11 +491,11 @@ $coffee-accent: #d4a76a;
 .recipe-print {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: $coffee-spacing-lg;
 }
 
 .print-label {
-  font-size: 0.9rem;
+  font-size: $coffee-text-size;
   color: var(--text-color);
   opacity: 0.8;
 }
@@ -501,14 +511,17 @@ $coffee-accent: #d4a76a;
   color: var(--text-color);
   border: 1px solid var(--border-color);
   font-size: 1.2rem;
+  transition: background-color 0.2s ease, color 0.2s ease; // Added transition
   
   &:hover {
     background-color: $coffee-medium;
     color: white;
+    text-decoration: none; // Prevent underline on icon hover
   }
 }
 
-// Responsive adjustments
+// --- Responsive Adjustments ---
+// Note: Kept original values here as they might be specific overrides
 @media (max-width: 900px) {
   .recipe-card {
     padding: 2rem;
@@ -537,15 +550,14 @@ $coffee-accent: #d4a76a;
   }
   
   .step-item {
-    padding: 0.8rem; /* Adjusted padding */
-    gap: 0.6rem; /* Adjusted gap */
+    padding: 0.8rem; 
+    gap: 0.6rem; 
   }
   
   .time-badge {
-    // left: 12px; /* Removed */
     font-size: 0.75rem;
     padding: 3px 8px;
-    align-self: center; /* Ensure centering */
+    align-self: center; 
   }
   
   .timeline-container {
