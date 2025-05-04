@@ -145,6 +145,7 @@
 .paper-link { /* Now also .grid-item-paper */
   background-color: rgba(var(--link-color-rgb, 42, 154, 243), 0.15) !important;
   border: 1px solid rgba(var(--link-color-rgb, 42, 154, 243), 0.3) !important;
+  color: var(--text-color) !important; /* Add !important */
   
   &:hover {
     background-color: rgba(var(--link-color-rgb, 42, 154, 243), 0.3) !important;
@@ -156,6 +157,7 @@
 .code-link { /* Now also .grid-item-code */
   background-color: rgba(101, 211, 110, 0.15) !important;
   border: 1px solid rgba(101, 211, 110, 0.3) !important;
+  color: var(--text-color) !important; /* Add !important */
   
   &:hover {
     background-color: rgba(101, 211, 110, 0.3) !important;
