@@ -3,7 +3,7 @@
   h2 {
     border-bottom: 1px solid $primary-color;
     padding-bottom: 0.5em;
-    margin-top: 2em;
+    margin-top: 1.5em; /* Reduced from 2em */
     position: relative;
     
     &:after {
@@ -31,12 +31,12 @@
 
 /* Introduction section */
 .intro-section, .research-summary {
-  margin-bottom: 1em;
+  margin-bottom: 0.75em; /* Reduced from 1em */
   font-size: 1em;
-  line-height: 1.25;
+  line-height: 1.2; /* Reduced from 1.25 */
   
   p {
-    margin-bottom: 1em;
+    margin-bottom: 0.75em; /* Reduced from 1em */
   }
   
   a {

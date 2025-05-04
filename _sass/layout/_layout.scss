@@ -9,14 +9,14 @@
 
 /* Hero section styling */
 .hero-section {
-  margin-bottom: 2em;
+  margin-bottom: 1.5em; /* Reduced from 2em */
 }
 
 .hero-content {
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
-  gap: 2em;
+  gap: 1.5em; /* Reduced from 2em */
 }
 
 .hero-text {
@@ -32,7 +32,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1em;
+  gap: 0.75em; /* Reduced from 1em */
 }
 
 .hero-avatar {
@@ -61,7 +61,7 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 0.75em;
-  margin-top: 0.5em;
+  margin-top: 0.25em; /* Reduced from 0.5em */
   
   .social-link {
     display: flex;

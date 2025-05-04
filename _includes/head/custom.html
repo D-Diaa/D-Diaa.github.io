@@ -46,22 +46,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"></noscript>
 
-<!-- Only load MathJax if the page contains mathematical content with non-blocking loading -->
-{% if page.math or page.url contains 'publications' or page.url contains 'preprints' %}
-<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [['$','$'], ['\\(','\\)']],
-      processEscapes: true
-    },
-    TeX: {
-      equationNumbers: { autoNumber: "AMS" }
-    }
-  });
-</script>
-{% endif %}
-
 <!-- Structured Data for SEO -->
 <script type="application/ld+json">
 {

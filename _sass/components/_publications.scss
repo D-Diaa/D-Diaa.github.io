@@ -204,7 +204,7 @@
   
   li {
     font-size: 0.9em;
-    line-height: 1.5;
+    line-height: 1.25;
     margin-bottom: 5px;
     
     &:last-child {
@@ -215,8 +215,8 @@
 
 /* Publication item cards */
 .publication-item {
-  padding: 1em;
-  margin-bottom: 1em;
+  padding: 0.75em; /* Reduced from 1em */
+  margin-bottom: 0.75em; /* Reduced from 1em */
   border-radius: 5px;
   background-color: $publication-background;
   border: $publication-border;
