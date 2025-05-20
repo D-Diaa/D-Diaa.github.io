@@ -11,7 +11,7 @@
   abstract: "Large Language Models (LLMs) can be misused to spread online spam and misinformation. Content watermarking deters misuse by hiding a message in model-generated outputs, enabling their detection using a secret watermarking key. Robustness is a core security property, stating that evading detection requires (significant) degradation of the content's quality. Many LLM watermarking methods have been proposed, but robustness is tested only against non-adaptive attackers who lack knowledge of the watermarking method and can find only suboptimal attacks. We formulate the robustness of LLM watermarking as an objective function and propose preference-based optimization to tune adaptive attacks against the specific watermarking method. Our evaluation shows that (i) adaptive attacks substantially outperform non-adaptive baselines. (ii) Even in a non-adaptive setting, adaptive attacks optimized against a few known watermarks remain highly effective when tested against other unseen watermarks, and (iii) optimization-based attacks are practical and require less than seven GPU hours. Our findings underscore the need to test robustness against adaptive attackers."
   links:
     - type: "paper"
-      url: "https://openreview.net/forum?id=AsODat0dkE"
+      url: "https://arxiv.org/abs/2410.02440"
       label: "Paper"
     - type: "code"
       url: "https://huggingface.co/collections/DDiaa/watermark-removing-paraphrasers-673e3f01fcceafaa2da7e0cf"
