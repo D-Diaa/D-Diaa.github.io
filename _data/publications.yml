@@ -6,7 +6,7 @@
     - name: "F. Kerschbaum"
       highlight: false
   title: "FastLloyd: Federated, Accurate, Secure, and Tunable k-Means Clustering with Differential Privacy"
-  venue: "Usenix Security Symposium"
+  venue: "34th Usenix Security Symposium"
   year: 2025
   abstract: "We study the problem of privacy-preserving k-Means clustering in the horizontally federated setting. Existing federated approaches using secure computation suffer from substantial overheads and do not offer output privacy. At the same time, differentially private (DP) k-Means algorithms either assume a trusted central curator or significantly degrade utility by adding noise in the local DP model. Naively combining the secure and central DP solutions results in a protocol with impractical overhead. Instead, our work provides enhancements to both the DP and secure computation components, resulting in a design that is faster, more private, and more accurate than previous work. By utilizing the computational DP model, we design a lightweight, secure aggregation-based approach that achieves five orders of magnitude speed-up over state-of-the-art related work. Furthermore, we not only maintain the utility of the state-of-the-art in the central model of DP, but we improve the utility further by designing a new DP clustering mechanism."
   links:
@@ -25,7 +25,7 @@
     - name: "N. Lukas"
       highlight: false
   title: "Optimizing Adaptive Attacks against Watermarks for Language Models"
-  venue: "International Conference on Machine Learning (ICML)"
+  venue: "42nd International Conference on Machine Learning (ICML)"
   year: 2025
   abstract: "Large Language Models (LLMs) can be misused to spread online spam and misinformation. Content watermarking deters misuse by hiding a message in model-generated outputs, enabling their detection using a secret watermarking key. Robustness is a core security property, stating that evading detection requires (significant) degradation of the content's quality. Many LLM watermarking methods have been proposed, but robustness is tested only against non-adaptive attackers who lack knowledge of the watermarking method and can find only suboptimal attacks. We formulate the robustness of LLM watermarking as an objective function and propose preference-based optimization to tune adaptive attacks against the specific watermarking method. Our evaluation shows that (i) adaptive attacks substantially outperform non-adaptive baselines. (ii) Even in a non-adaptive setting, adaptive attacks optimized against a few known watermarks remain highly effective when tested against other unseen watermarks, and (iii) optimization-based attacks are practical and require less than seven GPU hours. Our findings underscore the need to test robustness against adaptive attackers."
   links:
@@ -51,7 +51,7 @@
     - name: "F. Kerschbaum"
       highlight: false
   title: "Leveraging Optimization for Adaptive Attacks on Image Watermarks"
-  venue: "International Conference on Learning Representations (ICLR)"
+  venue: "12th International Conference on Learning Representations (ICLR)"
   year: 2024
   abstract: "Untrustworthy users can misuse image generators to synthesize high-quality deepfakes and engage in unethical activities. Watermarking deters misuse by marking generated content with a hidden message, enabling its detection using a secret watermarking key. A core security property of watermarking is robustness, which states that an attacker can only evade detection by substantially degrading image quality. Assessing robustness requires designing an adaptive attack for the specific watermarking algorithm. When evaluating watermarking algorithms and their (adaptive) attacks, it is challenging to determine whether an adaptive attack is optimal, i.e., the best possible attack. We solve this problem by defining an objective function and then approach adaptive attacks as an optimization problem. The core idea of our adaptive attacks is to replicate secret watermarking keys locally by creating surrogate keys that are differentiable and can be used to optimize the attack's parameters. We demonstrate for Stable Diffusion models that such an attacker can break all five surveyed watermarking methods at no visible degradation in image quality. Optimizing our attacks is efficient and requires less than 1 GPU hour to reduce the detection accuracy to 6.3% or less. Our findings emphasize the need for more rigorous robustness testing against adaptive, learnable attackers."
   links:
@@ -88,7 +88,7 @@
     - name: "F. Kerschbaum"
       highlight: false
   title: "Fast and Private Inference of Deep Neural Networks by Co-designing Activation Functions"
-  venue: "Usenix Security Symposium"
+  venue: "33rd Usenix Security Symposium"
   year: 2024
   abstract: "Machine Learning as a Service (MLaaS) is an increasingly popular design where a company with abundant computing resources trains a deep neural network and offers query access for tasks like image classification. The challenge with this design is that MLaaS requires the client to reveal their potentially sensitive queries to the company hosting the model. Multi-party computation (MPC) protects the client's data by allowing encrypted inferences. However, current approaches suffer from prohibitively large inference times. The inference time bottleneck in MPC is the evaluation of non-linear layers such as ReLU activation functions. Motivated by the success of previous work co-designing machine learning and MPC, we develop an activation function co-design. We replace all ReLUs with a polynomial approximation and evaluate them with single-round MPC protocols, which give state-of-theart inference times in wide-area networks. Furthermore, to address the accuracy issues previously encountered with polynomial activations, we propose a novel training algorithm that gives accuracy competitive with plaintext models. Our evaluation shows between 3 and 110× speedups in inference time on large models with up to 23 million parameters while maintaining competitive inference accuracy"
   links:
@@ -111,7 +111,7 @@
     - name: "J. Hubaux"
       highlight: false
   title: "Privacy-Preserving Federated Recurrent Neural Networks"
-  venue: "Proceedings on Privacy Enhancing Technologies (PoPETs)"
+  venue: "23rd Proceedings on Privacy Enhancing Technologies (PoPETs)"
   year: 2023
   abstract: "We present RHODE, a novel system that enables privacy-preserving training of and prediction on Recurrent Neural Networks (RNNs) in a cross-silo federated learning setting by relying on multiparty homomorphic encryption. RHODE preserves the confidentiality of the training data, the model, and the prediction data; and it mitigates federated learning attacks that target the gradients under a passive-adversary threat model. We propose a packing scheme, multi-dimensional packing, for a better utilization of Single Instruction, Multiple Data (SIMD) operations under encryption. With multi-dimensional packing, RHODE enables the efficient processing, in parallel, of a batch of samples. To avoid the exploding gradients problem, RHODE provides several clipping approximations for performing gradient clipping under encryption. We experimentally show that the model performance with RHODE remains similar to non-secure solutions both for homogeneous and heterogeneous data distribution among the data holders. Our experimental evaluation shows that RHODE scales linearly with the number of data holders and the number of timesteps, sub-linearly and sub-quadratically with the number of features and the number of hidden units of RNNs, respectively. To the best of our knowledge, RHODE is the first system that provides the building blocks for the training of RNNs and its variants, under encryption in a federated learning setting."
   links:
