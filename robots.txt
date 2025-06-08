@@ -1,4 +1,4 @@
 # robots.txt for Abdulrahman Diaa's academic website
 User-agent: *
 Allow: /
-Sitemap: https://d-diaa.github.io/sitemap.xml
+Sitemap: https://abdulrahmandiaa.ca/sitemap.xml
