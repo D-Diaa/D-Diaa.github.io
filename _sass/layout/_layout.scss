@@ -2,7 +2,27 @@
  * LAYOUT STRUCTURE
  * Page layout and content organization
  */
- .page {
+
+/* Fix scroll offset for sticky header using pseudo-elements */
+h2[id]::before {
+  content: "";
+  display: block;
+  height: 100px; /* Account for sticky header height */
+  margin-top: -100px; /* Negative margin to avoid layout shift */
+  visibility: hidden;
+  pointer-events: none;
+}
+
+section[id]::before {
+  content: "";
+  display: block;
+  height: 100px; /* Account for sticky header height */
+  margin-top: -100px; /* Negative margin to avoid layout shift */
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.page {
   padding-right: 0;
   width: 100%;
 }
