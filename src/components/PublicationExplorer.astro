@@ -1,0 +1,168 @@
+---
+import PublicationCard from "./PublicationCard.astro";
+import { siteConfig } from "../data/site";
+
+interface Author {
+  name: string;
+  highlight: boolean;
+}
+
+interface Link {
+  type: string;
+  url: string;
+  label: string;
+}
+
+interface Publication {
+  authors: Author[];
+  title: string;
+  topic?: string;
+  venue?: string;
+  year: number;
+  abstract?: string;
+  links?: Link[];
+  highlights?: string[];
+}
+
+interface Props {
+  publications: Publication[];
+}
+
+const { publications } = Astro.props;
+const topics = [...new Set(publications.map((item) => item.topic).filter(Boolean))] as string[];
+
+const searchText = (publication: Publication) =>
+  [
+    publication.title,
+    publication.venue,
+    publication.year,
+    publication.topic,
+    ...publication.authors.map((author) => author.name),
+  ]
+    .filter(Boolean)
+    .join(" ")
+    .toLowerCase();
+---
+
+<div class="publication-explorer" data-publication-explorer>
+  <div class="sticky top-16 z-30 -mx-4 border-y border-[var(--color-border)] bg-[var(--color-bg)]/92 px-4 py-3 backdrop-blur-xl sm:mx-0 sm:rounded-2xl sm:border sm:px-4">
+    <label class="relative block min-w-0">
+      <span class="sr-only">Search publications</span>
+      <svg class="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-[var(--color-text-secondary)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path>
+      </svg>
+      <input
+        type="search"
+        placeholder="Search by title, author, venue, or year…"
+        class="publication-search h-10 w-full rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] pl-10 pr-4 text-sm text-[var(--color-text)] outline-none transition focus:border-[var(--color-accent)]/60 focus:ring-2 focus:ring-[var(--color-accent)]/10"
+      />
+    </label>
+
+    <div class="mt-2.5 flex flex-wrap items-center gap-2">
+      <span class="mr-1 text-xs font-medium text-[var(--color-text-secondary)]">Topic</span>
+      <button
+        type="button"
+        class="publication-topic-filter rounded-full border border-[var(--color-border)] px-3 py-1 text-xs font-medium text-[var(--color-text-secondary)]"
+        style="border-color: var(--color-accent); color: var(--color-accent); background-color: color-mix(in srgb, var(--color-accent) 10%, transparent);"
+        data-topic="all"
+        aria-pressed="true"
+      >All</button>
+      {topics.map((topic) => {
+        const color = siteConfig.topics[topic as keyof typeof siteConfig.topics]?.color;
+        return (
+          <button
+            type="button"
+            class="publication-topic-filter inline-flex items-center rounded-full border border-[var(--color-border)] px-3 py-1 text-xs font-medium text-[var(--color-text-secondary)] transition-colors"
+            data-topic={topic}
+            data-color={color}
+            aria-pressed="false"
+          >
+            <span class="mr-1.5 h-2 w-2 rounded-full" style={`background:${color}`}></span>
+            {topic}
+          </button>
+        );
+      })}
+      <span class="publication-result-count ml-auto text-xs text-[var(--color-text-secondary)]" aria-live="polite">
+        {publications.length} results
+      </span>
+    </div>
+  </div>
+
+  <div class="mt-4 flex flex-col gap-2">
+    {publications.map((publication, index) => (
+      <div
+        class="publication-item"
+        data-publication-item
+        data-topic={publication.topic || ""}
+        data-search={searchText(publication)}
+      >
+        <PublicationCard publication={publication} index={index} />
+      </div>
+    ))}
+  </div>
+
+  <div class="publication-empty mt-10 hidden rounded-2xl border border-dashed border-[var(--color-border)] p-10 text-center">
+    <p class="font-medium text-[var(--color-text)]">No publications match those filters.</p>
+    <button type="button" class="publication-reset mt-2 text-sm text-[var(--color-accent)]">Reset filters</button>
+  </div>
+</div>
+
+<script>
+  function initPublicationExplorer() {
+    document.querySelectorAll<HTMLElement>("[data-publication-explorer]").forEach((root) => {
+      if (root.dataset.initialized === "true") return;
+      root.dataset.initialized = "true";
+
+      const search = root.querySelector<HTMLInputElement>(".publication-search");
+      const topicButtons = Array.from(root.querySelectorAll<HTMLButtonElement>(".publication-topic-filter"));
+      const items = Array.from(root.querySelectorAll<HTMLElement>("[data-publication-item]"));
+      const count = root.querySelector<HTMLElement>(".publication-result-count");
+      const empty = root.querySelector<HTMLElement>(".publication-empty");
+      const reset = root.querySelector<HTMLButtonElement>(".publication-reset");
+      let activeTopic = "all";
+
+      const applyFilters = () => {
+        const query = search?.value.trim().toLowerCase() || "";
+        let visible = 0;
+
+        items.forEach((item) => {
+          const topicMatch = activeTopic === "all" || item.dataset.topic === activeTopic;
+          const searchMatch = !query || item.dataset.search?.includes(query);
+          const show = Boolean(topicMatch && searchMatch);
+          item.hidden = !show;
+          if (show) visible += 1;
+        });
+
+        if (count) count.textContent = `${visible} ${visible === 1 ? "result" : "results"}`;
+        empty?.classList.toggle("hidden", visible !== 0);
+      };
+
+      topicButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          activeTopic = button.dataset.topic || "all";
+          topicButtons.forEach((candidate) => {
+            const active = candidate === button;
+            const color = candidate.dataset.color;
+            candidate.setAttribute("aria-pressed", String(active));
+            candidate.style.borderColor = active ? color || "var(--color-accent)" : "";
+            candidate.style.color = active ? color || "var(--color-accent)" : "";
+            candidate.style.backgroundColor = active
+              ? `color-mix(in srgb, ${color || "var(--color-accent)"} 10%, transparent)`
+              : "";
+          });
+          applyFilters();
+        });
+      });
+
+      search?.addEventListener("input", applyFilters);
+      reset?.addEventListener("click", () => {
+        if (search) search.value = "";
+        topicButtons[0]?.click();
+        search?.focus();
+      });
+    });
+  }
+
+  initPublicationExplorer();
+  document.addEventListener("astro:after-swap", initPublicationExplorer);
+</script>

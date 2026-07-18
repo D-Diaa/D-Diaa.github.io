@@ -34,90 +34,66 @@ const topicColor = publication.topic
   ? siteConfig.topics[publication.topic as keyof typeof siteConfig.topics]?.color
   : undefined;
 const abstractId = `abstract-${index}`;
+const actionClass =
+  "publication-action inline-flex h-8 items-center justify-center gap-1.5 rounded-lg border border-[var(--color-border)] bg-transparent px-2.5 text-xs font-medium transition-colors hover:border-[var(--color-accent)]/40 hover:bg-[var(--color-surface-hover)]";
 ---
 
 <article
-  class="group rounded-lg border bg-[var(--color-surface)] p-4 transition-colors duration-200"
+  class="publication-row overflow-hidden rounded-xl border bg-[var(--color-surface)] transition-colors hover:bg-[var(--color-surface-hover)]/35"
   style={topicColor
-    ? `border-color: color-mix(in srgb, ${topicColor} 25%, var(--color-border)); border-left: 3px solid ${topicColor};`
+    ? `border-color: color-mix(in srgb, ${topicColor} 20%, var(--color-border)); border-left: 2px solid ${topicColor};`
     : `border-color: var(--color-border);`}
   itemscope
   itemtype="https://schema.org/ScholarlyArticle"
 >
-  <!-- Topic + Authors -->
-  {publication.topic && topicColor && (
-    <div class="mb-1">
-      <span
-        class="inline-block rounded-full px-2.5 py-0.5 text-[0.65rem] font-semibold uppercase tracking-wider"
-        style={`color: ${topicColor}; background-color: color-mix(in srgb, ${topicColor} 12%, transparent);`}
-      >
-        {publication.topic}
+  <div class="grid gap-3 p-3.5 sm:grid-cols-[3.75rem_minmax(0,1fr)] sm:p-4 lg:grid-cols-[3.75rem_minmax(0,1fr)_auto] lg:items-start">
+    <div>
+      <span class="block font-mono text-sm font-semibold text-[var(--color-accent)]" itemprop="datePublished">
+        {publication.year}
       </span>
     </div>
-  )}
 
-  <!-- Authors -->
-  <div class="mb-1 text-sm text-[var(--color-text-secondary)]">
-    {
-      publication.authors.map((author, i) => (
-        <>
-          {author.highlight ? (
-            <span class="font-medium text-[var(--color-accent)]" itemprop="author">
-              {author.name}
-            </span>
-          ) : (
-            <span itemprop="author">{author.name}</span>
-          )}
-          {i < publication.authors.length - 1 && ", "}
-        </>
-      ))
-    }
-  </div>
+    <div class="min-w-0">
+      <h3 class="text-base font-semibold leading-snug tracking-[-0.01em] text-[var(--color-text)]" itemprop="name">
+        {publication.title}
+      </h3>
 
-  <!-- Title -->
-  <h3 class="mb-1 text-base font-semibold leading-snug text-[var(--color-text)]" itemprop="name">
-    {publication.title}
-  </h3>
-
-  <!-- Venue + Year -->
-  {
-    publication.venue && (
-      <div class="mb-2 text-sm text-[var(--color-text-secondary)]">
-        <span itemprop="publisher">{publication.venue}</span>
-        {" "}
-        <span class="font-medium text-[var(--color-accent)]/70" itemprop="datePublished">
-          {publication.year}
-        </span>
-      </div>
-    )
-  }
-
-  <!-- Highlights / Awards -->
-  {
-    publication.highlights && publication.highlights.length > 0 && (
-      <div class="mb-2 flex flex-wrap gap-2">
-        {publication.highlights.map((h) => (
-          <span class="inline-flex items-center gap-1 rounded-full bg-[var(--color-highlight)]/10 px-2.5 py-0.5 text-xs font-medium text-[var(--color-highlight)]">
-            <svg
-              class="w-3 h-3"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-            >
-              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-            </svg>
-            {h}
-          </span>
+      <div class="mt-1 text-xs leading-5 text-[var(--color-text-secondary)] sm:text-sm">
+        {publication.authors.map((author, i) => (
+          <>
+            {author.highlight ? (
+              <span class="font-medium text-[var(--color-accent)]" itemprop="author">{author.name}</span>
+            ) : (
+              <span itemprop="author">{author.name}</span>
+            )}
+            {i < publication.authors.length - 1 && ", "}
+          </>
         ))}
       </div>
-    )
-  }
 
-  <!-- Action buttons -->
-  <div class="flex flex-wrap items-center gap-2">
+      <div class="text-xs leading-5 text-[var(--color-text-secondary)]">
+        {publication.venue && <span itemprop="publisher">{publication.venue}</span>}
+      </div>
+
+      {publication.highlights && publication.highlights.length > 0 && (
+        <div class="mt-1.5 flex flex-wrap gap-x-2.5 gap-y-1 lg:flex-nowrap">
+          {publication.highlights.map((h) => (
+            <span class="inline-flex items-center gap-1 text-[0.68rem] font-medium leading-4 text-[var(--color-highlight)] lg:whitespace-nowrap">
+              <svg class="h-3 w-3" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="m12 2 2.7 5.47 6.04.88-4.37 4.26 1.03 6.02L12 15.79l-5.4 2.84 1.03-6.02-4.37-4.26 6.04-.88L12 2Z"></path>
+              </svg>
+              {h}
+            </span>
+          ))}
+        </div>
+      )}
+    </div>
+
+    <div class="grid w-full grid-cols-2 gap-1.5 sm:col-start-2 sm:w-[13.5rem] lg:col-start-3">
     {
       publication.abstract && (
         <button
-          class="abstract-toggle inline-flex items-center gap-1.5 rounded-full border border-[var(--color-border)] px-3 py-1 text-xs font-medium text-[var(--color-text-secondary)] transition-colors hover:border-[var(--color-accent)]/30 hover:text-[var(--color-accent)] cursor-pointer"
+          class={`abstract-toggle cursor-pointer ${actionClass}`}
           aria-expanded="false"
           aria-controls={abstractId}
         >
@@ -138,7 +114,7 @@ const abstractId = `abstract-${index}`;
     }
 
     <button
-      class="bibtex-button inline-flex items-center gap-1.5 rounded-full border border-[var(--color-border)] px-3 py-1 text-xs font-medium text-[var(--color-text-secondary)] transition-colors hover:border-[var(--color-accent)]/30 hover:text-[var(--color-accent)] cursor-pointer"
+      class={`bibtex-button cursor-pointer ${actionClass}`}
       data-authors={publication.authors.map((a) => a.name).join("|")}
       data-title={publication.title}
       data-venue={publication.venue || ""}
@@ -167,7 +143,7 @@ const abstractId = `abstract-${index}`;
           href={paperLink.url}
           target="_blank"
           rel="noopener"
-          class="inline-flex items-center gap-1.5 rounded-full border border-[var(--color-accent)]/30 px-3 py-1 text-xs font-medium text-[var(--color-accent)] transition-colors hover:bg-[var(--color-accent)]/10"
+          class={actionClass}
           itemprop="url"
         >
           <svg
@@ -196,7 +172,7 @@ const abstractId = `abstract-${index}`;
           href={codeLink.url}
           target="_blank"
           rel="noopener"
-          class="inline-flex items-center gap-1.5 rounded-full border border-[var(--color-border)] px-3 py-1 text-xs font-medium text-[var(--color-text-secondary)] transition-colors hover:border-[var(--color-accent)]/30 hover:text-[var(--color-accent)]"
+          class={actionClass}
         >
           <svg
             class="w-3.5 h-3.5"
@@ -221,7 +197,7 @@ const abstractId = `abstract-${index}`;
           href={link.url}
           target="_blank"
           rel="noopener"
-          class="inline-flex items-center gap-1.5 rounded-full border border-[var(--color-border)] px-3 py-1 text-xs font-medium text-[var(--color-text-secondary)] transition-colors hover:border-[var(--color-accent)]/30 hover:text-[var(--color-accent)]"
+          class={actionClass}
         >
           <svg
             class="w-3.5 h-3.5"
@@ -240,6 +216,7 @@ const abstractId = `abstract-${index}`;
         </a>
       ))
     }
+    </div>
   </div>
 
   <!-- Collapsible Abstract -->
@@ -253,14 +230,26 @@ const abstractId = `abstract-${index}`;
         aria-label="Abstract"
       >
         <div class="overflow-hidden">
-          <p class="pt-4 text-sm leading-relaxed text-[var(--color-text-secondary)]">
-            {publication.abstract}
-          </p>
+          <div class="border-t border-[var(--color-border)] px-4 pb-4 pt-3 sm:ml-[4.75rem]">
+            <p class="max-w-4xl text-sm leading-relaxed text-[var(--color-text-secondary)]">
+              {publication.abstract}
+            </p>
+          </div>
         </div>
       </div>
     )
   }
 </article>
+
+<style>
+  .publication-action {
+    color: var(--color-text-secondary) !important;
+  }
+
+  .publication-action:hover {
+    color: var(--color-accent) !important;
+  }
+</style>
 
 <script>
   function initPublicationCards() {

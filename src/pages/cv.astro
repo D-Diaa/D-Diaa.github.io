@@ -1,0 +1,185 @@
+---
+import { readFileSync } from "fs";
+import { parse } from "yaml";
+import CVCompactRow from "../components/cv/CVCompactRow.astro";
+import CVPublicationEntry from "../components/cv/CVPublicationEntry.astro";
+import CVSection from "../components/cv/CVSection.astro";
+import CVTimelineEntry from "../components/cv/CVTimelineEntry.astro";
+import { siteConfig } from "../data/site";
+import CVLayout from "../layouts/CVLayout.astro";
+import type { CvData } from "../types/cv";
+
+const publications = parse(readFileSync("src/data/publications.yml", "utf-8"));
+const awards = parse(readFileSync("src/data/awards.yml", "utf-8"));
+const services = parse(readFileSync("src/data/service.yml", "utf-8"));
+const cvData = parse(readFileSync("src/data/cv.yml", "utf-8")) as CvData;
+
+const { meta: cvMeta, education, patents, researchExperience, teachingExperience } = cvData;
+
+const sections = [
+  { id: "education", label: "Education" },
+  { id: "awards", label: "Awards" },
+  { id: "research-experience", label: "Research experience" },
+  { id: "publications", label: "Publications" },
+  { id: "patents", label: "Patents" },
+  { id: "academic-service", label: "Academic service" },
+  { id: "teaching-experience", label: "Teaching experience" },
+];
+---
+
+<CVLayout
+  title="Curriculum Vitae"
+  description="Curriculum vitae of Abdulrahman Diaa, a PhD candidate researching privacy-preserving machine learning and AI-content watermarking."
+  canonicalPath="/cv"
+>
+  <div class="cv-page">
+    <div class="cv-container">
+      <div class="cv-layout">
+        <aside class="cv-sidebar">
+          <div class="cv-sidebar-inner">
+            <div class="cv-nav-header">
+              <span class="cv-nav-current">Education</span>
+              <span class="cv-nav-count">1 / {sections.length}</span>
+            </div>
+            <div class="cv-nav-progress" aria-hidden="true">
+              <span style={`width: ${100 / sections.length}%`}></span>
+            </div>
+            <nav class="cv-toc" aria-label="CV sections">
+              {sections.map((section) => (
+                <a class="cv-toc-link" href={`#${section.id}`} data-cv-section={section.id}>
+                  <span>{section.label}</span>
+                </a>
+              ))}
+            </nav>
+            <div class="cv-sidebar-actions" aria-label="CV actions">
+              <a class="cv-sidebar-action" href="/resume.pdf" download>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <path d="M7 10l5 5 5-5M12 15V3"></path>
+                </svg>
+                PDF
+              </a>
+              <button class="cv-sidebar-action cv-print-button" type="button">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                  <rect x="6" y="14" width="12" height="8"></rect>
+                </svg>
+                Print
+              </button>
+            </div>
+            <p class="cv-sidebar-meta">Updated {cvMeta.updated}</p>
+          </div>
+        </aside>
+
+        <article class="cv-document" id="cv-document" aria-label="Curriculum vitae">
+          <header class="cv-document-header">
+            <p class="cv-document-kicker">Curriculum vitae</p>
+            <h1>{siteConfig.author.name}</h1>
+            <p class="cv-subtitle">{cvMeta.subtitle}</p>
+            <p class="cv-contact">
+              <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
+              <span aria-hidden="true">·</span>
+              <a href={siteConfig.url}>abdulrahmandiaa.ca</a>
+              <span aria-hidden="true">·</span>
+              <a href={siteConfig.social.scholar} target="_blank" rel="noopener">Google Scholar</a>
+              <span aria-hidden="true">·</span>
+              <a href={siteConfig.social.linkedin} target="_blank" rel="noopener">LinkedIn</a>
+            </p>
+          </header>
+
+          <CVSection id="education" title="Education">
+            {education.map((entry) => <CVTimelineEntry entry={entry} />)}
+          </CVSection>
+
+          <CVSection id="awards" title="Awards">
+            {awards.map((award) => (
+              <CVCompactRow
+                period={award.years}
+                title={award.name}
+                amount={award.amount}
+                context={award.institution}
+              />
+            ))}
+          </CVSection>
+
+          <CVSection id="research-experience" title="Research Experience">
+            {researchExperience.map((entry) => <CVTimelineEntry entry={entry} />)}
+          </CVSection>
+
+          <CVSection id="publications" title="Publications">
+            {publications.map((publication) => (
+              <CVPublicationEntry publication={publication} />
+            ))}
+          </CVSection>
+
+          <CVSection id="patents" title="Patents">
+            {patents.map((entry) => <CVTimelineEntry entry={entry} />)}
+          </CVSection>
+
+          <CVSection id="academic-service" title="Academic Service">
+            {services.map((service) => (
+              <CVCompactRow
+                period={String(service.year)}
+                title={service.role}
+                context={service.venue}
+              />
+            ))}
+          </CVSection>
+
+          <CVSection id="teaching-experience" title="Teaching Experience">
+            {teachingExperience.map((entry) => <CVTimelineEntry entry={entry} />)}
+          </CVSection>
+        </article>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function initCvPage() {
+      const links = Array.from(document.querySelectorAll<HTMLAnchorElement>(".cv-toc-link"));
+      const sections = links
+        .map((link) => document.getElementById(link.dataset.cvSection || ""))
+        .filter(Boolean) as HTMLElement[];
+      const current = document.querySelector<HTMLElement>(".cv-nav-current");
+      const count = document.querySelector<HTMLElement>(".cv-nav-count");
+      const progress = document.querySelector<HTMLElement>(".cv-nav-progress span");
+
+      const activate = (id: string) => {
+        const activeIndex = sections.findIndex((section) => section.id === id);
+        links.forEach((link) => {
+          const active = link.dataset.cvSection === id;
+          link.classList.toggle("active", active);
+          if (active) link.setAttribute("aria-current", "true");
+          else link.removeAttribute("aria-current");
+        });
+
+        if (activeIndex >= 0) {
+          if (current) current.textContent = links[activeIndex]?.textContent?.trim() || "";
+          if (count) count.textContent = `${activeIndex + 1} / ${sections.length}`;
+          if (progress) progress.style.width = `${((activeIndex + 1) / sections.length) * 100}%`;
+        }
+      };
+
+      if (sections.length && "IntersectionObserver" in window) {
+        activate(sections[0].id);
+        const observer = new IntersectionObserver(
+          (entries) => {
+            const visible = entries.find((entry) => entry.isIntersecting);
+            if (visible) activate(visible.target.id);
+          },
+          { rootMargin: "-18% 0px -72% 0px", threshold: 0 },
+        );
+        sections.forEach((section) => observer.observe(section));
+      }
+
+      const printButton = document.querySelector<HTMLButtonElement>(".cv-print-button");
+      if (printButton && printButton.dataset.initialized !== "true") {
+        printButton.dataset.initialized = "true";
+        printButton.addEventListener("click", () => window.print());
+      }
+    }
+
+    initCvPage();
+    document.addEventListener("astro:after-swap", initCvPage);
+  </script>
+</CVLayout>

@@ -1,0 +1,185 @@
+# Editable content for the web CV. Awards, publications, and academic service
+# stay in their existing YAML files so the website has one source for each.
+
+meta:
+  subtitle: "PhD Candidate · University of Waterloo · Ontario, Canada"
+  updated: "May 2026"
+
+education:
+  - title: University of Waterloo
+    organization: Cryptography, Security, and Privacy (CrySP) Lab
+    organizationUrl: https://crysp.uwaterloo.ca/
+    location: Ontario, Canada
+    period: Sep 2021 - Aug 2027
+    subentries:
+      - title: PhD in Computer Science
+        meta: "Sep 2023 - Aug 2027 · GPA: 95.5%"
+        details:
+          - label: Thesis
+            value: On the Privacy and Traceability of Machine Learning Systems
+          - label: Supervisor
+            value: Florian Kerschbaum
+            url: https://cs.uwaterloo.ca/~fkerschb/
+      - title: MMath in Computer Science
+        meta: "Sep 2021 - Aug 2023 · GPA: 96.75%"
+        details:
+          - label: Thesis
+            value: Differentially-private multiparty clustering
+          - label: Supervisor
+            value: Florian Kerschbaum
+            url: https://cs.uwaterloo.ca/~fkerschb/
+  - title: The American University in Cairo
+    organizationUrl: https://www.aucegypt.edu/
+    location: Cairo, Egypt
+    period: Sep 2016 - Jun 2021
+    subentries:
+      - title: BSc in Mathematics
+        meta: "Sep 2017 - Jun 2021 · GPA: 4.0/4.0"
+        details:
+          - label: Thesis
+            value: "Lattice-based Cryptography and Fully Homomorphic Encryption: A Survey"
+          - label: Supervisor
+            value: Ahmed El-Guindy
+      - title: BSc in Computer Engineering
+        meta: "Sep 2016 - Jun 2021 · GPA: 4.0/4.0"
+        details:
+          - label: Thesis
+            value: Mixture of Experts for Human Activity Classification from Images
+          - label: Supervisors
+            value: Ahmed El-Guindy, Cherif Salama, and Mohammed Moustafa
+
+researchExperience:
+  - title: Student Researcher
+    organization: Google
+    organizationUrl: https://research.google
+    location: Ontario, Canada
+    period: Apr 2026 - Dec 2026
+    details:
+      - label: Topics
+        value: Private RAG and nearest-neighbor search
+      - label: Reference
+        value: Sarvar Patel
+        url: https://dblp.org/pid/04/773.html
+  - title: Cybersecurity Researcher
+    organization: Airbus Defence and Space - VCX
+    organizationUrl: https://www.airbus.com/en/products-services/defence
+    location: Munich, Germany
+    period: Jan 2025 - Jul 2025
+    details:
+      - label: Topics
+        value: Practical batch private information retrieval and privacy-preserving DBSCAN
+      - label: Reference
+        value: Erik-Oliver Blass
+        url: https://erik-blass.de/
+  - title: Research Intern
+    organization: EPFL - Lab for Data Security (LDS)
+    organizationUrl: https://www.epfl.ch/labs/lds/
+    location: Lausanne, Switzerland
+    period: Jul 2021 - Sep 2021
+    details:
+      - label: Topic
+        value: Privacy-preserving federated learning for recurrent neural networks
+      - label: Reference
+        value: Jean-Pierre Hubaux
+        url: https://people.epfl.ch/jean-pierre.hubaux
+  - title: Undergraduate Data Science Research Intern
+    organization: Dell Technologies - Data Office Team
+    organizationUrl: https://www.dell.com/
+    location: Cairo, Egypt
+    period: Feb 2020 - Jun 2021
+    details:
+      - label: Topics
+        value: Technology forecasting and distributed neural networks
+      - label: Reference
+        value: Steve Todd
+  - title: Undergraduate Researcher
+    organization: The American University in Cairo
+    organizationUrl: https://www.aucegypt.edu/
+    location: Cairo, Egypt
+    period: Sep 2019 - Jan 2020
+    details:
+      - label: Topic
+        value: Deep reinforcement learning for traffic control
+      - label: Reference
+        value: Cherif Salama
+  - title: Research Software Development Engineering Intern
+    organization: Microsoft Advanced Technology Lab - Document Knowledge Extraction Team
+    organizationUrl: https://www.microsoft.com/
+    location: Cairo, Egypt
+    period: Jul 2019 - Sep 2019
+    details:
+      - label: Topic
+        value: Hierarchical clustering for schema inference from semi-structured documents
+      - label: Reference
+        value: Achraf Chalabi
+
+teachingExperience:
+  - title: Teaching Assistant
+    organization: University of Waterloo
+    organizationUrl: https://uwaterloo.ca/
+    location: Ontario, Canada
+    period: Jan 2025 - Apr 2025
+    details:
+      - label: Course
+        value: Privacy, Cryptography, Network, and Data Security
+      - label: Reference
+        value: Florian Kerschbaum
+        url: https://cs.uwaterloo.ca/~fkerschb/
+  - title: Teaching Assistant
+    organization: University of Waterloo
+    organizationUrl: https://uwaterloo.ca/
+    location: Ontario, Canada
+    period: Jan 2023 - Apr 2023
+    details:
+      - label: Course
+        value: Privacy, Cryptography, Network, and Data Security
+      - label: Reference
+        value: Thomas Humphries
+        url: mailto:thomas.humphries@uwaterloo.ca
+  - title: Teaching Assistant
+    organization: The American University in Cairo
+    organizationUrl: https://www.aucegypt.edu/
+    location: Cairo, Egypt
+    period: Jan 2021 - Jun 2021
+    details:
+      - label: Course
+        value: Embedded Systems Laboratory
+      - label: Reference
+        value: Suzanne Safwat
+        url: mailto:suzanne.safwat@aucegypt.edu
+  - title: Teaching Assistant
+    organization: The American University in Cairo
+    organizationUrl: https://www.aucegypt.edu/
+    location: Cairo, Egypt
+    period: Sep 2020 - Jun 2021
+    details:
+      - label: Course
+        value: Linear Algebra
+      - label: Reference
+        value: Ahmed El-Guindy
+        url: mailto:a.elguindy@aucegypt.edu
+  - title: Teaching Assistant
+    organization: The American University in Cairo
+    organizationUrl: https://www.aucegypt.edu/
+    location: Cairo, Egypt
+    period: Sep 2017 - Jun 2019
+    details:
+      - label: Course
+        value: Programming Fundamentals
+      - label: Reference
+        value: Howaida Ismail
+        url: mailto:hismail@aucegypt.edu
+
+patents:
+  - title: Splitting Neural Networks on Multiple Edge Devices to Train on Vertically Distributed Data
+    organization: Dell Technologies
+    period: Mar 2024
+    details:
+      - label: Patent
+        value: US 11934487B2 (Granted)
+  - title: Forecasting Technology Phases Using Unsupervised Clustering with Wardley Maps
+    organization: Dell Technologies
+    period: Jan 2021
+    details:
+      - label: Application
+        value: US 17/160782 (Pending)

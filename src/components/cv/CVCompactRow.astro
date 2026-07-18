@@ -1,0 +1,19 @@
+---
+interface Props {
+  period: string;
+  title: string;
+  context?: string;
+  amount?: string;
+}
+
+const { period, title, context = "", amount } = Astro.props;
+---
+
+<div class="cv-compact-row">
+  <time class="cv-compact-period">{period}</time>
+  <div class="cv-compact-main">
+    <span class="cv-compact-title">{title}</span>
+    {context && <span class="cv-compact-context">{context}</span>}
+  </div>
+  {amount && <strong class="cv-amount">{amount}</strong>}
+</div>

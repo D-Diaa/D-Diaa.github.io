@@ -1,0 +1,23 @@
+---
+interface Props {
+  id: string;
+  title: string;
+}
+
+const { id, title } = Astro.props;
+---
+
+<section class="cv-section" id={id} aria-labelledby={`${id}-heading`}>
+  <header class="cv-section-header">
+    <h2 id={`${id}-heading`}>{title}</h2>
+    <a class="cv-section-anchor" href={`#${id}`} aria-label={`Link to ${title}`}>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M10 13a5 5 0 0 0 7.07.07l2-2a5 5 0 0 0-7.07-7.07l-1.15 1.15"></path>
+        <path d="M14 11a5 5 0 0 0-7.07-.07l-2 2A5 5 0 0 0 12 20l1.15-1.15"></path>
+      </svg>
+    </a>
+  </header>
+  <div class="cv-section-body">
+    <slot />
+  </div>
+</section>

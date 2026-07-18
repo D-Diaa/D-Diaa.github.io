@@ -5,6 +5,9 @@ dist/
 # Dependencies
 node_modules/
 
+# External reference repositories
+external/
+
 # Environment
 .env
 .env.*
@@ -21,3 +24,4 @@ Thumbs.db
 CLAUDE.md
 exhibit_a.pdf
 exhibit_a.tex
+AGENTS.md

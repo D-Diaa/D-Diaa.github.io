@@ -33,6 +33,8 @@ export const siteConfig = {
     github: "https://github.com/D-Diaa",
     linkedin: "https://www.linkedin.com/in/abdulrahmandiaa/",
     scholar: "https://scholar.google.com/citations?user=xFX1k1AAAAAJ",
+    orcid: "https://orcid.org/0009-0000-0377-3680",
+    dblp: "https://dblp.org/pid/325/5429.html",
   },
   topics: {
     "Privacy-Preserving Machine Learning": {

@@ -1,0 +1,78 @@
+---
+import type { CvTimelineEntry } from "../../types/cv";
+
+interface Props {
+  entry: CvTimelineEntry;
+}
+
+const { entry } = Astro.props;
+---
+
+<article class="cv-entry">
+  <div class="cv-entry-heading">
+    <div class="cv-entry-primary">
+      <h3>{entry.title}</h3>
+      {entry.organization && (
+        <p class="cv-organization">
+          {entry.organizationUrl ? (
+            <a href={entry.organizationUrl} target="_blank" rel="noopener">{entry.organization}</a>
+          ) : (
+            entry.organization
+          )}
+        </p>
+      )}
+    </div>
+    {(entry.location || entry.period) && (
+      <div class="cv-entry-meta">
+        {entry.period && <span>{entry.period}</span>}
+        {entry.location && <span>{entry.location}</span>}
+      </div>
+    )}
+  </div>
+
+  {entry.details && entry.details.length > 0 && (
+    <dl class="cv-details">
+      {entry.details.map((detail) => (
+        <div>
+          <dt>{detail.label}</dt>
+          <dd>
+            {detail.url ? (
+              <a href={detail.url} target="_blank" rel="noopener">{detail.value}</a>
+            ) : (
+              detail.value
+            )}
+          </dd>
+        </div>
+      ))}
+    </dl>
+  )}
+
+  {entry.subentries && entry.subentries.length > 0 && (
+    <div class="cv-subentries">
+      {entry.subentries.map((subentry) => (
+        <div class="cv-subentry">
+          <div class="cv-subentry-heading">
+            <h4>{subentry.title}</h4>
+            {subentry.meta && <span>{subentry.meta}</span>}
+          </div>
+          {subentry.details && subentry.details.length > 0 && (
+            <dl class="cv-details">
+              {subentry.details.map((detail) => (
+                <div>
+                  <dt>{detail.label}</dt>
+                  <dd>
+                    {detail.url ? (
+                      <a href={detail.url} target="_blank" rel="noopener">{detail.value}</a>
+                    ) : (
+                      detail.value
+                    )}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          )}
+        </div>
+      ))}
+    </div>
+  )}
+</article>

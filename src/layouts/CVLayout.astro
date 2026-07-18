@@ -1,0 +1,64 @@
+---
+import { ViewTransitions } from "astro:transitions";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import ScrollToTop from "../components/ScrollToTop.astro";
+import SEOHead from "../components/SEOHead.astro";
+import "../styles/global.css";
+import "../styles/cv.css";
+
+interface Props {
+  title: string;
+  description: string;
+  canonicalPath: string;
+}
+
+const { title, description, canonicalPath } = Astro.props;
+const pageTitle = `${title} | Abdulrahman Diaa`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script is:inline>
+      (function() {
+        var stored = localStorage.getItem("theme");
+        var isLight = stored === "light" || (!stored && window.matchMedia("(prefers-color-scheme: light)").matches);
+        if (isLight) document.documentElement.classList.add("light");
+      })();
+      document.addEventListener("astro:before-swap", function(e) {
+        var stored = localStorage.getItem("theme");
+        var isLight = stored === "light" || (!stored && window.matchMedia("(prefers-color-scheme: light)").matches);
+        if (isLight) e.newDocument.documentElement.classList.add("light");
+      });
+    </script>
+
+    <title>{pageTitle}</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <SEOHead
+      title={title}
+      description={description}
+      canonicalPath={canonicalPath}
+    />
+    <ViewTransitions />
+  </head>
+  <body class="cv-site-shell">
+    <a
+      href="#cv-document"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:rounded-lg focus:bg-[var(--color-accent)] focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-white"
+    >
+      Skip to CV
+    </a>
+    <Header />
+    <main id="main-content" transition:animate="fade">
+      <slot />
+    </main>
+    <Footer />
+    <ScrollToTop />
+  </body>
+</html>

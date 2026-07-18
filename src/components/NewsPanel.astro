@@ -1,0 +1,50 @@
+---
+import { readFileSync } from "fs";
+import { parse } from "yaml";
+import { siteConfig } from "../data/site";
+import NewsTimeline from "./NewsTimeline.astro";
+
+interface NewsItem {
+  date: string;
+  text: string;
+  href?: string;
+}
+
+const news = parse(readFileSync("src/data/news.yml", "utf-8")) as NewsItem[];
+const previewCount = 3;
+---
+
+<div class="space-y-6">
+  <img
+    src={siteConfig.image}
+    alt={siteConfig.author.name}
+    width="640"
+    height="480"
+    class="aspect-[4/3] w-full rounded-3xl object-cover shadow-xl shadow-black/10"
+    loading="eager"
+  />
+
+  <aside class="rounded-3xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 sm:p-7" aria-labelledby="news-heading">
+    <div class="mb-5 flex items-center justify-between gap-4">
+      <div>
+        <h2 id="news-heading" class="text-xl font-bold text-[var(--color-text)]">News</h2>
+      </div>
+      <span class="relative flex h-2.5 w-2.5" aria-hidden="true">
+        <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--color-accent)] opacity-50"></span>
+        <span class="relative inline-flex h-2.5 w-2.5 rounded-full bg-[var(--color-accent)]"></span>
+      </span>
+    </div>
+
+    <NewsTimeline news={news} limit={previewCount} />
+
+    <a
+      href="/news"
+      class="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl border border-[var(--color-border)] px-4 py-2.5 text-sm font-semibold text-[var(--color-text-secondary)] transition-colors hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]"
+    >
+      All news
+      <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M5 12h14M13 6l6 6-6 6"></path>
+      </svg>
+    </a>
+  </aside>
+</div>

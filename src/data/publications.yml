@@ -17,6 +17,8 @@
     - type: "code"
       url: "https://zenodo.org/records/18421520"
       label: "Code"
+  highlights:
+    - "Earlier version presented at FHE.org Conference 2023"
 - authors:
     - name: "A. Diaa"
       highlight: true

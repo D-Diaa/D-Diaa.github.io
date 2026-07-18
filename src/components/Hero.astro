@@ -2,10 +2,10 @@
 import { siteConfig } from "../data/site";
 ---
 
-<section id="bio" class="scroll-mt-20">
-  <div class="flex flex-col-reverse items-center gap-8 md:flex-row md:items-start md:gap-12">
-    <!-- Bio text -->
-    <div class="flex-1 space-y-4">
+<section id="bio" aria-labelledby="bio-heading" class="rounded-3xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 sm:p-8 lg:p-10">
+  <h1 id="bio-heading" class="sr-only">{siteConfig.author.name}</h1>
+
+  <div class="space-y-4 text-justify">
       <p class="text-base leading-relaxed text-[var(--color-text)]">
         I am a Ph.D. candidate under the supervision of <a
           href={siteConfig.author.supervisor.url}
@@ -38,8 +38,8 @@ import { siteConfig } from "../data/site";
       <p class="text-base leading-relaxed text-[var(--color-text)]">
         My research addresses privacy and traceability in machine learning.
         I design efficient privacy-preserving protocols that enable collaborative
-        analytics and secure inference without exposing sensitive data, using
-        secure multi-party computation and differential privacy. I also develop
+        analytics without exposing sensitive data, using secure multi-party
+        computation and differential privacy. I also study
         robust watermarking for AI-generated content, exposing vulnerabilities in
         existing schemes through adaptive attacks and building defenses that
         withstand adversarial removal.
@@ -83,59 +83,58 @@ import { siteConfig } from "../data/site";
           >EPFL</a
         > on multi-party homomorphic encryption for federated learning.
       </p>
-    </div>
-
-    <!-- Avatar -->
-    <div class="shrink-0">
-      <div
-        class="avatar-glow h-40 w-40 overflow-hidden rounded-full ring-2 ring-[var(--color-accent)]/30 ring-offset-2 ring-offset-[var(--color-bg)] md:h-48 md:w-48"
-        style="box-shadow: 0 0 20px color-mix(in srgb, var(--color-accent) 30%, transparent), 0 0 40px color-mix(in srgb, var(--color-accent) 15%, transparent);"
-      >
-        <img
-          src={siteConfig.image}
-          alt={siteConfig.author.name}
-          width="192"
-          height="192"
-          class="h-full w-full object-cover"
-          loading="eager"
-        />
-      </div>
-    </div>
+      <p class="text-base leading-relaxed text-[var(--color-text)]">
+        In my free time, I take coffee a bit too seriously. My current <a
+          href="/coffee"
+          class="font-bold text-[var(--color-accent)] hover:text-[var(--color-accent-hover)]"
+          >V60 Switch recipe</a
+        > has its own page, naturally.
+      </p>
   </div>
 
-  <div class="mt-6 flex flex-wrap items-center justify-between gap-4">
-    <div class="flex flex-wrap gap-2">
-      {Object.entries(siteConfig.topics).map(([name, { color }]) => (
-        <span
-          class="rounded-full border px-3 py-1 text-xs font-medium"
-          style={`color: ${color}; border-color: color-mix(in srgb, ${color} 30%, transparent); background-color: color-mix(in srgb, ${color} 8%, transparent);`}
-        >
-          {name}
-        </span>
-      ))}
-    </div>
-    <a
-      href="/resume.pdf"
-      target="_blank"
-      rel="noopener"
-      class="inline-flex items-center gap-2 rounded-lg border border-[var(--color-accent)]/30 px-4 py-2 text-sm font-medium text-[var(--color-accent)] transition-colors hover:bg-[var(--color-accent)]/10"
-    >
-      <svg
-        class="w-4 h-4"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+  <div class="mt-7 flex flex-wrap gap-2" aria-label="Research areas">
+    {Object.entries(siteConfig.topics).map(([name, { color }]) => (
+      <span
+        class="rounded-full border px-3 py-1 text-xs font-medium"
+        style={`color: ${color}; border-color: color-mix(in srgb, ${color} 32%, transparent); background-color: color-mix(in srgb, ${color} 9%, transparent);`}
       >
-        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-        <polyline points="14 2 14 8 20 8"></polyline>
-        <line x1="16" y1="13" x2="8" y2="13"></line>
-        <line x1="16" y1="17" x2="8" y2="17"></line>
-        <polyline points="10 9 9 9 8 9"></polyline>
-      </svg>
-      Resume
+        {name}
+      </span>
+    ))}
+  </div>
+
+  <div class="mt-6 grid grid-cols-2 gap-2 border-t border-[var(--color-border)] pt-4 text-sm sm:grid-cols-3">
+    <a class="group grid min-h-11 grid-cols-[1.75rem_minmax(0,1fr)] items-center gap-2 rounded-xl px-3 py-2 text-left transition-colors hover:bg-[var(--color-surface-hover)]" href={`mailto:${siteConfig.email}`}>
+      <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-[var(--color-accent)]/10 text-[var(--color-accent)]">
+        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m3 7 9 6 9-6"></path></svg>
+      </span>
+      <span class="font-medium text-[var(--color-text)] group-hover:text-[var(--color-accent)]">Email</span>
+    </a>
+    <a class="group grid min-h-11 grid-cols-[1.75rem_minmax(0,1fr)] items-center gap-2 rounded-xl px-3 py-2 text-left transition-colors hover:bg-[var(--color-surface-hover)]" href={siteConfig.social.github} target="_blank" rel="noopener">
+      <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-[var(--color-accent)]/10 text-[var(--color-accent)]">
+        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.79-.26.79-.58v-2.23c-3.34.73-4.03-1.42-4.03-1.42-.55-1.39-1.33-1.76-1.33-1.76-1.09-.74.08-.73.08-.73 1.21.08 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.49 1 .11-.78.42-1.31.76-1.61-2.66-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23A11.5 11.5 0 0 1 12 6.8c1.02 0 2.05.14 3.01.4 2.29-1.55 3.3-1.23 3.3-1.23.65 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.62-5.48 5.92.43.37.81 1.1.81 2.22v3.3c0 .32.19.69.8.57A12 12 0 0 0 12 0Z"></path></svg>
+      </span>
+      <span class="font-medium text-[var(--color-text)] group-hover:text-[var(--color-accent)]">GitHub</span>
+    </a>
+    <a class="group grid min-h-11 grid-cols-[1.75rem_minmax(0,1fr)] items-center gap-2 rounded-xl px-3 py-2 text-left transition-colors hover:bg-[var(--color-surface-hover)]" href={siteConfig.social.scholar} target="_blank" rel="noopener">
+      <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-[var(--color-accent)]/10 text-[var(--color-accent)]">
+        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5.24 13.77 0 9.5 12 0l12 9.5-5.24 4.27A7.5 7.5 0 0 0 12 9.5a7.5 7.5 0 0 0-6.76 4.27ZM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14Z"></path></svg>
+      </span>
+      <span class="font-medium text-[var(--color-text)] group-hover:text-[var(--color-accent)]">Google Scholar</span>
+    </a>
+    <a class="group grid min-h-11 grid-cols-[1.75rem_minmax(0,1fr)] items-center gap-2 rounded-xl px-3 py-2 text-left transition-colors hover:bg-[var(--color-surface-hover)]" href={siteConfig.social.linkedin} target="_blank" rel="noopener">
+      <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-[var(--color-accent)]/10 text-[var(--color-accent)]">
+        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.03-1.85-3.03-1.85 0-2.14 1.44-2.14 2.94v5.66H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.55V9h3.57v11.45Z"></path></svg>
+      </span>
+      <span class="font-medium text-[var(--color-text)] group-hover:text-[var(--color-accent)]">LinkedIn</span>
+    </a>
+    <a class="group grid min-h-11 grid-cols-[1.75rem_minmax(0,1fr)] items-center gap-2 rounded-xl px-3 py-2 text-left transition-colors hover:bg-[var(--color-surface-hover)]" href={siteConfig.social.orcid} target="_blank" rel="noopener">
+      <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-[var(--color-accent)]/10 font-mono text-[0.65rem] font-bold text-[var(--color-accent)]" aria-hidden="true">iD</span>
+      <span class="font-medium text-[var(--color-text)] group-hover:text-[var(--color-accent)]">ORCID</span>
+    </a>
+    <a class="group grid min-h-11 grid-cols-[1.75rem_minmax(0,1fr)] items-center gap-2 rounded-xl px-3 py-2 text-left transition-colors hover:bg-[var(--color-surface-hover)]" href={siteConfig.social.dblp} target="_blank" rel="noopener">
+      <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-[var(--color-accent)]/10 font-mono text-[0.5rem] font-bold text-[var(--color-accent)]" aria-hidden="true">DBLP</span>
+      <span class="font-medium text-[var(--color-text)] group-hover:text-[var(--color-accent)]">DBLP</span>
     </a>
   </div>
 </section>

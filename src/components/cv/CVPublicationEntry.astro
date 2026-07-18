@@ -1,0 +1,42 @@
+---
+interface Author {
+  name: string;
+  highlight: boolean;
+}
+
+interface Publication {
+  authors: Author[];
+  title: string;
+  venue?: string;
+  year: number;
+  highlights?: string[];
+}
+
+interface Props {
+  publication: Publication;
+}
+
+const { publication } = Astro.props;
+---
+
+<article class="cv-publication">
+  <div class="cv-publication-heading">
+    <h3>{publication.title}</h3>
+    <span class="cv-publication-venue">
+      {publication.venue || "Preprint"} · {publication.year}
+    </span>
+  </div>
+  <p class="cv-publication-authors">
+    {publication.authors.map((author, index) => (
+      <>
+        {author.highlight ? <strong>{author.name}</strong> : <span>{author.name}</span>}
+        {index < publication.authors.length - 1 && ", "}
+      </>
+    ))}
+  </p>
+  {publication.highlights && publication.highlights.length > 0 && (
+    <ul class="cv-publication-highlights">
+      {publication.highlights.map((highlight) => <li>{highlight}</li>)}
+    </ul>
+  )}
+</article>

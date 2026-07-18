@@ -1,450 +1,1000 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+
+const metrics = [
+  { label: "Coffee", value: "20 g", note: "freshly ground", icon: "coffee" },
+  { label: "Water", value: "320 g", note: "1:16 ratio", icon: "water" },
+  { label: "Grind", value: "Medium", note: "K6 · 90 clicks / ZP6 · 5.0", icon: "grind" },
+  { label: "Temperature", value: "93°C", note: "adjust by roast", icon: "temperature" },
+  { label: "Brew time", value: "4:00", note: "target finish", icon: "time" },
+];
+
+const phases = [
+  { time: "0:00", label: "Bloom", color: "var(--color-topic-privacy)" },
+  { time: "1:00", label: "Percolate", color: "var(--color-accent)" },
+  { time: "2:00", label: "Immerse", color: "#a78bfa" },
+  { time: "3:00", label: "Drain", color: "var(--color-highlight)" },
+];
+
+const brewCues = [
+  {
+    start: 0,
+    end: 30,
+    title: "Pour to 60 g",
+    instruction: "Keep the switch open. Pour slowly in a spiral, wetting the full coffee bed evenly.",
+    fromWeight: 0,
+    toWeight: 60,
+  },
+  {
+    start: 30,
+    end: 60,
+    title: "Let it bloom",
+    instruction: "Stop pouring and leave the switch open. Let the coffee bloom until the one-minute mark.",
+    fromWeight: 60,
+    toWeight: 60,
+  },
+  {
+    start: 60,
+    end: 100,
+    title: "Pour to 160 g",
+    instruction: "Keep the switch open. Pour over darker, drier areas of the bed to maintain even saturation.",
+    fromWeight: 60,
+    toWeight: 160,
+  },
+  {
+    start: 100,
+    end: 120,
+    title: "Let it draw down",
+    instruction: "Stop pouring at 1:40 and let the bed draw down with the switch still open.",
+    fromWeight: 160,
+    toWeight: 160,
+  },
+  {
+    start: 120,
+    end: 150,
+    title: "Close switch · pour to 320 g",
+    instruction: "Close the switch at 2:00, then add the remaining water evenly over the coffee bed.",
+    fromWeight: 160,
+    toWeight: 320,
+  },
+  {
+    start: 150,
+    end: 180,
+    title: "Steep with switch closed",
+    instruction: "Stop pouring and let the full slurry steep until the three-minute mark.",
+    fromWeight: 320,
+    toWeight: 320,
+  },
+  {
+    start: 180,
+    end: 240,
+    title: "Open switch and drain",
+    instruction: "Open the switch at 3:00 and let the brewer drain. Aim to finish before 4:00.",
+    fromWeight: 320,
+    toWeight: 320,
+  },
+];
+
+const steps = [
+  {
+    number: "01",
+    time: "0:00-1:00",
+    title: "Bloom",
+    amount: "60 g",
+    target: "60 g total",
+    color: "var(--color-topic-privacy)",
+    description:
+      "Keep the switch open. Pour to 60 g in a slow spiral by 0:30, then stop and let the coffee bloom until 1:00.",
+    cadence: "Pour to 60 g · bloom at 0:30",
+  },
+  {
+    number: "02",
+    time: "1:00-2:00",
+    title: "Percolation",
+    amount: "+100 g",
+    target: "160 g total",
+    color: "var(--color-accent)",
+    description:
+      "Keep the switch open. Pour to 160 g by 1:40, targeting darker, drier areas, then let the bed draw down until 2:00.",
+    cadence: "Pour to 160 g · draw down at 1:40",
+  },
+  {
+    number: "03",
+    time: "2:00-3:00",
+    title: "Immersion",
+    amount: "+160 g",
+    target: "320 g total",
+    color: "#a78bfa",
+    description:
+      "Close the switch at 2:00, pour to 320 g by 2:30, then let the full slurry steep until the three-minute mark.",
+    cadence: "Close switch · pour to 320 g · steep",
+  },
+  {
+    number: "04",
+    time: "3:00-4:00",
+    title: "Drain and serve",
+    amount: "320 g total",
+    target: "Drain",
+    color: "var(--color-highlight)",
+    description:
+      "Open the switch and let the brewer drain. Aim to finish before 4:00, then swirl and serve.",
+    cadence: "Switch open · finish by 4:00",
+  },
+];
+
+const preparation = [
+  {
+    title: "Preheat the brewer",
+    description:
+      "Close the switch, fill the dripper with hot water, and let it sit for one minute before draining.",
+  },
+  {
+    title: "Rinse the filter",
+    description:
+      "Rinse thoroughly to remove paper taste and bring the brewer back up to temperature.",
+  },
+  {
+    title: "Level the bed",
+    description:
+      "Add the ground coffee and shake gently until the surface is flat and ready for an even bloom.",
+  },
+];
+
+const adjustments = [
+  { goal: "More body", action: "Bloom with the switch closed, increase steep time, or combine both." },
+  { goal: "Fermented beans", action: "Keep the switch open and use a fully percolated brew." },
+  { goal: "More acidity", action: "Increase the volume or agitation of the percolation pour." },
+  { goal: "Developed roasts", action: "Lower the water temperature during bloom or immersion." },
+  { goal: "More sweetness", action: "Reduce the volume or agitation of the percolation pour." },
+  { goal: "Tough beans", action: "Use one long percolation pour and skip the immersion phase." },
+];
 ---
 
 <BaseLayout
   title="Coffee Brewing Guide"
-  description="Specialty coffee brewing guide with Hario V60 Switch recipe"
+  description="A practical Hario V60 Switch recipe for a balanced hybrid brew."
   canonicalPath="/coffee"
 >
-  <div class="mx-auto max-w-5xl px-6 py-16">
-    <!-- Recipe Card -->
-    <div
-      class="overflow-hidden rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)]"
-    >
-      <!-- Recipe Header -->
-      <div class="border-b border-[var(--color-border)] p-6">
-        <h2 class="mb-2 text-xl font-bold text-[var(--color-text)] text-center">
-          Hario V60 Switch Recipe
-        </h2>
-        <p class="text-sm text-[var(--color-text-secondary)] text-center">
-          A hybrid brewing method combining the best of percolation and
-          immersion for a balanced, flavorful cup of coffee.
+  <div class="coffee-page mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-12">
+    <header class="coffee-header mb-7 flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+      <div class="max-w-2xl">
+        <p class="mb-2 font-mono text-xs font-medium uppercase tracking-[0.18em] text-[var(--color-accent)]">Coffee notes</p>
+        <h1 class="text-4xl font-bold tracking-tight text-[var(--color-text)] sm:text-5xl">Hario V60 Switch</h1>
+        <p class="mt-3 text-base leading-relaxed text-[var(--color-text-secondary)]">
+          My everyday hybrid recipe: a clean percolation phase followed by a short immersion for a balanced, expressive cup.
         </p>
       </div>
-
-      <!-- Metrics Grid -->
-      <div
-        class="grid grid-cols-2 gap-px border-b border-[var(--color-border)] bg-[var(--color-border)] sm:grid-cols-5"
+      <button
+        type="button"
+        class="coffee-print inline-flex w-fit items-center gap-2 rounded-xl border border-[var(--color-border)] px-4 py-2.5 text-sm font-semibold text-[var(--color-text-secondary)] transition-colors hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]"
       >
-        <div class="flex flex-col items-center gap-1.5 bg-[var(--color-surface)] p-4">
-          <svg
-            class="w-5 h-5 text-[var(--color-accent)]"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path d="M17 8h1a4 4 0 1 1 0 8h-1"></path>
-            <path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"></path>
-          </svg>
-          <span class="text-xs text-[var(--color-text-secondary)]">Coffee</span
-          >
-          <span class="text-sm font-semibold text-[var(--color-text)]"
-            >20g</span
-          >
-        </div>
-        <div class="flex flex-col items-center gap-1.5 bg-[var(--color-surface)] p-4">
-          <svg
-            class="w-5 h-5 text-[var(--color-accent)]"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
-          </svg>
-          <span class="text-xs text-[var(--color-text-secondary)]">Water</span>
-          <span class="text-sm font-semibold text-[var(--color-text)]"
-            >320g</span
-          >
-          <span class="text-[10px] text-[var(--color-text-secondary)]"
-            >(1:16 ratio)</span
-          >
-        </div>
-        <div class="flex flex-col items-center gap-1.5 bg-[var(--color-surface)] p-4">
-          <svg
-            class="w-5 h-5 text-[var(--color-accent)]"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <circle cx="12" cy="12" r="3"></circle>
-            <path
-              d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"
-            ></path>
-          </svg>
-          <span class="text-xs text-[var(--color-text-secondary)]"
-            >Grind Size</span
-          >
-          <span class="text-sm font-semibold text-[var(--color-text)]"
-            >Medium</span
-          >
-          <span class="text-[10px] text-[var(--color-text-secondary)]"
-            >(K6: 90 clicks)</span
-          >
-        </div>
-        <div class="flex flex-col items-center gap-1.5 bg-[var(--color-surface)] p-4">
-          <svg
-            class="w-5 h-5 text-[var(--color-accent)]"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path d="M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z"></path>
-          </svg>
-          <span class="text-xs text-[var(--color-text-secondary)]">Temp</span>
-          <span class="text-sm font-semibold text-[var(--color-text)]"
-            >93°C</span
-          >
-        </div>
-        <div
-          class="col-span-2 flex flex-col items-center gap-1.5 bg-[var(--color-surface)] p-4 sm:col-span-1"
-        >
-          <svg
-            class="w-5 h-5 text-[var(--color-accent)]"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <circle cx="12" cy="12" r="10"></circle>
-            <polyline points="12 6 12 12 16 14"></polyline>
-          </svg>
-          <span class="text-xs text-[var(--color-text-secondary)]"
-            >Brew Time</span
-          >
-          <span class="text-sm font-semibold text-[var(--color-text)]"
-            >4:00</span
-          >
-        </div>
-      </div>
+        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+          <rect x="6" y="14" width="12" height="8"></rect>
+        </svg>
+        Print recipe
+      </button>
+    </header>
 
-      <!-- Brewing Timeline -->
-      <div class="border-b border-[var(--color-border)] p-6">
-        <h3 class="mb-4 text-sm font-semibold uppercase tracking-wider text-[var(--color-text-secondary)]">
-          Brewing Timeline
-        </h3>
-        <div class="relative">
-          <!-- Time markers -->
-          <div class="mb-2 flex justify-between text-xs text-[var(--color-text-secondary)]">
-            <span>0:00</span>
-            <span>1:00</span>
-            <span>2:00</span>
-            <span>3:00</span>
-            <span>4:00</span>
+    <section class="coffee-overview mb-6 overflow-hidden rounded-3xl border border-[var(--color-border)] bg-[var(--color-surface)]" aria-labelledby="recipe-overview">
+      <div class="flex items-center justify-between border-b border-[var(--color-border)] px-5 py-4 sm:px-6">
+        <h2 id="recipe-overview" class="text-base font-semibold text-[var(--color-text)]">Recipe at a glance</h2>
+        <span class="font-mono text-xs text-[var(--color-text-secondary)]">20 g · 320 g · 4 min</span>
+      </div>
+      <div class="coffee-metrics grid grid-cols-2 divide-x divide-y divide-[var(--color-border)] sm:grid-cols-5 sm:divide-y-0">
+        {metrics.map((metric, index) => (
+          <div class:list={["coffee-metric min-w-0 p-4 sm:p-5", index === metrics.length - 1 && "col-span-2 sm:col-span-1"]}>
+            <div class="coffee-metric-icon mb-3 flex h-9 w-9 items-center justify-center rounded-xl bg-[var(--color-accent)]/10 text-[var(--color-accent)]">
+              {metric.icon === "coffee" && (
+                <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 8h1a4 4 0 1 1 0 8h-1"></path><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"></path></svg>
+              )}
+              {metric.icon === "water" && (
+                <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2.7 17.7 8.4a8 8 0 1 1-11.4 0L12 2.7Z"></path></svg>
+              )}
+              {metric.icon === "grind" && (
+                <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"></circle><path d="M12 2v3M12 19v3M4.9 4.9 7 7M17 17l2.1 2.1M2 12h3M19 12h3M4.9 19.1 7 17M17 7l2.1-2.1"></path></svg>
+              )}
+              {metric.icon === "temperature" && (
+                <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 14.8V5a2 2 0 0 0-4 0v9.8a4 4 0 1 0 4 0Z"></path><path d="M12 9v7"></path></svg>
+              )}
+              {metric.icon === "time" && (
+                <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13" r="8"></circle><path d="M12 9v4l3 2M9 2h6"></path></svg>
+              )}
+            </div>
+            <p class="text-xs text-[var(--color-text-secondary)]">{metric.label}</p>
+            <p class="mt-0.5 font-semibold text-[var(--color-text)]">{metric.value}</p>
+            <p class="mt-0.5 text-[0.68rem] text-[var(--color-text-secondary)]">{metric.note}</p>
           </div>
-          <!-- Phase bars -->
-          <div class="flex h-10 overflow-hidden rounded-lg">
-            <div
-              class="flex w-1/4 items-center justify-center gap-1.5 bg-emerald-500/20 text-xs font-medium text-emerald-400"
-            >
-              <span>🌱</span>
-              <span class="hidden sm:inline">Bloom</span>
+        ))}
+      </div>
+    </section>
+
+    <section
+      class="brew-companion mb-6 overflow-hidden rounded-3xl border border-[var(--color-border)] bg-[var(--color-surface)]"
+      aria-labelledby="brew-companion-heading"
+      data-brew-companion
+      data-brew-cues={JSON.stringify(brewCues)}
+    >
+      <div class="grid lg:grid-cols-[15rem_minmax(0,1fr)]">
+        <div class="border-b border-[var(--color-border)] p-5 lg:border-b-0 lg:border-r sm:p-6">
+          <p class="font-mono text-[0.68rem] font-medium uppercase tracking-[0.16em] text-[var(--color-accent)]" data-brew-eyebrow>Ready to brew</p>
+          <div class="mt-2 font-mono text-5xl font-semibold tracking-[-0.06em] text-[var(--color-text)] sm:text-6xl" data-brew-time aria-label="Elapsed brew time">0:00</div>
+          <p class="mt-2 text-xs text-[var(--color-text-secondary)]" data-brew-phase-count>Four phases · 4:00 total</p>
+        </div>
+
+        <div class="p-5 sm:p-6">
+          <div class="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+            <div>
+              <h2 id="brew-companion-heading" class="text-xl font-bold text-[var(--color-text)]" data-brew-title>Set up your brewer</h2>
+              <p class="mt-2 max-w-2xl text-sm leading-6 text-[var(--color-text-secondary)]" data-brew-instruction aria-live="polite">
+                When the brewer is preheated and the coffee bed is level, press Start brew and follow the live prompts.
+              </p>
             </div>
-            <div
-              class="flex w-1/4 items-center justify-center gap-1.5 bg-blue-500/20 text-xs font-medium text-blue-400"
-            >
-              <span>💧</span>
-              <span class="hidden sm:inline">Percolation</span>
-            </div>
-            <div
-              class="flex w-1/4 items-center justify-center gap-1.5 bg-purple-500/20 text-xs font-medium text-purple-400"
-            >
-              <span>🔄</span>
-              <span class="hidden sm:inline">Immersion</span>
-            </div>
-            <div
-              class="flex w-1/4 items-center justify-center gap-1.5 bg-amber-500/20 text-xs font-medium text-amber-400"
-            >
-              <span>⏬</span>
-              <span class="hidden sm:inline">Drain</span>
-            </div>
+            <span class="w-fit min-w-24 shrink-0 rounded-xl bg-[var(--color-surface-hover)] px-3 py-2 text-right">
+              <span class="block text-[0.58rem] font-medium uppercase tracking-[0.13em] text-[var(--color-text-secondary)]">Target weight</span>
+              <span class="mt-0.5 block font-mono text-base font-semibold text-[var(--color-text)]" data-brew-target>0 g</span>
+            </span>
+          </div>
+
+          <div class="mt-5 h-1.5 overflow-hidden rounded-full bg-[var(--color-border)]" aria-hidden="true">
+            <span class="block h-full w-0 rounded-full bg-[var(--color-accent)] transition-[width,background-color] duration-200" data-brew-progress></span>
           </div>
         </div>
       </div>
 
-      <!-- Preparation Steps -->
-      <div class="border-b border-[var(--color-border)] p-6">
-        <h3 class="mb-4 text-sm font-semibold uppercase tracking-wider text-[var(--color-text-secondary)]">
-          Preparation
-        </h3>
-        <div class="space-y-3">
-          <div class="flex gap-3">
-            <span
-              class="mt-0.5 flex h-6 shrink-0 items-center rounded bg-[var(--color-text-secondary)]/10 px-2 text-[10px] font-medium text-[var(--color-text-secondary)]"
-              >Prep</span
-            >
-            <div>
-              <p class="text-sm font-medium text-[var(--color-text)]">
-                Preheat the dripper
-              </p>
-              <p class="text-sm text-[var(--color-text-secondary)]">
-                With the switch closed, fill the dripper with hot water and let
-                it sit for a minute. Drain the water before adding the filter.
-              </p>
-            </div>
-          </div>
-          <div class="flex gap-3">
-            <span
-              class="mt-0.5 flex h-6 shrink-0 items-center rounded bg-[var(--color-text-secondary)]/10 px-2 text-[10px] font-medium text-[var(--color-text-secondary)]"
-              >Prep</span
-            >
-            <div>
-              <p class="text-sm font-medium text-[var(--color-text)]">
-                Pre-wet the filter
-              </p>
-              <p class="text-sm text-[var(--color-text-secondary)]">
-                Rinse the filter with hot water to remove any paper taste and
-                preheat the dripper.
-              </p>
-            </div>
-          </div>
-          <div class="flex gap-3">
-            <span
-              class="mt-0.5 flex h-6 shrink-0 items-center rounded bg-[var(--color-text-secondary)]/10 px-2 text-[10px] font-medium text-[var(--color-text-secondary)]"
-              >Prep</span
-            >
-            <div>
-              <p class="text-sm font-medium text-[var(--color-text)]">
-                Add coffee
-              </p>
-              <p class="text-sm text-[var(--color-text-secondary)]">
-                Add the ground coffee to the filter and shake gently to level
-                the bed.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Brewing Steps -->
-      <div class="border-b border-[var(--color-border)] p-6">
-        <h3 class="mb-4 text-sm font-semibold uppercase tracking-wider text-[var(--color-text-secondary)]">
-          Brewing Steps
-        </h3>
-        <div class="space-y-4">
-          <!-- Bloom -->
-          <div class="flex gap-3">
-            <span
-              class="mt-0.5 flex h-6 shrink-0 items-center rounded bg-emerald-500/20 px-2 text-[10px] font-semibold text-emerald-400"
-              >0:00</span
-            >
-            <div class="flex-1">
-              <p class="text-sm font-medium text-[var(--color-text)]">Bloom</p>
-              <p class="mb-2 text-sm text-[var(--color-text-secondary)]">
-                Pour 60g of water slowly over the coffee grounds in a spiral
-                motion. Aim for a 30-second pour; then wait for 30 seconds to
-                let the coffee bloom.
-              </p>
-              <div class="flex h-6 overflow-hidden rounded text-[10px] font-medium">
-                <div
-                  class="flex w-1/2 items-center justify-center bg-emerald-500/20 text-emerald-400"
-                >
-                  Pour (30s)
-                </div>
-                <div
-                  class="flex w-1/2 items-center justify-center bg-[var(--color-surface-hover)] text-[var(--color-text-secondary)]"
-                >
-                  Wait (30s)
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Percolation -->
-          <div class="flex gap-3">
-            <span
-              class="mt-0.5 flex h-6 shrink-0 items-center rounded bg-blue-500/20 px-2 text-[10px] font-semibold text-blue-400"
-              >1:00</span
-            >
-            <div class="flex-1">
-              <p class="text-sm font-medium text-[var(--color-text)]">
-                Percolation
-              </p>
-              <p class="mb-2 text-sm text-[var(--color-text-secondary)]">
-                At 1:00, pour 100g of water in a spiral motion, aiming for a
-                40-second pour. This can be a bit faster if you want to increase
-                the agitation. Selectively pour on darker, drier spots to ensure
-                even saturation.
-              </p>
-              <div class="flex h-6 overflow-hidden rounded text-[10px] font-medium">
-                <div
-                  class="flex items-center justify-center bg-blue-500/20 text-blue-400"
-                  style="width: 66.67%"
-                >
-                  Pour (40s)
-                </div>
-                <div
-                  class="flex items-center justify-center bg-[var(--color-surface-hover)] text-[var(--color-text-secondary)]"
-                  style="width: 33.33%"
-                >
-                  Wait (20s)
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Close switch -->
-          <div class="flex gap-3">
-            <span
-              class="mt-0.5 flex h-6 shrink-0 items-center rounded bg-purple-500/20 px-2 text-[10px] font-semibold text-purple-400"
-              >2:00</span
-            >
-            <div>
-              <p class="text-sm font-medium text-[var(--color-text)]">
-                Close the switch
-              </p>
-              <p class="text-sm text-[var(--color-text-secondary)]">
-                At 2:00, close the switch to start the immersion phase.
-              </p>
-            </div>
-          </div>
-
-          <!-- Immersion -->
-          <div class="flex gap-3">
-            <span
-              class="mt-0.5 flex h-6 shrink-0 items-center rounded bg-purple-500/20 px-2 text-[10px] font-semibold text-purple-400"
-              >2:00</span
-            >
-            <div class="flex-1">
-              <p class="text-sm font-medium text-[var(--color-text)]">
-                Immersion
-              </p>
-              <p class="mb-2 text-sm text-[var(--color-text-secondary)]">
-                Add the remaining water (160g) and let it steep until 3:00. Open
-                the switch to drain the coffee. The coffee should finish
-                draining before 4:00.
-              </p>
-              <div class="flex h-6 overflow-hidden rounded text-[10px] font-medium">
-                <div
-                  class="flex w-1/2 items-center justify-center bg-purple-500/20 text-purple-400"
-                >
-                  Steep (60s)
-                </div>
-                <div
-                  class="flex w-1/2 items-center justify-center bg-amber-500/20 text-amber-400"
-                >
-                  Drain (60s)
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Serve -->
-          <div class="flex gap-3">
-            <span
-              class="mt-0.5 flex h-6 shrink-0 items-center rounded bg-amber-500/20 px-2 text-[10px] font-semibold text-amber-400"
-              >4:00</span
-            >
-            <div>
-              <p class="text-sm font-medium text-[var(--color-text)]">Serve</p>
-              <p class="text-sm text-[var(--color-text-secondary)]">
-                Swirl, smell, slurp, and enjoy your coffee!
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Tweakables -->
-      <div class="border-b border-[var(--color-border)] p-6">
-        <h3 class="mb-4 text-sm font-semibold uppercase tracking-wider text-[var(--color-text-secondary)]">
-          Tweakables
-        </h3>
-        <p class="mb-4 text-sm text-[var(--color-text-secondary)]">
-          Adjust these parameters to fine-tune your brew.
-        </p>
-        <div class="space-y-3">
-          {
-            [
-              {
-                icon: "💪",
-                goal: "For heavier body:",
-                action:
-                  "bloom with a closed switch, or increase steep time or both",
-              },
-              {
-                icon: "🧪",
-                goal: "For fermented beans:",
-                action: "do not close the switch",
-              },
-              {
-                icon: "✨",
-                goal: "For more acidity:",
-                action: "increase volume/agitation of percolation pour",
-              },
-              {
-                icon: "🔥",
-                goal: "For developed/omni roasts:",
-                action:
-                  "lower temp in bloom or in immersion and see the effect for your coffee",
-              },
-              {
-                icon: "🍯",
-                goal: "For more sweetness:",
-                action: "less volume/agitation of percolation pour",
-              },
-              {
-                icon: "🪨",
-                goal: "For tough beans:",
-                action:
-                  "make it only 1 long percolation pour (cancel immersion)",
-              },
-            ].map((item) => (
-              <div class="flex items-start gap-3">
-                <span class="mt-0.5 text-lg">{item.icon}</span>
-                <p class="text-sm text-[var(--color-text-secondary)]">
-                  <span class="font-medium text-[var(--color-text)]">
-                    {item.goal}
-                  </span>{" "}
-                  {item.action}
-                </p>
-              </div>
-            ))
-          }
-        </div>
-      </div>
-
-      <!-- Footer -->
-      <div class="flex items-center justify-between p-6">
-        <p class="text-sm italic text-[var(--color-text-secondary)]">
-          "Coffee is a language in itself." — Jackie Chan
-        </p>
+      <div class="flex flex-wrap items-center gap-2 border-t border-[var(--color-border)] px-4 py-3 sm:px-5">
         <button
-          onclick="window.print()"
-          class="flex h-9 w-9 items-center justify-center rounded-full text-[var(--color-text-secondary)] hover:bg-[var(--color-surface-hover)] hover:text-[var(--color-accent)] transition-colors cursor-pointer"
-          aria-label="Print this recipe"
+          type="button"
+          class="inline-flex min-w-28 items-center justify-center gap-2 rounded-xl bg-[var(--color-accent)] px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-[var(--color-accent-hover)]"
+          data-brew-toggle
         >
-          <svg
-            class="w-5 h-5"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <polyline points="6 9 6 2 18 2 18 9"></polyline>
-            <path
-              d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"
-            ></path>
-            <rect x="6" y="14" width="12" height="8"></rect>
-          </svg>
+          <svg class="h-4 w-4" data-brew-toggle-icon viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m8 5 11 7-11 7V5Z"></path></svg>
+          <span data-brew-toggle-label>Start brew</span>
+        </button>
+        <button type="button" class="inline-flex h-10 items-center justify-center rounded-xl border border-[var(--color-border)] px-3 text-sm font-medium text-[var(--color-text-secondary)] transition-colors hover:border-[var(--color-accent)]/40 hover:text-[var(--color-accent)]" data-brew-reset>Reset</button>
+        <div class="flex items-center gap-1 sm:ml-1">
+          <button type="button" class="flex h-10 w-10 items-center justify-center rounded-xl border border-[var(--color-border)] text-[var(--color-text-secondary)] transition-colors hover:border-[var(--color-accent)]/40 hover:text-[var(--color-accent)] disabled:cursor-not-allowed disabled:opacity-35" aria-label="Previous brew phase" data-brew-previous>
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg>
+          </button>
+          <button type="button" class="flex h-10 w-10 items-center justify-center rounded-xl border border-[var(--color-border)] text-[var(--color-text-secondary)] transition-colors hover:border-[var(--color-accent)]/40 hover:text-[var(--color-accent)] disabled:cursor-not-allowed disabled:opacity-35" aria-label="Next brew phase" data-brew-next>
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
+          </button>
+        </div>
+        <button type="button" class="ml-auto inline-flex h-10 items-center gap-2 rounded-xl px-2.5 text-xs font-medium text-[var(--color-text-secondary)] transition-colors hover:bg-[var(--color-surface-hover)] hover:text-[var(--color-text)] disabled:cursor-not-allowed disabled:opacity-50" aria-pressed="true" data-wake-toggle>
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2"></rect><path d="M9 18h6"></path></svg>
+          <span data-wake-label>Keep screen awake</span>
         </button>
       </div>
+
+      <div class="grid grid-cols-2 border-t border-[var(--color-border)] sm:grid-cols-4">
+        {steps.map((step, index) => (
+          <button
+            type="button"
+            class="brew-phase-button relative min-w-0 border-b border-r border-[var(--color-border)] px-3 py-3 text-left transition-colors sm:border-b-0 last:border-r-0"
+            style={`--phase-color: ${step.color};`}
+            data-brew-phase
+            data-phase-index={index}
+            data-phase-start={index * 60}
+            data-phase-end={(index + 1) * 60}
+            data-phase-title={step.title}
+            data-phase-target={step.target}
+            data-phase-instruction={step.description}
+            data-phase-color={step.color}
+            aria-label={`Jump to ${step.title} at ${step.time}`}
+          >
+            <span class="brew-phase-marker absolute inset-x-0 top-0 h-0.5 bg-transparent" aria-hidden="true"></span>
+            <span class="block font-mono text-[0.62rem] text-[var(--color-text-secondary)]">{step.time.split("-")[0]}</span>
+            <span class="mt-1 block truncate text-xs font-semibold text-[var(--color-text)]">{step.title}</span>
+          </button>
+        ))}
+      </div>
+    </section>
+
+    <div class="coffee-layout grid items-start gap-6 lg:grid-cols-[minmax(0,1.45fr)_minmax(19rem,0.75fr)]">
+      <section class="coffee-method overflow-hidden rounded-3xl border border-[var(--color-border)] bg-[var(--color-surface)]" aria-labelledby="brew-method">
+        <div class="coffee-method-header border-b border-[var(--color-border)] p-5 sm:p-6">
+          <h2 id="brew-method" class="text-xl font-bold text-[var(--color-text)]">Four-minute method</h2>
+          <div class="coffee-phases mt-5 grid grid-cols-4 overflow-hidden rounded-xl border border-[var(--color-border)]">
+            {phases.map((phase) => (
+              <div class="relative px-2 py-3 text-center" style={`background: color-mix(in srgb, ${phase.color} 10%, transparent);`}>
+                <span class="absolute inset-x-0 top-0 h-0.5" style={`background: ${phase.color};`} aria-hidden="true"></span>
+                <span class="block font-mono text-[0.65rem] text-[var(--color-text-secondary)]">{phase.time}</span>
+                <span class="mt-1 block text-[0.68rem] font-semibold sm:text-xs" style={`color: ${phase.color};`}>{phase.label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div class="divide-y divide-[var(--color-border)]">
+          {steps.map((step) => (
+            <article class="coffee-step grid gap-3 p-5 sm:grid-cols-[3rem_minmax(0,1fr)_auto] sm:p-6">
+              <span class="font-mono text-sm font-semibold" style={`color: ${step.color};`}>{step.number}</span>
+              <div>
+                <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                  <h3 class="font-semibold text-[var(--color-text)]">{step.title}</h3>
+                  <span class="font-mono text-[0.68rem] text-[var(--color-text-secondary)]">{step.time}</span>
+                </div>
+                <p class="mt-1.5 text-sm leading-6 text-[var(--color-text-secondary)]">{step.description}</p>
+                <p class="mt-2 text-xs font-medium" style={`color: ${step.color};`}>{step.cadence}</p>
+              </div>
+              <span class="w-fit rounded-lg bg-[var(--color-surface-hover)] px-2.5 py-1 font-mono text-xs font-medium text-[var(--color-text)]">{step.amount}</span>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <aside class="coffee-aside space-y-6">
+        <section class="coffee-prep rounded-3xl border border-[var(--color-border)] bg-[var(--color-surface)] p-5 sm:p-6" aria-labelledby="preparation">
+          <div class="coffee-panel-heading mb-5 flex items-center gap-3">
+            <span class="coffee-panel-icon flex h-9 w-9 items-center justify-center rounded-xl bg-[var(--color-accent)]/10 text-[var(--color-accent)]">
+              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3"></path><path d="M1 14h6M9 8h6M17 16h6"></path></svg>
+            </span>
+            <h2 id="preparation" class="text-lg font-bold text-[var(--color-text)]">Preparation</h2>
+          </div>
+          <ol class="space-y-4">
+            {preparation.map((item, index) => (
+              <li class="grid grid-cols-[1.75rem_minmax(0,1fr)] gap-3">
+                <span class="flex h-7 w-7 items-center justify-center rounded-full border border-[var(--color-border)] font-mono text-[0.65rem] text-[var(--color-accent)]">{index + 1}</span>
+                <div>
+                  <h3 class="text-sm font-semibold text-[var(--color-text)]">{item.title}</h3>
+                  <p class="mt-1 text-sm leading-5 text-[var(--color-text-secondary)]">{item.description}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </section>
+
+        <section class="coffee-dial rounded-3xl border border-[var(--color-border)] bg-[var(--color-surface)] p-5 sm:p-6" aria-labelledby="dial-in">
+          <div class="coffee-panel-heading mb-5 flex items-center gap-3">
+            <span class="coffee-panel-icon flex h-9 w-9 items-center justify-center rounded-xl bg-[var(--color-highlight)]/10 text-[var(--color-highlight)]">
+              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.7 1.7 0 0 0 .34 1.88l.06.06-2.83 2.83-.06-.06a1.7 1.7 0 0 0-1.88-.34 1.7 1.7 0 0 0-1 1.55V21h-4v-.08a1.7 1.7 0 0 0-1-1.55 1.7 1.7 0 0 0-1.88.34l-.06.06-2.83-2.83.06-.06A1.7 1.7 0 0 0 4.6 15a1.7 1.7 0 0 0-1.55-1H3v-4h.08a1.7 1.7 0 0 0 1.55-1 1.7 1.7 0 0 0-.34-1.88l-.06-.06 2.83-2.83.06.06A1.7 1.7 0 0 0 9 4.6a1.7 1.7 0 0 0 1-1.55V3h4v.08a1.7 1.7 0 0 0 1 1.55 1.7 1.7 0 0 0 1.88-.34l.06-.06 2.83 2.83-.06.06A1.7 1.7 0 0 0 19.4 9c.13.62.67 1.06 1.3 1.06H21v4h-.08c-.63 0-1.17.44-1.52 1Z"></path></svg>
+            </span>
+            <div>
+              <h2 id="dial-in" class="text-lg font-bold text-[var(--color-text)]">Dial it in</h2>
+              <p class="text-xs text-[var(--color-text-secondary)]">Change one variable at a time.</p>
+            </div>
+          </div>
+          <div class="coffee-dial-list divide-y divide-[var(--color-border)]">
+            {adjustments.map((item) => (
+              <div class="py-3 first:pt-0 last:pb-0">
+                <h3 class="text-sm font-semibold text-[var(--color-text)]">{item.goal}</h3>
+                <p class="mt-1 text-sm leading-5 text-[var(--color-text-secondary)]">{item.action}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+      </aside>
     </div>
+    <p class="coffee-print-footer hidden">abdulrahmandiaa.ca/coffee · Hario V60 Switch recipe</p>
   </div>
+
+  <script>
+    function initCoffeePage() {
+      const printButton = document.querySelector<HTMLButtonElement>(".coffee-print");
+      if (printButton && printButton.dataset.initialized !== "true") {
+        printButton.dataset.initialized = "true";
+        printButton.addEventListener("click", () => window.print());
+      }
+
+      document.querySelectorAll<HTMLElement>("[data-brew-companion]").forEach((root) => {
+        if (root.dataset.initialized === "true") return;
+        root.dataset.initialized = "true";
+
+        const totalMs = 4 * 60 * 1000;
+        const storageKey = "v60-switch-brew-state";
+        const phaseButtons = Array.from(root.querySelectorAll<HTMLButtonElement>("[data-brew-phase]"));
+        const phases = phaseButtons.map((button) => ({
+          button,
+          start: Number(button.dataset.phaseStart || 0) * 1000,
+          end: Number(button.dataset.phaseEnd || 0) * 1000,
+          title: button.dataset.phaseTitle || "",
+          target: button.dataset.phaseTarget || "",
+          instruction: button.dataset.phaseInstruction || "",
+          color: button.dataset.phaseColor || "var(--color-accent)",
+        }));
+        const cues = JSON.parse(root.dataset.brewCues || "[]") as Array<{
+          start: number;
+          end: number;
+          title: string;
+          instruction: string;
+          fromWeight: number;
+          toWeight: number;
+        }>;
+
+        const time = root.querySelector<HTMLElement>("[data-brew-time]");
+        const eyebrow = root.querySelector<HTMLElement>("[data-brew-eyebrow]");
+        const phaseCount = root.querySelector<HTMLElement>("[data-brew-phase-count]");
+        const title = root.querySelector<HTMLElement>("[data-brew-title]");
+        const instruction = root.querySelector<HTMLElement>("[data-brew-instruction]");
+        const target = root.querySelector<HTMLElement>("[data-brew-target]");
+        const progress = root.querySelector<HTMLElement>("[data-brew-progress]");
+        const toggle = root.querySelector<HTMLButtonElement>("[data-brew-toggle]");
+        const toggleLabel = root.querySelector<HTMLElement>("[data-brew-toggle-label]");
+        const togglePath = root.querySelector<SVGPathElement>("[data-brew-toggle-icon] path");
+        const reset = root.querySelector<HTMLButtonElement>("[data-brew-reset]");
+        const previous = root.querySelector<HTMLButtonElement>("[data-brew-previous]");
+        const next = root.querySelector<HTMLButtonElement>("[data-brew-next]");
+        const wakeToggle = root.querySelector<HTMLButtonElement>("[data-wake-toggle]");
+        const wakeLabel = root.querySelector<HTMLElement>("[data-wake-label]");
+
+        let elapsedMs = 0;
+        let running = false;
+        let engaged = false;
+        let startedAt = 0;
+        let animationFrame = 0;
+        let wakeLock: any = null;
+        let keepAwake = true;
+        let lastPhase = -1;
+        let lastCue = -1;
+        let lastSavedSecond = -1;
+        let completionSignaled = false;
+
+        try {
+          const saved = JSON.parse(sessionStorage.getItem(storageKey) || "null");
+          if (saved && typeof saved.elapsedMs === "number") {
+            elapsedMs = Math.min(totalMs, Math.max(0, saved.elapsedMs));
+            keepAwake = saved.keepAwake !== false;
+            engaged = Boolean(saved.engaged || elapsedMs > 0);
+            if (saved.running && typeof saved.savedAt === "number") {
+              elapsedMs = Math.min(totalMs, elapsedMs + Math.max(0, Date.now() - saved.savedAt));
+              running = elapsedMs < totalMs;
+              engaged = true;
+            }
+          }
+        } catch {
+          sessionStorage.removeItem(storageKey);
+        }
+
+        const currentElapsed = () =>
+          Math.min(totalMs, running ? elapsedMs + performance.now() - startedAt : elapsedMs);
+
+        const phaseIndexFor = (milliseconds: number) =>
+          Math.min(phases.length - 1, Math.floor(milliseconds / 60000));
+
+        const cueIndexFor = (milliseconds: number) => {
+          const seconds = milliseconds / 1000;
+          const index = cues.findIndex((cue) => seconds >= cue.start && seconds < cue.end);
+          return index >= 0 ? index : Math.max(0, cues.length - 1);
+        };
+
+        const targetWeightFor = (milliseconds: number) => {
+          const cue = cues[cueIndexFor(milliseconds)];
+          if (!cue) return 0;
+          const cueDuration = Math.max(1, cue.end - cue.start);
+          const cueProgress = Math.min(1, Math.max(0, milliseconds / 1000 - cue.start) / cueDuration);
+          return Math.round(cue.fromWeight + (cue.toWeight - cue.fromWeight) * cueProgress);
+        };
+
+        const persist = () => {
+          sessionStorage.setItem(
+            storageKey,
+            JSON.stringify({
+              elapsedMs: currentElapsed(),
+              running,
+              engaged,
+              keepAwake,
+              savedAt: Date.now(),
+            }),
+          );
+        };
+
+        const updateWakeUi = () => {
+          const supported = "wakeLock" in navigator;
+          if (wakeToggle) {
+            wakeToggle.disabled = !supported;
+            wakeToggle.setAttribute("aria-pressed", String(keepAwake));
+          }
+          if (wakeLabel) {
+            wakeLabel.textContent = !supported
+              ? "Wake lock unavailable"
+              : wakeLock
+                ? "Screen awake"
+                : keepAwake
+                  ? "Keep screen awake"
+                  : "Screen wake off";
+          }
+        };
+
+        const releaseWakeLock = async () => {
+          if (!wakeLock) return;
+          const lock = wakeLock;
+          wakeLock = null;
+          try {
+            await lock.release();
+          } catch {
+            // The browser may already have released it when the tab was hidden.
+          }
+          updateWakeUi();
+        };
+
+        const requestWakeLock = async () => {
+          if (!keepAwake || !running || document.visibilityState !== "visible" || !("wakeLock" in navigator)) {
+            updateWakeUi();
+            return;
+          }
+          try {
+            wakeLock = await (navigator as any).wakeLock.request("screen");
+            wakeLock.addEventListener("release", () => {
+              wakeLock = null;
+              updateWakeUi();
+            });
+          } catch {
+            wakeLock = null;
+          }
+          updateWakeUi();
+        };
+
+        const render = (milliseconds = currentElapsed()) => {
+          const complete = milliseconds >= totalMs;
+          const phaseIndex = phaseIndexFor(milliseconds);
+          const phase = phases[phaseIndex];
+          const cueIndex = cueIndexFor(milliseconds);
+          const cue = cues[cueIndex];
+          const totalSeconds = Math.floor(milliseconds / 1000);
+          const minutes = Math.floor(totalSeconds / 60);
+          const seconds = String(totalSeconds % 60).padStart(2, "0");
+
+          if (time) {
+            time.textContent = `${minutes}:${seconds}`;
+            time.style.color = engaged ? phase?.color || "" : "";
+          }
+          if (progress) {
+            progress.style.width = `${(milliseconds / totalMs) * 100}%`;
+            progress.style.backgroundColor = phase?.color || "var(--color-accent)";
+          }
+
+          if (!engaged) {
+            if (eyebrow) eyebrow.textContent = "Ready to brew";
+            if (phaseCount) phaseCount.textContent = "Four phases · 4:00 total";
+            if (title) title.textContent = "Set up your brewer";
+            if (instruction) instruction.textContent = "When the brewer is preheated and the coffee bed is level, press Start brew and follow the live prompts.";
+            if (target) target.textContent = "0 g";
+          } else if (complete) {
+            if (eyebrow) eyebrow.textContent = "Brew complete";
+            if (phaseCount) phaseCount.textContent = "4 of 4 phases complete";
+            if (title) title.textContent = "Swirl and serve";
+            if (instruction) instruction.textContent = "Remove the brewer, swirl the coffee, and let it cool briefly before tasting.";
+            if (target) target.textContent = "320 g";
+          } else if (phase && cue) {
+            const secondsToCue = Math.max(1, Math.ceil(cue.end - milliseconds / 1000));
+            if (eyebrow) eyebrow.textContent = running ? "Brewing now" : "Timer paused";
+            if (phaseCount) phaseCount.textContent = `Phase ${phaseIndex + 1} of ${phases.length} · next cue in ${secondsToCue}s`;
+            if (title) title.textContent = cue.title;
+            if (instruction) instruction.textContent = cue.instruction;
+            if (target) target.textContent = `${targetWeightFor(totalSeconds * 1000)} g`;
+          }
+
+          phaseButtons.forEach((button, index) => {
+            const active = engaged && !complete && index === phaseIndex;
+            const completed = engaged && milliseconds >= phases[index].end;
+            button.classList.toggle("active", active);
+            button.classList.toggle("complete", completed);
+            if (active) button.setAttribute("aria-current", "step");
+            else button.removeAttribute("aria-current");
+          });
+
+          if (toggleLabel) {
+            toggleLabel.textContent = complete ? "Brew again" : running ? "Pause" : engaged && milliseconds > 0 ? "Resume" : "Start brew";
+          }
+          if (togglePath) {
+            togglePath.setAttribute("d", running ? "M7 5h4v14H7zM13 5h4v14h-4z" : "m8 5 11 7-11 7V5Z");
+          }
+          if (previous) previous.disabled = !engaged || milliseconds < 1000;
+          if (next) next.disabled = complete;
+
+          if (running && lastCue >= 0 && cueIndex !== lastCue) {
+            navigator.vibrate?.(phaseIndex !== lastPhase ? 110 : 65);
+          }
+          lastPhase = phaseIndex;
+          lastCue = cueIndex;
+        };
+
+        const stopTimer = () => {
+          if (!running) return;
+          elapsedMs = currentElapsed();
+          running = false;
+          cancelAnimationFrame(animationFrame);
+          void releaseWakeLock();
+          persist();
+          render(elapsedMs);
+        };
+
+        const tick = () => {
+          if (!running || !root.isConnected) return;
+          const milliseconds = currentElapsed();
+          render(milliseconds);
+
+          const savedSecond = Math.floor(milliseconds / 1000);
+          if (savedSecond !== lastSavedSecond) {
+            lastSavedSecond = savedSecond;
+            persist();
+          }
+
+          if (milliseconds >= totalMs) {
+            elapsedMs = totalMs;
+            running = false;
+            void releaseWakeLock();
+            persist();
+            render(totalMs);
+            if (!completionSignaled) {
+              completionSignaled = true;
+              navigator.vibrate?.([160, 80, 160]);
+            }
+            return;
+          }
+          animationFrame = requestAnimationFrame(tick);
+        };
+
+        const startTimer = () => {
+          if (currentElapsed() >= totalMs) {
+            elapsedMs = 0;
+            completionSignaled = false;
+            lastPhase = -1;
+            lastCue = -1;
+          }
+          engaged = true;
+          running = true;
+          startedAt = performance.now();
+          void requestWakeLock();
+          persist();
+          render();
+          animationFrame = requestAnimationFrame(tick);
+        };
+
+        const jumpTo = (phaseIndex: number) => {
+          const phase = phases[Math.max(0, Math.min(phases.length - 1, phaseIndex))];
+          if (!phase) return;
+          elapsedMs = phase.start;
+          engaged = true;
+          completionSignaled = false;
+          lastPhase = phaseIndexFor(elapsedMs);
+          lastCue = cueIndexFor(elapsedMs);
+          if (running) startedAt = performance.now();
+          persist();
+          render(elapsedMs);
+        };
+
+        toggle?.addEventListener("click", () => {
+          if (running) stopTimer();
+          else startTimer();
+        });
+
+        reset?.addEventListener("click", () => {
+          running = false;
+          engaged = false;
+          elapsedMs = 0;
+          lastPhase = -1;
+          lastCue = -1;
+          completionSignaled = false;
+          cancelAnimationFrame(animationFrame);
+          void releaseWakeLock();
+          sessionStorage.removeItem(storageKey);
+          render(0);
+        });
+
+        previous?.addEventListener("click", () => {
+          const milliseconds = currentElapsed();
+          const currentPhase = phaseIndexFor(milliseconds);
+          const phaseStart = phases[currentPhase]?.start || 0;
+          jumpTo(milliseconds - phaseStart > 3000 ? currentPhase : currentPhase - 1);
+        });
+
+        next?.addEventListener("click", () => {
+          const currentPhase = phaseIndexFor(currentElapsed());
+          if (currentPhase < phases.length - 1) jumpTo(currentPhase + 1);
+          else {
+            elapsedMs = totalMs;
+            running = false;
+            engaged = true;
+            cancelAnimationFrame(animationFrame);
+            void releaseWakeLock();
+            persist();
+            render(totalMs);
+          }
+        });
+
+        phaseButtons.forEach((button, index) => {
+          button.addEventListener("click", () => jumpTo(index));
+        });
+
+        wakeToggle?.addEventListener("click", () => {
+          keepAwake = !keepAwake;
+          if (keepAwake) void requestWakeLock();
+          else void releaseWakeLock();
+          persist();
+          updateWakeUi();
+        });
+
+        const handleVisibility = () => {
+          if (document.visibilityState === "visible" && running) void requestWakeLock();
+        };
+        document.addEventListener("visibilitychange", handleVisibility);
+
+        const cleanup = () => {
+          persist();
+          cancelAnimationFrame(animationFrame);
+          void releaseWakeLock();
+          document.removeEventListener("visibilitychange", handleVisibility);
+        };
+        document.addEventListener("astro:before-swap", cleanup, { once: true });
+        window.addEventListener("beforeunload", cleanup, { once: true });
+
+        updateWakeUi();
+        render(elapsedMs);
+        if (running) {
+          startedAt = performance.now();
+          void requestWakeLock();
+          animationFrame = requestAnimationFrame(tick);
+        }
+      });
+    }
+
+    initCoffeePage();
+    document.addEventListener("astro:after-swap", initCoffeePage);
+  </script>
+
+  <style>
+    .brew-phase-button {
+      color: var(--color-text-secondary) !important;
+    }
+
+    .brew-phase-button:hover,
+    .brew-phase-button.active {
+      background: color-mix(in srgb, var(--phase-color) 9%, transparent);
+    }
+
+    .brew-phase-button.active .brew-phase-marker,
+    .brew-phase-button.complete .brew-phase-marker {
+      background: var(--phase-color);
+    }
+
+    .brew-phase-button.complete {
+      background: color-mix(in srgb, var(--phase-color) 5%, transparent);
+    }
+
+    @page {
+      size: A4 portrait;
+      margin: 10mm 11mm;
+    }
+
+    @media print {
+      :global(html),
+      :global(body) {
+        background: #fff !important;
+        color: #111827 !important;
+      }
+
+      :global(body) {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      :global(.site-header),
+      :global(footer),
+      :global(.coffee-print),
+      .brew-companion,
+      :global(button[aria-label="Scroll to top"]) {
+        display: none !important;
+      }
+
+      .coffee-page {
+        --color-bg: #fff;
+        --color-surface: #fff;
+        --color-surface-hover: #f3f6f8;
+        --color-border: #cbd5e1;
+        --color-text: #111827;
+        --color-text-secondary: #475569;
+        --color-accent: #087f99;
+        --color-highlight: #b45309;
+        --color-topic-privacy: #0f766e;
+        max-width: none;
+        padding: 0;
+        color: #111827;
+        font-size: 8pt;
+      }
+
+      .coffee-header {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: end !important;
+        justify-content: space-between !important;
+        gap: 6mm !important;
+        margin-bottom: 4mm !important;
+      }
+
+      .coffee-header > div {
+        max-width: none !important;
+      }
+
+      .coffee-header h1 {
+        color: #111827 !important;
+        font-size: 24pt !important;
+        line-height: 1 !important;
+      }
+
+      .coffee-header p:first-child {
+        margin-bottom: 1.5mm !important;
+        font-size: 7pt !important;
+      }
+
+      .coffee-header p:last-child {
+        max-width: 130mm;
+        margin-top: 2mm !important;
+        color: #475569 !important;
+        font-size: 8pt !important;
+        line-height: 1.35 !important;
+      }
+
+      .coffee-overview,
+      .coffee-method,
+      .coffee-prep,
+      .coffee-dial {
+        border: 1px solid #cbd5e1 !important;
+        border-radius: 3mm !important;
+        background: #fff !important;
+        box-shadow: none !important;
+        break-inside: avoid;
+      }
+
+      .coffee-overview {
+        margin-bottom: 4mm !important;
+      }
+
+      .coffee-overview > div:first-child {
+        padding: 2mm 3mm !important;
+      }
+
+      .coffee-overview h2 {
+        font-size: 9pt !important;
+      }
+
+      .coffee-metrics {
+        display: grid !important;
+        grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+      }
+
+      .coffee-metric {
+        grid-column: auto !important;
+        padding: 2.4mm 3mm !important;
+      }
+
+      .coffee-metric-icon {
+        display: none !important;
+      }
+
+      .coffee-metric p {
+        margin: 0 !important;
+        font-size: 6.5pt !important;
+        line-height: 1.3 !important;
+      }
+
+      .coffee-metric p:nth-of-type(2) {
+        margin-top: 0.7mm !important;
+        font-size: 9pt !important;
+      }
+
+      .coffee-layout {
+        display: grid !important;
+        grid-template-columns: minmax(0, 1.42fr) minmax(0, 0.72fr) !important;
+        align-items: start !important;
+        gap: 4mm !important;
+      }
+
+      .coffee-method-header {
+        padding: 3mm !important;
+      }
+
+      .coffee-method-header h2,
+      .coffee-panel-heading h2 {
+        font-size: 11pt !important;
+      }
+
+      .coffee-phases {
+        margin-top: 2mm !important;
+        border-radius: 2mm !important;
+      }
+
+      .coffee-phases > div {
+        padding: 1.5mm 1mm !important;
+      }
+
+      .coffee-phases span {
+        font-size: 6pt !important;
+      }
+
+      .coffee-step {
+        display: grid !important;
+        grid-template-columns: 6mm minmax(0, 1fr) auto !important;
+        gap: 2mm !important;
+        padding: 2.6mm 3mm !important;
+        break-inside: avoid;
+      }
+
+      .coffee-step h3 {
+        font-size: 8.5pt !important;
+      }
+
+      .coffee-step p {
+        margin-top: 0.8mm !important;
+        font-size: 7pt !important;
+        line-height: 1.32 !important;
+      }
+
+      .coffee-step p:last-child {
+        font-size: 6.3pt !important;
+      }
+
+      .coffee-step > span:last-child {
+        padding: 1mm 1.5mm !important;
+        font-size: 6.5pt !important;
+      }
+
+      .coffee-aside {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 4mm !important;
+      }
+
+      .coffee-aside > * {
+        margin-top: 0 !important;
+      }
+
+      .coffee-prep,
+      .coffee-dial {
+        padding: 3mm !important;
+      }
+
+      .coffee-panel-heading {
+        margin-bottom: 2.5mm !important;
+      }
+
+      .coffee-panel-icon {
+        display: none !important;
+      }
+
+      .coffee-prep ol {
+        gap: 2.3mm !important;
+      }
+
+      .coffee-prep li {
+        grid-template-columns: 5mm minmax(0, 1fr) !important;
+        gap: 1.5mm !important;
+      }
+
+      .coffee-prep li > span {
+        width: 5mm !important;
+        height: 5mm !important;
+        font-size: 6pt !important;
+      }
+
+      .coffee-prep h3,
+      .coffee-dial h3 {
+        font-size: 7.2pt !important;
+      }
+
+      .coffee-prep p,
+      .coffee-dial p {
+        margin-top: 0.5mm !important;
+        font-size: 6.4pt !important;
+        line-height: 1.3 !important;
+      }
+
+      .coffee-dial .coffee-panel-heading p {
+        font-size: 6pt !important;
+      }
+
+      .coffee-dial-list > div {
+        padding: 1.4mm 0 !important;
+      }
+
+      .coffee-print-footer {
+        display: block !important;
+        margin: 3mm 0 0;
+        color: #64748b;
+        font-family: var(--font-mono);
+        font-size: 6pt;
+        text-align: right;
+      }
+    }
+  </style>
 </BaseLayout>

@@ -1,0 +1,37 @@
+---
+interface NewsItem {
+  date: string;
+  text: string;
+  href?: string;
+}
+
+interface Props {
+  news: NewsItem[];
+  limit?: number;
+}
+
+const { news, limit } = Astro.props;
+const visibleNews = typeof limit === "number" ? news.slice(0, limit) : news;
+---
+
+<ol class="space-y-0">
+  {visibleNews.map((item, index) => (
+    <li class:list={["relative grid grid-cols-[4.5rem_minmax(0,1fr)] gap-3 pb-5", index === visibleNews.length - 1 && "pb-0"]}>
+      {index < visibleNews.length - 1 && <span class="absolute bottom-0 left-[4.78rem] top-5 w-px bg-[var(--color-border)]" aria-hidden="true"></span>}
+      <time class="pt-0.5 font-mono text-[0.68rem] text-[var(--color-text-secondary)]">{item.date}</time>
+      <div class="relative pl-3">
+        <span class="absolute left-[-0.23rem] top-1.5 h-2 w-2 rounded-full border-2 border-[var(--color-surface)] bg-[var(--color-accent)]" aria-hidden="true"></span>
+        {item.href ? (
+          <a
+            href={item.href}
+            target={item.href.startsWith("http") ? "_blank" : undefined}
+            rel={item.href.startsWith("http") ? "noopener" : undefined}
+            class="text-sm leading-6 text-[var(--color-text)] hover:text-[var(--color-accent)]"
+          >{item.text}</a>
+        ) : (
+          <p class="text-sm leading-6 text-[var(--color-text)]">{item.text}</p>
+        )}
+      </div>
+    </li>
+  ))}
+</ol>

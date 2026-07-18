@@ -1,7 +1,22 @@
+# - name: NSERC Canada Graduate Research Scholarship - Doctoral
+#   amount: CA$120K
+#   institution: University of Waterloo
+#   years: "2026-2027"
+
 - name: Interop Labs PhD Fellowship
   amount: CA$110K
   institution: University of Waterloo
   years: "2026-2027"
+
+- name: President's Graduate Scholarship
+  amount: CA$10K
+  institution: University of Waterloo
+  years: "2026-2027"
+
+- name: Best Poster Award
+  amount: CA$1K
+  institution: Cybersecurity and Privacy Institute Conference
+  years: "2024"
 
 - name: David R. Cheriton Graduate Scholarship
   amount: CA$40K
@@ -20,5 +35,5 @@
 
 - name: Tarek Nour AUC Scholarship
   amount: US$100K
-  institution: Tarek Nour Communications
+  institution: The American University in Cairo
   years: "2016-2021"

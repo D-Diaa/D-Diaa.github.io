@@ -1,0 +1,8 @@
+# Most recent items should appear first. `href` is optional.
+- date: Apr 2026
+  text: Joined Google as a Student Researcher working on private RAG and nearest-neighbor search.
+  href: https://research.google
+
+- date: Mar 2026
+  text: ZipPIR was accepted to the 35th USENIX Security Symposium.
+  href: /publications
