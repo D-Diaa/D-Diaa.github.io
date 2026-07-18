@@ -5,34 +5,38 @@ interface Props {
   title?: string;
   description?: string;
   canonicalPath?: string;
+  noindex?: boolean;
 }
 
-const { title, description, canonicalPath = "" } = Astro.props;
+const { title, description, canonicalPath, noindex = false } = Astro.props;
 
 const pageTitle = title
   ? `${title} | ${siteConfig.title}`
   : siteConfig.title;
 const pageDescription = description || siteConfig.description;
-const canonicalUrl = `${siteConfig.url}${canonicalPath}`;
+const canonicalUrl = canonicalPath === undefined
+  ? undefined
+  : `${siteConfig.url}${canonicalPath}`;
 const ogImage = `${siteConfig.url}${siteConfig.image}`;
 ---
 
 <!-- Primary Meta Tags -->
 <meta name="description" content={pageDescription} />
+{noindex && <meta name="robots" content="noindex" />}
 <meta name="theme-color" content="#0b1215" media="(prefers-color-scheme: dark)" />
 <meta name="theme-color" content="#f8fafb" media="(prefers-color-scheme: light)" />
-<link rel="canonical" href={canonicalUrl} />
+{canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website" />
-<meta property="og:url" content={canonicalUrl} />
+{canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
 <meta property="og:title" content={pageTitle} />
 <meta property="og:description" content={pageDescription} />
 <meta property="og:image" content={ogImage} />
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary" />
-<meta name="twitter:url" content={canonicalUrl} />
+{canonicalUrl && <meta name="twitter:url" content={canonicalUrl} />}
 <meta name="twitter:title" content={pageTitle} />
 <meta name="twitter:description" content={pageDescription} />
 <meta name="twitter:image" content={ogImage} />

@@ -12,6 +12,24 @@ interface Link {
   label: string;
 }
 
+interface Citation {
+  type: "article" | "inproceedings" | "unpublished";
+  key: string;
+  authors: string[];
+  booktitle?: string;
+  journal?: string;
+  series?: string;
+  volume?: string;
+  number?: string;
+  pages?: string;
+  publisher?: string;
+  address?: string;
+  isbn?: string;
+  doi?: string;
+  url?: string;
+  month?: string;
+}
+
 interface Props {
   publication: {
     authors: Author[];
@@ -22,6 +40,7 @@ interface Props {
     abstract?: string;
     links?: Link[];
     highlights?: string[];
+    citation: Citation;
   };
   index?: number;
 }
@@ -34,8 +53,33 @@ const topicColor = publication.topic
   ? siteConfig.topics[publication.topic as keyof typeof siteConfig.topics]?.color
   : undefined;
 const abstractId = `abstract-${index}`;
+const abstractToggleId = `abstract-toggle-${index}`;
 const actionClass =
   "publication-action inline-flex h-8 items-center justify-center gap-1.5 rounded-lg border border-[var(--color-border)] bg-transparent px-2.5 text-xs font-medium transition-colors hover:border-[var(--color-accent)]/40 hover:bg-[var(--color-surface-hover)]";
+
+const citationFields = [
+  ["author", publication.citation.authors.join(" and ")],
+  ["title", `{${publication.title}}`],
+  ["booktitle", publication.citation.booktitle],
+  ["journal", publication.citation.journal],
+  ["series", publication.citation.series],
+  ["volume", publication.citation.volume],
+  ["number", publication.citation.number],
+  ["pages", publication.citation.pages],
+  ["publisher", publication.citation.publisher],
+  ["address", publication.citation.address],
+  ["isbn", publication.citation.isbn],
+  ["doi", publication.citation.doi],
+  ["url", publication.citation.url],
+  ["month", publication.citation.month],
+  ["year", String(publication.year)],
+].filter((field): field is [string, string] => Boolean(field[1]));
+
+const bibtex = [
+  `@${publication.citation.type}{${publication.citation.key},`,
+  ...citationFields.map(([name, value]) => `  ${name} = {${value}},`),
+  `}`,
+].join("\n");
 ---
 
 <article
@@ -93,9 +137,12 @@ const actionClass =
     {
       publication.abstract && (
         <button
+          id={abstractToggleId}
+          type="button"
           class={`abstract-toggle cursor-pointer ${actionClass}`}
           aria-expanded="false"
           aria-controls={abstractId}
+          aria-label={`Show abstract for ${publication.title}`}
         >
           <svg
             class="toggle-chevron w-3.5 h-3.5 transition-transform duration-200"
@@ -105,6 +152,7 @@ const actionClass =
             stroke-width="2"
             stroke-linecap="round"
             stroke-linejoin="round"
+            aria-hidden="true"
           >
             <polyline points="6 9 12 15 18 9" />
           </svg>
@@ -114,12 +162,10 @@ const actionClass =
     }
 
     <button
+      type="button"
       class={`bibtex-button cursor-pointer ${actionClass}`}
-      data-authors={publication.authors.map((a) => a.name).join("|")}
-      data-title={publication.title}
-      data-venue={publication.venue || ""}
-      data-year={publication.year}
-      data-url={paperLink?.url || ""}
+      data-bibtex={bibtex}
+      aria-label={`Copy BibTeX citation for ${publication.title}`}
     >
       <svg
         class="w-3.5 h-3.5"
@@ -129,6 +175,7 @@ const actionClass =
         stroke-width="2"
         stroke-linecap="round"
         stroke-linejoin="round"
+        aria-hidden="true"
       >
         <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
         <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"
@@ -227,11 +274,12 @@ const actionClass =
         class="publication-abstract grid grid-rows-[0fr] transition-[grid-template-rows] duration-300 ease-in-out"
         itemprop="abstract"
         role="region"
-        aria-label="Abstract"
+        aria-label={`Abstract for ${publication.title}`}
+        aria-hidden="true"
       >
         <div class="overflow-hidden">
           <div class="border-t border-[var(--color-border)] px-4 pb-4 pt-3 sm:ml-[4.75rem]">
-            <p class="max-w-4xl text-sm leading-relaxed text-[var(--color-text-secondary)]">
+            <p class="max-w-4xl text-justify text-sm leading-relaxed text-[var(--color-text-secondary)]">
               {publication.abstract}
             </p>
           </div>
@@ -266,6 +314,11 @@ const actionClass =
         abstract.classList.toggle("grid-rows-[1fr]", !isOpen);
         chevron?.classList.toggle("rotate-180", !isOpen);
         (btn as HTMLElement).setAttribute("aria-expanded", String(!isOpen));
+        (btn as HTMLElement).setAttribute(
+          "aria-label",
+          `${isOpen ? "Show" : "Hide"} abstract for ${card?.querySelector("h3")?.textContent?.trim() || "publication"}`,
+        );
+        abstract.setAttribute("aria-hidden", String(isOpen));
       });
     });
 
@@ -273,27 +326,11 @@ const actionClass =
     document.querySelectorAll(".bibtex-button").forEach((btn) => {
       btn.addEventListener("click", () => {
         const el = btn as HTMLElement;
-        const ds = el.dataset;
-        const authors = ds.authors?.split("|") || [];
-        const title = ds.title || "";
-        const venue = ds.venue || "";
-        const year = ds.year || "";
-        const url = ds.url || "";
-
-        const lastName = (authors[0] || "")
-          .split(" ")
-          .pop()
-          ?.replace(/[.,]/g, "");
-        const firstWord = title.split(" ")[0].replace(/[^a-zA-Z0-9]/g, "");
-        const key = `${lastName}${year}${firstWord}`;
-
-        let bib = `@${venue ? "article" : "unpublished"}{${key},\n`;
-        bib += `  author = {${authors.join(" and ")}},\n`;
-        bib += `  title = {${title}},\n`;
-        if (venue) bib += `  journal = {${venue}},\n`;
-        bib += `  year = {${year}},\n`;
-        if (url) bib += `  url = {${url}},\n`;
-        bib += `}`;
+        const bib = el.dataset.bibtex;
+        if (!bib) {
+          showToast("Citation data is unavailable", true);
+          return;
+        }
 
         navigator.clipboard.writeText(bib).then(
           () => showToast("Citation copied to clipboard!"),
@@ -308,6 +345,9 @@ const actionClass =
 
     const toast = document.createElement("div");
     toast.className = "clipboard-toast";
+    toast.setAttribute("role", isError ? "alert" : "status");
+    toast.setAttribute("aria-live", isError ? "assertive" : "polite");
+    toast.setAttribute("aria-atomic", "true");
     Object.assign(toast.style, {
       position: "fixed",
       bottom: "1.5rem",
@@ -318,7 +358,7 @@ const actionClass =
       fontSize: "0.875rem",
       fontWeight: "500",
       color: "white",
-      backgroundColor: isError ? "#ef4444" : "#22c55e",
+      backgroundColor: isError ? "#b91c1c" : "#166534",
       opacity: "0",
       transition: "opacity 0.3s, transform 0.3s",
       zIndex: "9999",

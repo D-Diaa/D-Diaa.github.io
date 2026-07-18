@@ -13,6 +13,24 @@ interface Link {
   label: string;
 }
 
+interface Citation {
+  type: "article" | "inproceedings" | "unpublished";
+  key: string;
+  authors: string[];
+  booktitle?: string;
+  journal?: string;
+  series?: string;
+  volume?: string;
+  number?: string;
+  pages?: string;
+  publisher?: string;
+  address?: string;
+  isbn?: string;
+  doi?: string;
+  url?: string;
+  month?: string;
+}
+
 interface Publication {
   authors: Author[];
   title: string;
@@ -22,6 +40,7 @@ interface Publication {
   abstract?: string;
   links?: Link[];
   highlights?: string[];
+  citation: Citation;
 }
 
 interface Props {
@@ -37,7 +56,24 @@ const searchText = (publication: Publication) =>
     publication.venue,
     publication.year,
     publication.topic,
+    publication.abstract,
     ...publication.authors.map((author) => author.name),
+    ...publication.citation.authors,
+    publication.citation.key,
+    publication.citation.booktitle,
+    publication.citation.journal,
+    publication.citation.series,
+    publication.citation.volume,
+    publication.citation.number,
+    publication.citation.pages,
+    publication.citation.publisher,
+    publication.citation.address,
+    publication.citation.isbn,
+    publication.citation.doi,
+    publication.citation.url,
+    publication.citation.month,
+    ...(publication.highlights || []),
+    ...(publication.links || []).flatMap((link) => [link.label, link.url]),
   ]
     .filter(Boolean)
     .join(" ")
@@ -53,7 +89,7 @@ const searchText = (publication: Publication) =>
       </svg>
       <input
         type="search"
-        placeholder="Search by title, author, venue, or year…"
+        placeholder="Search by title, author, venue, DOI, or keyword…"
         class="publication-search h-10 w-full rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] pl-10 pr-4 text-sm text-[var(--color-text)] outline-none transition focus:border-[var(--color-accent)]/60 focus:ring-2 focus:ring-[var(--color-accent)]/10"
       />
     </label>

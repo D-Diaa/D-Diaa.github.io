@@ -24,6 +24,16 @@ Edit `src/data/publications.yml` (or `preprints.yml`):
   title: "Paper Title"
   venue: "Conference or Journal"
   year: 2025
+  citation:
+    type: inproceedings
+    key: author2025shorttitle
+    authors:
+      - Full Author Name
+      - Your Full Name
+    booktitle: "Official Proceedings Name"
+    pages: "1--20"
+    publisher: "Publisher"
+    url: "https://official-publication-page.example"
   abstract: "Optional abstract text..."
   links:
     - type: "paper"

@@ -10,9 +10,10 @@ interface Props {
   title?: string;
   description?: string;
   canonicalPath?: string;
+  noindex?: boolean;
 }
 
-const { title, description, canonicalPath } = Astro.props;
+const { title, description, canonicalPath, noindex = false } = Astro.props;
 
 const pageTitle = title ? `${title} | Abdulrahman Diaa` : "Abdulrahman Diaa";
 ---
@@ -43,13 +44,13 @@ const pageTitle = title ? `${title} | Abdulrahman Diaa` : "Abdulrahman Diaa";
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 
 
-    <SEOHead title={title} description={description} canonicalPath={canonicalPath} />
+    <SEOHead title={title} description={description} canonicalPath={canonicalPath} noindex={noindex} />
     <ViewTransitions />
   </head>
   <body class="min-h-screen flex flex-col">
     <a
       href="#main-content"
-      class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:rounded-lg focus:bg-[var(--color-accent)] focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-white"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:rounded-lg focus:bg-[var(--color-accent)] focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-[var(--color-on-accent)]"
     >
       Skip to content
     </a>

@@ -13,6 +13,7 @@
   --color-text-secondary: #b8c5d4;
   --color-accent: #22d3ee;
   --color-accent-hover: #67e8f9;
+  --color-on-accent: #091214;
   --color-highlight: #f59e0b;
   --color-topic-privacy: #2dd4bf;
   --color-topic-watermark: #fb923c;
@@ -35,11 +36,12 @@ html.light {
   --color-border: rgba(0, 0, 0, 0.12);
   --color-text: #0f172a;
   --color-text-secondary: #2d3748;
-  --color-accent: #0891b2;
-  --color-accent-hover: #0e7490;
-  --color-highlight: #d97706;
-  --color-topic-privacy: #0d9488;
-  --color-topic-watermark: #ea580c;
+  --color-accent: #0e7490;
+  --color-accent-hover: #155e75;
+  --color-on-accent: #ffffff;
+  --color-highlight: #b45309;
+  --color-topic-privacy: #0f766e;
+  --color-topic-watermark: #c2410c;
 }
 
 body {
@@ -51,15 +53,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Smooth scroll */
-html {
-  scroll-behavior: smooth;
-}
-
 /* Selection color */
 ::selection {
   background-color: var(--color-accent);
-  color: white;
+  color: var(--color-on-accent);
 }
 
 /* Scrollbar styling */
@@ -98,6 +95,10 @@ button:focus-visible,
 
 /* Animations */
 @media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+
   /* Avatar glow pulse */
   @keyframes glow-pulse {
     0%, 100% {
@@ -118,5 +119,16 @@ button:focus-visible,
 
   .avatar-glow:hover {
     animation: glow-pulse 4s ease-in-out 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

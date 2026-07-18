@@ -3,7 +3,7 @@
 
 <button
   id="scroll-to-top"
-  class="fixed bottom-6 right-6 z-40 flex h-10 w-10 items-center justify-center rounded-full bg-[var(--color-accent)] text-white opacity-0 shadow-lg transition-all duration-300 hover:bg-[var(--color-accent-hover)] hover:scale-110 cursor-pointer pointer-events-none"
+  class="fixed bottom-6 right-6 z-40 flex h-10 w-10 items-center justify-center rounded-full bg-[var(--color-accent)] text-[var(--color-on-accent)] opacity-0 shadow-lg transition-all duration-300 hover:bg-[var(--color-accent-hover)] hover:scale-110 motion-reduce:hover:scale-100 cursor-pointer pointer-events-none"
   aria-label="Scroll to top"
   aria-hidden="true"
   tabindex="-1"
@@ -41,7 +41,8 @@
     });
 
     btn.addEventListener("click", () => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
     });
   }
 
