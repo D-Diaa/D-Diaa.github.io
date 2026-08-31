@@ -10,6 +10,7 @@ import CVLayout from "../layouts/CVLayout.astro";
 import type { CvData } from "../types/cv";
 
 const publications = parse(readFileSync("src/data/publications.yml", "utf-8"));
+const preprints = parse(readFileSync("src/data/preprints.yml", "utf-8"));
 const awards = parse(readFileSync("src/data/awards.yml", "utf-8"));
 const services = parse(readFileSync("src/data/service.yml", "utf-8"));
 const cvData = parse(readFileSync("src/data/cv.yml", "utf-8")) as CvData;
@@ -20,6 +21,7 @@ const sections = [
   { id: "education", label: "Education" },
   { id: "awards", label: "Awards" },
   { id: "research-experience", label: "Research experience" },
+  { id: "preprints", label: "Preprints" },
   { id: "publications", label: "Publications" },
   { id: "patents", label: "Patents" },
   { id: "academic-service", label: "Academic service" },
@@ -104,6 +106,12 @@ const sections = [
 
           <CVSection id="research-experience" title="Research Experience">
             {researchExperience.map((entry) => <CVTimelineEntry entry={entry} />)}
+          </CVSection>
+
+          <CVSection id="preprints" title="Preprints">
+            {preprints.map((preprint) => (
+              <CVPublicationEntry publication={preprint} />
+            ))}
           </CVSection>
 
           <CVSection id="publications" title="Publications">

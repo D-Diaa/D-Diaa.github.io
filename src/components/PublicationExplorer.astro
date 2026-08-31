@@ -14,7 +14,7 @@ interface Link {
 }
 
 interface Citation {
-  type: "article" | "inproceedings" | "unpublished";
+  type: "article" | "inproceedings" | "misc" | "unpublished";
   key: string;
   authors: string[];
   booktitle?: string;
@@ -29,6 +29,9 @@ interface Citation {
   doi?: string;
   url?: string;
   month?: string;
+  eprint?: string;
+  archivePrefix?: string;
+  primaryClass?: string;
 }
 
 interface Publication {
@@ -40,6 +43,7 @@ interface Publication {
   abstract?: string;
   links?: Link[];
   highlights?: string[];
+  status: "peer-reviewed" | "preprint";
   citation: Citation;
 }
 
@@ -72,6 +76,10 @@ const searchText = (publication: Publication) =>
     publication.citation.doi,
     publication.citation.url,
     publication.citation.month,
+    publication.citation.eprint,
+    publication.citation.archivePrefix,
+    publication.citation.primaryClass,
+    publication.status,
     ...(publication.highlights || []),
     ...(publication.links || []).flatMap((link) => [link.label, link.url]),
   ]
@@ -95,29 +103,53 @@ const searchText = (publication: Publication) =>
     </label>
 
     <div class="mt-2.5 flex flex-wrap items-center gap-2">
-      <span class="mr-1 text-xs font-medium text-[var(--color-text-secondary)]">Topic</span>
-      <button
-        type="button"
-        class="publication-topic-filter rounded-full border border-[var(--color-border)] px-3 py-1 text-xs font-medium text-[var(--color-text-secondary)]"
-        style="border-color: var(--color-accent); color: var(--color-accent); background-color: color-mix(in srgb, var(--color-accent) 10%, transparent);"
-        data-topic="all"
-        aria-pressed="true"
-      >All</button>
-      {topics.map((topic) => {
-        const color = siteConfig.topics[topic as keyof typeof siteConfig.topics]?.color;
-        return (
-          <button
-            type="button"
-            class="publication-topic-filter inline-flex items-center rounded-full border border-[var(--color-border)] px-3 py-1 text-xs font-medium text-[var(--color-text-secondary)] transition-colors"
-            data-topic={topic}
-            data-color={color}
-            aria-pressed="false"
-          >
-            <span class="mr-1.5 h-2 w-2 rounded-full" style={`background:${color}`}></span>
-            {topic}
-          </button>
-        );
-      })}
+      <div class="flex flex-wrap items-center gap-2" role="group" aria-label="Filter by topic">
+        <span class="mr-1 text-xs font-medium text-[var(--color-text-secondary)]">Topic</span>
+        <button
+          type="button"
+          class="publication-topic-filter rounded-full border border-[var(--color-border)] px-3 py-1 text-xs font-medium text-[var(--color-text-secondary)]"
+          style="border-color: var(--color-accent); color: var(--color-accent); background-color: color-mix(in srgb, var(--color-accent) 10%, transparent);"
+          data-topic="all"
+          aria-pressed="true"
+        >All</button>
+        {topics.map((topic) => {
+          const color = siteConfig.topics[topic as keyof typeof siteConfig.topics]?.color;
+          return (
+            <button
+              type="button"
+              class="publication-topic-filter inline-flex items-center rounded-full border border-[var(--color-border)] px-3 py-1 text-xs font-medium text-[var(--color-text-secondary)] transition-colors"
+              data-topic={topic}
+              data-color={color}
+              aria-pressed="false"
+            >
+              <span class="mr-1.5 h-2 w-2 rounded-full" style={`background:${color}`}></span>
+              {topic}
+            </button>
+          );
+        })}
+      </div>
+      <div class="flex flex-wrap items-center gap-2 lg:ml-2" role="group" aria-label="Filter by publication status">
+        <span class="mr-1 text-xs font-medium text-[var(--color-text-secondary)]">Status</span>
+        <button
+          type="button"
+          class="publication-status-filter rounded-full border border-[var(--color-border)] px-3 py-1 text-xs font-medium text-[var(--color-text-secondary)]"
+          style="border-color: var(--color-accent); color: var(--color-accent); background-color: color-mix(in srgb, var(--color-accent) 10%, transparent);"
+          data-status="all"
+          aria-pressed="true"
+        >All</button>
+        <button
+          type="button"
+          class="publication-status-filter rounded-full border border-[var(--color-border)] px-3 py-1 text-xs font-medium text-[var(--color-text-secondary)] transition-colors"
+          data-status="peer-reviewed"
+          aria-pressed="false"
+        >Peer-reviewed</button>
+        <button
+          type="button"
+          class="publication-status-filter rounded-full border border-[var(--color-border)] px-3 py-1 text-xs font-medium text-[var(--color-text-secondary)] transition-colors"
+          data-status="preprint"
+          aria-pressed="false"
+        >Preprints</button>
+      </div>
       <span class="publication-result-count ml-auto text-xs text-[var(--color-text-secondary)]" aria-live="polite">
         {publications.length} results
       </span>
@@ -130,6 +162,7 @@ const searchText = (publication: Publication) =>
         class="publication-item"
         data-publication-item
         data-topic={publication.topic || ""}
+        data-status={publication.status}
         data-search={searchText(publication)}
       >
         <PublicationCard publication={publication} index={index} />
@@ -151,11 +184,13 @@ const searchText = (publication: Publication) =>
 
       const search = root.querySelector<HTMLInputElement>(".publication-search");
       const topicButtons = Array.from(root.querySelectorAll<HTMLButtonElement>(".publication-topic-filter"));
+      const statusButtons = Array.from(root.querySelectorAll<HTMLButtonElement>(".publication-status-filter"));
       const items = Array.from(root.querySelectorAll<HTMLElement>("[data-publication-item]"));
       const count = root.querySelector<HTMLElement>(".publication-result-count");
       const empty = root.querySelector<HTMLElement>(".publication-empty");
       const reset = root.querySelector<HTMLButtonElement>(".publication-reset");
       let activeTopic = "all";
+      let activeStatus = "all";
 
       const applyFilters = () => {
         const query = search?.value.trim().toLowerCase() || "";
@@ -163,8 +198,9 @@ const searchText = (publication: Publication) =>
 
         items.forEach((item) => {
           const topicMatch = activeTopic === "all" || item.dataset.topic === activeTopic;
+          const statusMatch = activeStatus === "all" || item.dataset.status === activeStatus;
           const searchMatch = !query || item.dataset.search?.includes(query);
-          const show = Boolean(topicMatch && searchMatch);
+          const show = Boolean(topicMatch && statusMatch && searchMatch);
           item.hidden = !show;
           if (show) visible += 1;
         });
@@ -190,10 +226,27 @@ const searchText = (publication: Publication) =>
         });
       });
 
+      statusButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          activeStatus = button.dataset.status || "all";
+          statusButtons.forEach((candidate) => {
+            const active = candidate === button;
+            candidate.setAttribute("aria-pressed", String(active));
+            candidate.style.borderColor = active ? "var(--color-accent)" : "";
+            candidate.style.color = active ? "var(--color-accent)" : "";
+            candidate.style.backgroundColor = active
+              ? "color-mix(in srgb, var(--color-accent) 10%, transparent)"
+              : "";
+          });
+          applyFilters();
+        });
+      });
+
       search?.addEventListener("input", applyFilters);
       reset?.addEventListener("click", () => {
         if (search) search.value = "";
         topicButtons[0]?.click();
+        statusButtons[0]?.click();
         search?.focus();
       });
     });

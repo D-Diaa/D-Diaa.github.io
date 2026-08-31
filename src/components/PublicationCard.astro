@@ -13,7 +13,7 @@ interface Link {
 }
 
 interface Citation {
-  type: "article" | "inproceedings" | "unpublished";
+  type: "article" | "inproceedings" | "misc" | "unpublished";
   key: string;
   authors: string[];
   booktitle?: string;
@@ -28,6 +28,9 @@ interface Citation {
   doi?: string;
   url?: string;
   month?: string;
+  eprint?: string;
+  archivePrefix?: string;
+  primaryClass?: string;
 }
 
 interface Props {
@@ -40,6 +43,7 @@ interface Props {
     abstract?: string;
     links?: Link[];
     highlights?: string[];
+    status?: "peer-reviewed" | "preprint";
     citation: Citation;
   };
   index?: number;
@@ -72,6 +76,9 @@ const citationFields = [
   ["doi", publication.citation.doi],
   ["url", publication.citation.url],
   ["month", publication.citation.month],
+  ["eprint", publication.citation.eprint],
+  ["archivePrefix", publication.citation.archivePrefix],
+  ["primaryClass", publication.citation.primaryClass],
   ["year", String(publication.year)],
 ].filter((field): field is [string, string] => Boolean(field[1]));
 
@@ -83,7 +90,8 @@ const bibtex = [
 ---
 
 <article
-  class="publication-row overflow-hidden rounded-xl border bg-[var(--color-surface)] transition-colors hover:bg-[var(--color-surface-hover)]/35"
+  id={publication.citation.key}
+  class="publication-row scroll-mt-36 overflow-hidden rounded-xl border bg-[var(--color-surface)] transition-colors hover:bg-[var(--color-surface-hover)]/35"
   style={topicColor
     ? `border-color: color-mix(in srgb, ${topicColor} 20%, var(--color-border)); border-left: 2px solid ${topicColor};`
     : `border-color: var(--color-border);`}
@@ -117,6 +125,11 @@ const bibtex = [
 
       <div class="text-xs leading-5 text-[var(--color-text-secondary)]">
         {publication.venue && <span itemprop="publisher">{publication.venue}</span>}
+        {publication.status === "preprint" && (
+          <span class="ml-2 inline-flex rounded-full border border-[var(--color-accent)]/25 bg-[var(--color-accent)]/8 px-2 py-0.5 font-medium text-[var(--color-accent)]">
+            Preprint
+          </span>
+        )}
       </div>
 
       {publication.highlights && publication.highlights.length > 0 && (

@@ -1,4 +1,8 @@
 # Most recent items should appear first. `href` is optional.
+- date: Aug 2026
+  text: Released SwordStamp, a new preprint on order-robust semantic watermarking over sub-sentence units.
+  href: /publications#diaa2026semantic
+
 - date: Apr 2026
   text: Joined Google as a Student Researcher working on private RAG and nearest-neighbor search.
   href: https://research.google

@@ -5,22 +5,27 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import PublicationExplorer from "../components/PublicationExplorer.astro";
 
 const publications = parse(readFileSync("src/data/publications.yml", "utf-8"));
+const preprints = parse(readFileSync("src/data/preprints.yml", "utf-8"));
+const publicationEntries = [
+  ...preprints.map((preprint) => ({ ...preprint, status: "preprint" })),
+  ...publications.map((publication) => ({ ...publication, status: "peer-reviewed" })),
+];
 ---
 
 <BaseLayout
   title="Publications"
-  description="Publications by Abdulrahman Diaa on privacy-preserving machine learning and AI-content watermarking."
+  description="Peer-reviewed papers and preprints by Abdulrahman Diaa on privacy-preserving machine learning and AI-content watermarking."
   canonicalPath="/publications"
 >
   <div class="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-10">
     <header class="mb-5 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
       <h1 class="text-4xl font-bold tracking-tight text-[var(--color-text)] sm:text-5xl">Publications</h1>
       <div class="flex items-center gap-4 text-sm text-[var(--color-text-secondary)]">
-        <span>{publications.length} peer-reviewed papers</span>
+        <span>{publications.length} peer-reviewed papers · {preprints.length} {preprints.length === 1 ? "preprint" : "preprints"}</span>
         <a href="https://scholar.google.com/citations?user=xFX1k1AAAAAJ" target="_blank" rel="noopener" class="font-medium">Google Scholar ↗</a>
       </div>
     </header>
 
-    <PublicationExplorer publications={publications} />
+    <PublicationExplorer publications={publicationEntries} />
   </div>
 </BaseLayout>

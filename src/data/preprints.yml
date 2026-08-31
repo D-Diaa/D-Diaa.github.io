@@ -1,1 +1,31 @@
-[]
+- authors:
+    - name: "Abdulrahman Diaa"
+      highlight: true
+    - name: "Jonathan Petit"
+      highlight: false
+    - name: "Florian Kerschbaum"
+      highlight: false
+  title: "Semantic Watermarking with Order-Robust Detection over Sub-sentence Units"
+  topic: "AI-content Watermarking"
+  venue: "arXiv"
+  year: 2026
+  citation:
+    type: misc
+    key: diaa2026semantic
+    authors:
+      - Abdulrahman Diaa
+      - Jonathan Petit
+      - Florian Kerschbaum
+    eprint: "2608.27666"
+    archivePrefix: arXiv
+    primaryClass: cs.CR
+    url: https://arxiv.org/abs/2608.27666
+    month: August
+  abstract: "Semantic watermarks tie the mark to sentence meaning rather than token choices, promising robustness to content-preserving edits. However, the detector only observes attacker-supplied text, which can be reworded, reordered, or resegmented to evade detection without content loss. Rewording, reordering, and resegmentation all cause embedding displacement: detection tests embeddings different from those selected during watermarking and can therefore lose the mark. Our adaptive embedding displacement attack (EDA) admits all three edits under a single objective that maximizes this displacement. It uses a public paraphraser and surrogate encoder without access to the provider's generator or secret key. At a 5% false-positive rate (FPR) and content-preservation threshold q̄ = 90%, EDA successfully removes the mark on between 32.6% and 47.9% of documents across four schemes, the highest among the tested attacks. Therefore, EDA evaluates the schemes' robustness more thoroughly than passive paraphrasing. To address these vulnerabilities, we design (k)-SwordStamp: semantic watermarks with order-robust detection over sub-sentence units, reducing sensitivity to attacker-chosen structure at a small quality cost. Against k-SwordStamp, the strongest no-box attack we test is an EDA variant adapted to its design, with a 10.8% attack-success rate. A stronger EDA with access to the provider's detector and secret key reaches a 39.7% attack-success rate, compared with 65.5% on k-SemStamp."
+  links:
+    - type: "paper"
+      url: "https://arxiv.org/abs/2608.27666"
+      label: "Paper"
+    - type: "code"
+      url: "https://github.com/D-Diaa/SwordStamp"
+      label: "Code"
